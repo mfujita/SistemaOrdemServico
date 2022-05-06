@@ -3,14 +3,14 @@
     partial class Form1
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Variável de designer necessária.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Limpar os recursos que estão sendo usados.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true se for necessário descartar os recursos gerenciados; caso contrário, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +20,11 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Código gerado pelo Windows Form Designer
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Método necessário para suporte ao Designer - não modifique 
+        /// o conteúdo deste método com o editor de código.
         /// </summary>
         private void InitializeComponent()
         {
@@ -39,18 +39,16 @@
             // 
             // tcOrdemServico
             // 
-            this.tcOrdemServico.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tcOrdemServico.Controls.Add(this.tpFuncionarios);
             this.tcOrdemServico.Controls.Add(this.tpPecas);
             this.tcOrdemServico.Controls.Add(this.tpOrcamento);
             this.tcOrdemServico.Controls.Add(this.tpOrdemServico);
             this.tcOrdemServico.Controls.Add(this.tpClienteEmpresa);
-            this.tcOrdemServico.Location = new System.Drawing.Point(12, 12);
+            this.tcOrdemServico.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tcOrdemServico.Location = new System.Drawing.Point(0, 0);
             this.tcOrdemServico.Name = "tcOrdemServico";
             this.tcOrdemServico.SelectedIndex = 0;
-            this.tcOrdemServico.Size = new System.Drawing.Size(1068, 391);
+            this.tcOrdemServico.Size = new System.Drawing.Size(1255, 538);
             this.tcOrdemServico.TabIndex = 0;
             // 
             // tpFuncionarios
@@ -58,7 +56,7 @@
             this.tpFuncionarios.Location = new System.Drawing.Point(4, 30);
             this.tpFuncionarios.Name = "tpFuncionarios";
             this.tpFuncionarios.Padding = new System.Windows.Forms.Padding(3);
-            this.tpFuncionarios.Size = new System.Drawing.Size(1060, 357);
+            this.tpFuncionarios.Size = new System.Drawing.Size(1247, 504);
             this.tpFuncionarios.TabIndex = 0;
             this.tpFuncionarios.Text = "Cadastro funcionários";
             this.tpFuncionarios.UseVisualStyleBackColor = true;
@@ -68,7 +66,7 @@
             this.tpPecas.Location = new System.Drawing.Point(4, 30);
             this.tpPecas.Name = "tpPecas";
             this.tpPecas.Padding = new System.Windows.Forms.Padding(3);
-            this.tpPecas.Size = new System.Drawing.Size(961, 357);
+            this.tpPecas.Size = new System.Drawing.Size(1060, 357);
             this.tpPecas.TabIndex = 1;
             this.tpPecas.Text = "Cadastro de peças";
             this.tpPecas.UseVisualStyleBackColor = true;
@@ -78,7 +76,7 @@
             this.tpOrcamento.Location = new System.Drawing.Point(4, 30);
             this.tpOrcamento.Name = "tpOrcamento";
             this.tpOrcamento.Padding = new System.Windows.Forms.Padding(3);
-            this.tpOrcamento.Size = new System.Drawing.Size(961, 357);
+            this.tpOrcamento.Size = new System.Drawing.Size(1060, 357);
             this.tpOrcamento.TabIndex = 2;
             this.tpOrcamento.Text = "Cadastro de orçamentos";
             this.tpOrcamento.UseVisualStyleBackColor = true;
@@ -87,7 +85,7 @@
             // 
             this.tpOrdemServico.Location = new System.Drawing.Point(4, 30);
             this.tpOrdemServico.Name = "tpOrdemServico";
-            this.tpOrdemServico.Size = new System.Drawing.Size(961, 357);
+            this.tpOrdemServico.Size = new System.Drawing.Size(1060, 357);
             this.tpOrdemServico.TabIndex = 3;
             this.tpOrdemServico.Text = "Cadastro de ordem de serviço";
             this.tpOrdemServico.UseVisualStyleBackColor = true;
@@ -96,7 +94,7 @@
             // 
             this.tpClienteEmpresa.Location = new System.Drawing.Point(4, 30);
             this.tpClienteEmpresa.Name = "tpClienteEmpresa";
-            this.tpClienteEmpresa.Size = new System.Drawing.Size(961, 357);
+            this.tpClienteEmpresa.Size = new System.Drawing.Size(1060, 357);
             this.tpClienteEmpresa.TabIndex = 4;
             this.tpClienteEmpresa.Text = "Cadastros de clientes/empresas";
             this.tpClienteEmpresa.UseVisualStyleBackColor = true;
@@ -107,7 +105,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1255, 538);
             this.Controls.Add(this.tcOrdemServico);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Sistema de Ordem de Serviço v 1.0";
@@ -119,11 +117,12 @@
 
         #endregion
 
-        private TabControl tcOrdemServico;
-        private TabPage tpFuncionarios;
-        private TabPage tpPecas;
-        private TabPage tpOrcamento;
-        private TabPage tpOrdemServico;
-        private TabPage tpClienteEmpresa;
+        private System.Windows.Forms.TabControl tcOrdemServico;
+        private System.Windows.Forms.TabPage tpFuncionarios;
+        private System.Windows.Forms.TabPage tpPecas;
+        private System.Windows.Forms.TabPage tpOrcamento;
+        private System.Windows.Forms.TabPage tpOrdemServico;
+        private System.Windows.Forms.TabPage tpClienteEmpresa;
     }
 }
+
