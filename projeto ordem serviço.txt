@@ -1,0 +1,56 @@
+Cadastro de funcionários;   Gustavo Almeida
+  CFP nvarchar(11)
+  Nome completo nvarchar(60)
+  Sexo  char
+  Data nascimento date
+  Endereço  nvarchar(120)
+  Número nvarchar(5)
+  Bairro nvarchar(40)
+  CEP  nvarchar(8)
+  Telefone nvarchar(10)
+  Celular nvarchar(11)
+  e-mail nvarchar(50)
+Cadastro de peças; (uso de senha para administrador)    Godoy
+  Código peça  int autoincremento
+  Nome peça       nvarchar(50)
+  IdFornecedor    nvarchar (15)
+  Fabricante      nvarchar (40)
+  Valor compra    double
+  Valor venda     double
+Cadastro de orçamentos;      Gustavo Vieira
+  IdOrcamento     int autoincremento
+  Clientes   	  nvarchar (60)
+  DataEntrada     date
+  Descrição defeito   text
+  Peças           nvarchar(120)
+  Valor servico   double
+  RecebidoPor     nvarchar(60)
+Cadastro de ordem de servico      Willian
+  IdOrdemServico      int
+  DataSaidaEstimada   date
+  ResponsavelServico  nvarchar(60)
+  DataGarantia        date
+Cadastros de clientes/empresas     Burim
+  CpfCnpj           nvarchar (15)
+  Categoria  (cliente/fornecedor)  nvarchar (15)
+  NomeRazaoSocial   nvarchar (60)
+  Endereço          nvarchar(120)
+  Número			nvarchar(5)
+  Bairro            nvarchar(40)
+  CEP               nvarchar(8)
+  Telefone          nvarchar(10)
+  Celular           nvarchar(11)
+  e-mail            nvarchar(50)
+  
+  
+  
+Classes auxiliares   Bellotti
+
+Permissão para todos os usuários verem as telas comuns.
+Senha para assuntos restritos ao proprietário.
+
+1º faz pull (pegar códigos da equipe)
+2º faz push (envar as SUAS modificações).
+
+github.com
+
