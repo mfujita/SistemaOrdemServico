@@ -28,9 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tcOrdemServico = new System.Windows.Forms.TabControl();
             this.tpFuncionarios = new System.Windows.Forms.TabPage();
             this.tpPecas = new System.Windows.Forms.TabPage();
+            this.btnExcluirPeca = new System.Windows.Forms.Button();
+            this.btnEditarPeca = new System.Windows.Forms.Button();
+            this.btnSalvarPeca = new System.Windows.Forms.Button();
+            this.txtValorVendaPeca = new System.Windows.Forms.TextBox();
+            this.txtValorCompraPeca = new System.Windows.Forms.TextBox();
+            this.txtFabricantePeca = new System.Windows.Forms.TextBox();
+            this.txtFornecedorPeca = new System.Windows.Forms.TextBox();
+            this.txtNomePeca = new System.Windows.Forms.TextBox();
+            this.labelValorVenda = new System.Windows.Forms.Label();
+            this.labelValorCompra = new System.Windows.Forms.Label();
+            this.labelFabricante = new System.Windows.Forms.Label();
+            this.labelFornecedor = new System.Windows.Forms.Label();
+            this.labelNomePeca = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tpOrcamento = new System.Windows.Forms.TabPage();
             this.tpOrdemServico = new System.Windows.Forms.TabPage();
             this.tpClienteEmpresa = new System.Windows.Forms.TabPage();
@@ -68,6 +84,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tcOrdemServico.SuspendLayout();
+            this.tpPecas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tpClienteEmpresa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -100,6 +118,21 @@
             // 
             // tpPecas
             // 
+            this.tpPecas.Controls.Add(this.btnExcluirPeca);
+            this.tpPecas.Controls.Add(this.btnEditarPeca);
+            this.tpPecas.Controls.Add(this.btnSalvarPeca);
+            this.tpPecas.Controls.Add(this.txtValorVendaPeca);
+            this.tpPecas.Controls.Add(this.txtValorCompraPeca);
+            this.tpPecas.Controls.Add(this.txtFabricantePeca);
+            this.tpPecas.Controls.Add(this.txtFornecedorPeca);
+            this.tpPecas.Controls.Add(this.txtNomePeca);
+            this.tpPecas.Controls.Add(this.labelValorVenda);
+            this.tpPecas.Controls.Add(this.labelValorCompra);
+            this.tpPecas.Controls.Add(this.labelFabricante);
+            this.tpPecas.Controls.Add(this.labelFornecedor);
+            this.tpPecas.Controls.Add(this.labelNomePeca);
+            this.tpPecas.Controls.Add(this.label17);
+            this.tpPecas.Controls.Add(this.pictureBox2);
             this.tpPecas.Location = new System.Drawing.Point(4, 30);
             this.tpPecas.Name = "tpPecas";
             this.tpPecas.Padding = new System.Windows.Forms.Padding(3);
@@ -108,6 +141,139 @@
             this.tpPecas.Text = "Cadastro de peças";
             this.tpPecas.UseVisualStyleBackColor = true;
             this.tpPecas.Click += new System.EventHandler(this.tpPecas_Click);
+            // 
+            // btnExcluirPeca
+            // 
+            this.btnExcluirPeca.Location = new System.Drawing.Point(319, 490);
+            this.btnExcluirPeca.Name = "btnExcluirPeca";
+            this.btnExcluirPeca.Size = new System.Drawing.Size(75, 33);
+            this.btnExcluirPeca.TabIndex = 46;
+            this.btnExcluirPeca.Text = "Excluir";
+            this.btnExcluirPeca.UseVisualStyleBackColor = true;
+            // 
+            // btnEditarPeca
+            // 
+            this.btnEditarPeca.Location = new System.Drawing.Point(238, 490);
+            this.btnEditarPeca.Name = "btnEditarPeca";
+            this.btnEditarPeca.Size = new System.Drawing.Size(75, 33);
+            this.btnEditarPeca.TabIndex = 45;
+            this.btnEditarPeca.Text = "Editar";
+            this.btnEditarPeca.UseVisualStyleBackColor = true;
+            // 
+            // btnSalvarPeca
+            // 
+            this.btnSalvarPeca.Location = new System.Drawing.Point(158, 490);
+            this.btnSalvarPeca.Name = "btnSalvarPeca";
+            this.btnSalvarPeca.Size = new System.Drawing.Size(75, 33);
+            this.btnSalvarPeca.TabIndex = 44;
+            this.btnSalvarPeca.Text = "Salvar";
+            this.btnSalvarPeca.UseVisualStyleBackColor = true;
+            this.btnSalvarPeca.Click += new System.EventHandler(this.btnSalvarPeca_Click);
+            // 
+            // txtValorVendaPeca
+            // 
+            this.txtValorVendaPeca.Location = new System.Drawing.Point(292, 388);
+            this.txtValorVendaPeca.Name = "txtValorVendaPeca";
+            this.txtValorVendaPeca.Size = new System.Drawing.Size(234, 29);
+            this.txtValorVendaPeca.TabIndex = 43;
+            // 
+            // txtValorCompraPeca
+            // 
+            this.txtValorCompraPeca.Location = new System.Drawing.Point(292, 341);
+            this.txtValorCompraPeca.Name = "txtValorCompraPeca";
+            this.txtValorCompraPeca.Size = new System.Drawing.Size(234, 29);
+            this.txtValorCompraPeca.TabIndex = 42;
+            // 
+            // txtFabricantePeca
+            // 
+            this.txtFabricantePeca.Location = new System.Drawing.Point(292, 295);
+            this.txtFabricantePeca.Name = "txtFabricantePeca";
+            this.txtFabricantePeca.Size = new System.Drawing.Size(234, 29);
+            this.txtFabricantePeca.TabIndex = 41;
+            // 
+            // txtFornecedorPeca
+            // 
+            this.txtFornecedorPeca.Location = new System.Drawing.Point(292, 250);
+            this.txtFornecedorPeca.Name = "txtFornecedorPeca";
+            this.txtFornecedorPeca.Size = new System.Drawing.Size(234, 29);
+            this.txtFornecedorPeca.TabIndex = 40;
+            // 
+            // txtNomePeca
+            // 
+            this.txtNomePeca.Location = new System.Drawing.Point(292, 208);
+            this.txtNomePeca.Name = "txtNomePeca";
+            this.txtNomePeca.Size = new System.Drawing.Size(234, 29);
+            this.txtNomePeca.TabIndex = 39;
+            // 
+            // labelValorVenda
+            // 
+            this.labelValorVenda.AutoSize = true;
+            this.labelValorVenda.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelValorVenda.Location = new System.Drawing.Point(160, 399);
+            this.labelValorVenda.Name = "labelValorVenda";
+            this.labelValorVenda.Size = new System.Drawing.Size(97, 18);
+            this.labelValorVenda.TabIndex = 29;
+            this.labelValorVenda.Text = "Valor Venda:";
+            // 
+            // labelValorCompra
+            // 
+            this.labelValorCompra.AutoSize = true;
+            this.labelValorCompra.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelValorCompra.Location = new System.Drawing.Point(160, 352);
+            this.labelValorCompra.Name = "labelValorCompra";
+            this.labelValorCompra.Size = new System.Drawing.Size(109, 18);
+            this.labelValorCompra.TabIndex = 28;
+            this.labelValorCompra.Text = "Valor Compra:";
+            // 
+            // labelFabricante
+            // 
+            this.labelFabricante.AutoSize = true;
+            this.labelFabricante.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFabricante.Location = new System.Drawing.Point(160, 306);
+            this.labelFabricante.Name = "labelFabricante";
+            this.labelFabricante.Size = new System.Drawing.Size(87, 18);
+            this.labelFabricante.TabIndex = 27;
+            this.labelFabricante.Text = "Fabricante:";
+            // 
+            // labelFornecedor
+            // 
+            this.labelFornecedor.AutoSize = true;
+            this.labelFornecedor.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFornecedor.Location = new System.Drawing.Point(160, 261);
+            this.labelFornecedor.Name = "labelFornecedor";
+            this.labelFornecedor.Size = new System.Drawing.Size(93, 18);
+            this.labelFornecedor.TabIndex = 26;
+            this.labelFornecedor.Text = "Fornecedor:";
+            // 
+            // labelNomePeca
+            // 
+            this.labelNomePeca.AutoSize = true;
+            this.labelNomePeca.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNomePeca.Location = new System.Drawing.Point(160, 219);
+            this.labelNomePeca.Name = "labelNomePeca";
+            this.labelNomePeca.Size = new System.Drawing.Size(54, 18);
+            this.labelNomePeca.TabIndex = 25;
+            this.labelNomePeca.Text = "Nome:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(288, 83);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(200, 24);
+            this.label17.TabIndex = 22;
+            this.label17.Text = "Cadastro de peças";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(163, 41);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(84, 84);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 21;
+            this.pictureBox2.TabStop = false;
             // 
             // tpOrcamento
             // 
@@ -503,6 +669,9 @@
             this.Text = "Sistema de Ordem de Serviço v 1.0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tcOrdemServico.ResumeLayout(false);
+            this.tpPecas.ResumeLayout(false);
+            this.tpPecas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tpClienteEmpresa.ResumeLayout(false);
             this.tpClienteEmpresa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -551,6 +720,21 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnExcluirPeca;
+        private System.Windows.Forms.Button btnEditarPeca;
+        private System.Windows.Forms.Button btnSalvarPeca;
+        private System.Windows.Forms.TextBox txtValorVendaPeca;
+        private System.Windows.Forms.TextBox txtValorCompraPeca;
+        private System.Windows.Forms.TextBox txtFabricantePeca;
+        private System.Windows.Forms.TextBox txtFornecedorPeca;
+        private System.Windows.Forms.TextBox txtNomePeca;
+        private System.Windows.Forms.Label labelValorVenda;
+        private System.Windows.Forms.Label labelValorCompra;
+        private System.Windows.Forms.Label labelFabricante;
+        private System.Windows.Forms.Label labelFornecedor;
+        private System.Windows.Forms.Label labelNomePeca;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
 

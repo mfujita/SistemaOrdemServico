@@ -191,5 +191,21 @@ namespace SistemaOrdemServico
         {
 
         }
+
+        private void btnSalvarPeca_Click(object sender, EventArgs e)
+        {
+            string nome = txtNomePeca.Text;
+            string fornecedor = txtFornecedorPeca.Text;
+            string fabricante = txtFabricantePeca.Text;
+            string valorCompra = txtValorCompraPeca.Text;
+            string valorVenda = txtValorVendaPeca.Text;
+
+            if ( nome == string.Empty || fornecedor == string.Empty || fabricante == string.Empty || valorCompra == string.Empty || valorVenda == string.Empty)
+            {
+                MessageBox.Show("Campo precisa ser preenchido");
+
+            }
+
+        }
     }
 }
