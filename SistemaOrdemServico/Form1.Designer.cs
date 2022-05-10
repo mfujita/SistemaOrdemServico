@@ -533,7 +533,7 @@
             this.txtCidadePessoa.Location = new System.Drawing.Point(294, 403);
             this.txtCidadePessoa.Name = "txtCidadePessoa";
             this.txtCidadePessoa.Size = new System.Drawing.Size(100, 29);
-            this.txtCidadePessoa.TabIndex = 49;
+            this.txtCidadePessoa.TabIndex = 11;
             // 
             // lblCidadePessoa
             // 
@@ -550,7 +550,7 @@
             this.txtEstadoPessoa.Location = new System.Drawing.Point(294, 368);
             this.txtEstadoPessoa.Name = "txtEstadoPessoa";
             this.txtEstadoPessoa.Size = new System.Drawing.Size(100, 29);
-            this.txtEstadoPessoa.TabIndex = 47;
+            this.txtEstadoPessoa.TabIndex = 10;
             // 
             // lblEstadoPessoa
             // 
@@ -568,7 +568,7 @@
             this.cbCategoriaPessoa.Location = new System.Drawing.Point(870, 214);
             this.cbCategoriaPessoa.Name = "cbCategoriaPessoa";
             this.cbCategoriaPessoa.Size = new System.Drawing.Size(121, 29);
-            this.cbCategoriaPessoa.TabIndex = 45;
+            this.cbCategoriaPessoa.TabIndex = 8;
             // 
             // cbStatusPessoa
             // 
@@ -576,70 +576,70 @@
             this.cbStatusPessoa.Location = new System.Drawing.Point(870, 179);
             this.cbStatusPessoa.Name = "cbStatusPessoa";
             this.cbStatusPessoa.Size = new System.Drawing.Size(121, 29);
-            this.cbStatusPessoa.TabIndex = 44;
+            this.cbStatusPessoa.TabIndex = 7;
             // 
             // txtEmailPessoa
             // 
             this.txtEmailPessoa.Location = new System.Drawing.Point(859, 403);
             this.txtEmailPessoa.Name = "txtEmailPessoa";
             this.txtEmailPessoa.Size = new System.Drawing.Size(137, 29);
-            this.txtEmailPessoa.TabIndex = 43;
+            this.txtEmailPessoa.TabIndex = 17;
             // 
             // txtCelularPessoa
             // 
             this.txtCelularPessoa.Location = new System.Drawing.Point(859, 368);
             this.txtCelularPessoa.Name = "txtCelularPessoa";
             this.txtCelularPessoa.Size = new System.Drawing.Size(137, 29);
-            this.txtCelularPessoa.TabIndex = 42;
+            this.txtCelularPessoa.TabIndex = 16;
             // 
             // txtContatoPessoa
             // 
             this.txtContatoPessoa.Location = new System.Drawing.Point(859, 333);
             this.txtContatoPessoa.Name = "txtContatoPessoa";
             this.txtContatoPessoa.Size = new System.Drawing.Size(137, 29);
-            this.txtContatoPessoa.TabIndex = 41;
+            this.txtContatoPessoa.TabIndex = 15;
             // 
             // txtNumeroPessoa
             // 
             this.txtNumeroPessoa.Location = new System.Drawing.Point(294, 508);
             this.txtNumeroPessoa.Name = "txtNumeroPessoa";
             this.txtNumeroPessoa.Size = new System.Drawing.Size(234, 29);
-            this.txtNumeroPessoa.TabIndex = 40;
+            this.txtNumeroPessoa.TabIndex = 14;
             // 
             // txtBairroPessoa
             // 
             this.txtBairroPessoa.Location = new System.Drawing.Point(294, 473);
             this.txtBairroPessoa.Name = "txtBairroPessoa";
             this.txtBairroPessoa.Size = new System.Drawing.Size(234, 29);
-            this.txtBairroPessoa.TabIndex = 39;
+            this.txtBairroPessoa.TabIndex = 13;
             // 
             // txtEnderecoPessoa
             // 
             this.txtEnderecoPessoa.Location = new System.Drawing.Point(294, 438);
             this.txtEnderecoPessoa.Name = "txtEnderecoPessoa";
             this.txtEnderecoPessoa.Size = new System.Drawing.Size(234, 29);
-            this.txtEnderecoPessoa.TabIndex = 38;
+            this.txtEnderecoPessoa.TabIndex = 12;
             // 
             // txtCepPessoa
             // 
             this.txtCepPessoa.Location = new System.Drawing.Point(294, 333);
             this.txtCepPessoa.Name = "txtCepPessoa";
             this.txtCepPessoa.Size = new System.Drawing.Size(100, 29);
-            this.txtCepPessoa.TabIndex = 37;
+            this.txtCepPessoa.TabIndex = 9;
             // 
             // txtCpfCnpj
             // 
             this.txtCpfCnpj.Location = new System.Drawing.Point(356, 214);
             this.txtCpfCnpj.Name = "txtCpfCnpj";
             this.txtCpfCnpj.Size = new System.Drawing.Size(175, 29);
-            this.txtCpfCnpj.TabIndex = 36;
+            this.txtCpfCnpj.TabIndex = 6;
             // 
             // txtNomePessoa
             // 
             this.txtNomePessoa.Location = new System.Drawing.Point(356, 179);
             this.txtNomePessoa.Name = "txtNomePessoa";
             this.txtNomePessoa.Size = new System.Drawing.Size(175, 29);
-            this.txtNomePessoa.TabIndex = 4;
+            this.txtNomePessoa.TabIndex = 5;
             // 
             // lblCategoriaPessoa
             // 
@@ -795,27 +795,30 @@
             this.btnExcluirPessoa.Location = new System.Drawing.Point(456, 98);
             this.btnExcluirPessoa.Name = "btnExcluirPessoa";
             this.btnExcluirPessoa.Size = new System.Drawing.Size(75, 33);
-            this.btnExcluirPessoa.TabIndex = 19;
+            this.btnExcluirPessoa.TabIndex = 4;
             this.btnExcluirPessoa.Text = "Excluir";
             this.btnExcluirPessoa.UseVisualStyleBackColor = true;
+            this.btnExcluirPessoa.Click += new System.EventHandler(this.btnExcluirPessoa_Click);
             // 
             // btnEditarPessoa
             // 
             this.btnEditarPessoa.Location = new System.Drawing.Point(375, 98);
             this.btnEditarPessoa.Name = "btnEditarPessoa";
             this.btnEditarPessoa.Size = new System.Drawing.Size(75, 33);
-            this.btnEditarPessoa.TabIndex = 18;
+            this.btnEditarPessoa.TabIndex = 3;
             this.btnEditarPessoa.Text = "Editar";
             this.btnEditarPessoa.UseVisualStyleBackColor = true;
+            this.btnEditarPessoa.Click += new System.EventHandler(this.btnEditarPessoa_Click);
             // 
             // btnSalvarPessoa
             // 
             this.btnSalvarPessoa.Location = new System.Drawing.Point(294, 98);
             this.btnSalvarPessoa.Name = "btnSalvarPessoa";
             this.btnSalvarPessoa.Size = new System.Drawing.Size(75, 33);
-            this.btnSalvarPessoa.TabIndex = 17;
+            this.btnSalvarPessoa.TabIndex = 2;
             this.btnSalvarPessoa.Text = "Salvar";
             this.btnSalvarPessoa.UseVisualStyleBackColor = true;
+            this.btnSalvarPessoa.Click += new System.EventHandler(this.btnSalvarPessoa_Click);
             // 
             // Form1
             // 

@@ -17,12 +17,6 @@ namespace SistemaOrdemServico
             InitializeComponent();
         }
 
-
-
-        /*
-            Metodo referente ao botao salvar 
-            na area de Cadastro de peças 
-         */
         private void btnSalvarPeca_Click(object sender, EventArgs e)
         {
             string nome = txtNomePeca.Text;
@@ -39,11 +33,47 @@ namespace SistemaOrdemServico
 
         }
 
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
             dtpDataEntradaOrcamento.Value = DateTime.Today;
         }
+
+        private void btnSalvarPessoa_Click(object sender, EventArgs e)
+        {
+            verificaCampos();
+        }
+        private void btnEditarPessoa_Click(object sender, EventArgs e)
+        {
+            verificaCampos();
+        }
+        private void btnExcluirPessoa_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void verificaCampos()
+        {
+            string nome      = txtNomePessoa.Text;
+            string cpfCnpj   = txtCpfCnpj.Text;
+            string cep       = txtCepPessoa.Text;
+            string estado    = txtEstadoPessoa.Text;
+            string cidade    = txtCidadePessoa.Text;
+            string endereco  = txtEnderecoPessoa.Text;
+            string numero    = txtNumeroPessoa.Text;
+            string contato   = txtContatoPessoa.Text;
+            string celular   = txtCelularPessoa.Text;
+            string email     = txtEmailPessoa.Text;
+            string status    = cbStatusPessoa.Text;
+            string categoria = cbCategoriaPessoa.Text;
+
+
+
+            if (nome == string.Empty || cpfCnpj == string.Empty || cep == string.Empty || estado == string.Empty ||  cidade == string.Empty || endereco == string.Empty || numero == string.Empty || contato == string.Empty || celular == string.Empty || email == string.Empty || status == string.Empty ||categoria == string.Empty)
+            {
+                MessageBox.Show("Campo precisa ser preenchido");
+
+            }
+        }
+
+       
     }
 }
