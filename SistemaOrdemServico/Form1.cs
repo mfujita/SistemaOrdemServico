@@ -17,6 +17,12 @@ namespace SistemaOrdemServico
             InitializeComponent();
         }
 
+
+
+        /*
+            Metodo referente ao botao salvar 
+            na area de Cadastro de peças 
+         */
         private void btnSalvarPeca_Click(object sender, EventArgs e)
         {
             string nome = txtNomePeca.Text;
@@ -32,6 +38,8 @@ namespace SistemaOrdemServico
             }
 
         }
+
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
