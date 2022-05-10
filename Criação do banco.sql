@@ -8,7 +8,9 @@ create table cadFunc (
 	cep nvarchar(8),
 	telefone nvarchar(10),
 	celular nvarchar(11),
-	email nvarchar(50)
+	email nvarchar(50),
+	estado varchar(2),
+	cidade varchar(50)
 )
 
 create table cadClientForn (
@@ -22,7 +24,9 @@ create table cadClientForn (
 	cep nvarchar(8),
 	telefone nvarchar(10),
 	celular nvarchar(11),
-	email nvarchar(50)
+	email nvarchar(50),
+	estado varchar(2),
+	cidade varchar(50)
 )
 
 create table cadPeca (
