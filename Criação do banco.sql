@@ -45,8 +45,11 @@ create table cadOrcamento (
 	foreign key (fkClienteForn) references cadClientForn(idCad),
 	dtEntrada date,
 	descricao text,
+	fkPeca integer,
+	foreign key (fkPeca) references cadPeca(codPeca),
 	vlServico numeric (8,2),
-
+	fkRecebidoPor integer,
+	foreign key (fkRecebidoPor) references cadFunc(idFunc)
 )
 
 create table cadOrdemServico (

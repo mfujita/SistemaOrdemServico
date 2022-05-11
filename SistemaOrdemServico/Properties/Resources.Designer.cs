@@ -19,7 +19,7 @@ namespace SistemaOrdemServico.Properties {
     // através de uma ferramenta como ResGen ou Visual Studio.
     // Para adicionar ou remover um associado, edite o arquivo .ResX e execute ResGen novamente
     // com a opção /str, ou recrie o projeto do VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -63,9 +63,9 @@ namespace SistemaOrdemServico.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap download {
+        internal static System.Drawing.Bitmap Orcamento {
             get {
-                object obj = ResourceManager.GetObject("download", resourceCulture);
+                object obj = ResourceManager.GetObject("Orcamento", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,19 @@ namespace SistemaOrdemServico.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap download1 {
+        internal static System.Drawing.Bitmap Peca {
             get {
-                object obj = ResourceManager.GetObject("download1", resourceCulture);
+                object obj = ResourceManager.GetObject("Peca", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pessoa {
+            get {
+                object obj = ResourceManager.GetObject("Pessoa", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

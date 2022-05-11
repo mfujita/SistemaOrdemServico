@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tcOrdemServico = new System.Windows.Forms.TabControl();
             this.tpFuncionarios = new System.Windows.Forms.TabPage();
             this.txtCidadeFunc = new System.Windows.Forms.TextBox();
@@ -70,7 +69,6 @@
             this.lblFornecedorPeca = new System.Windows.Forms.Label();
             this.lblNomePeca = new System.Windows.Forms.Label();
             this.lblCadastroPeca = new System.Windows.Forms.Label();
-            this.pbPeca = new System.Windows.Forms.PictureBox();
             this.tpOrcamento = new System.Windows.Forms.TabPage();
             this.lblCadastroOrcamento = new System.Windows.Forms.Label();
             this.btnExcluirOrcamento = new System.Windows.Forms.Button();
@@ -120,10 +118,12 @@
             this.lblCpfCnpj = new System.Windows.Forms.Label();
             this.lblNomePessoa = new System.Windows.Forms.Label();
             this.lblCadastroPessoa = new System.Windows.Forms.Label();
-            this.pbPessoa = new System.Windows.Forms.PictureBox();
             this.btnExcluirPessoa = new System.Windows.Forms.Button();
             this.btnEditarPessoa = new System.Windows.Forms.Button();
             this.btnSalvarPessoa = new System.Windows.Forms.Button();
+            this.pbPeca = new System.Windows.Forms.PictureBox();
+            this.pbOrcamento = new System.Windows.Forms.PictureBox();
+            this.pbPessoa = new System.Windows.Forms.PictureBox();
             this.cbEstadoFunc = new System.Windows.Forms.ComboBox();
             this.txtTelFunc = new System.Windows.Forms.TextBox();
             this.txtCelFunc = new System.Windows.Forms.TextBox();
@@ -135,10 +135,11 @@
             this.tcOrdemServico.SuspendLayout();
             this.tpFuncionarios.SuspendLayout();
             this.tpPecas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
             this.tpOrcamento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).BeginInit();
             this.tpClienteEmpresa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPessoa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -547,18 +548,9 @@
             this.lblCadastroPeca.TabIndex = 22;
             this.lblCadastroPeca.Text = "Cadastro de peças";
             // 
-            // pbPeca
-            // 
-            this.pbPeca.Image = ((System.Drawing.Image)(resources.GetObject("pbPeca.Image")));
-            this.pbPeca.Location = new System.Drawing.Point(163, 41);
-            this.pbPeca.Name = "pbPeca";
-            this.pbPeca.Size = new System.Drawing.Size(84, 84);
-            this.pbPeca.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbPeca.TabIndex = 21;
-            this.pbPeca.TabStop = false;
-            // 
             // tpOrcamento
             // 
+            this.tpOrcamento.Controls.Add(this.pbOrcamento);
             this.tpOrcamento.Controls.Add(this.lblCadastroOrcamento);
             this.tpOrcamento.Controls.Add(this.btnExcluirOrcamento);
             this.tpOrcamento.Controls.Add(this.btnEditarOrcamento);
@@ -588,15 +580,15 @@
             // 
             this.lblCadastroOrcamento.AutoSize = true;
             this.lblCadastroOrcamento.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCadastroOrcamento.Location = new System.Drawing.Point(148, 12);
+            this.lblCadastroOrcamento.Location = new System.Drawing.Point(149, 36);
             this.lblCadastroOrcamento.Name = "lblCadastroOrcamento";
-            this.lblCadastroOrcamento.Size = new System.Drawing.Size(263, 24);
+            this.lblCadastroOrcamento.Size = new System.Drawing.Size(260, 24);
             this.lblCadastroOrcamento.TabIndex = 23;
-            this.lblCadastroOrcamento.Text = "Cadastro de Orçamentos";
+            this.lblCadastroOrcamento.Text = "Cadastro de orçamentos";
             // 
             // btnExcluirOrcamento
             // 
-            this.btnExcluirOrcamento.Location = new System.Drawing.Point(322, 422);
+            this.btnExcluirOrcamento.Location = new System.Drawing.Point(322, 493);
             this.btnExcluirOrcamento.Name = "btnExcluirOrcamento";
             this.btnExcluirOrcamento.Size = new System.Drawing.Size(75, 33);
             this.btnExcluirOrcamento.TabIndex = 22;
@@ -605,7 +597,7 @@
             // 
             // btnEditarOrcamento
             // 
-            this.btnEditarOrcamento.Location = new System.Drawing.Point(241, 422);
+            this.btnEditarOrcamento.Location = new System.Drawing.Point(241, 493);
             this.btnEditarOrcamento.Name = "btnEditarOrcamento";
             this.btnEditarOrcamento.Size = new System.Drawing.Size(75, 33);
             this.btnEditarOrcamento.TabIndex = 21;
@@ -614,17 +606,18 @@
             // 
             // btnSalvarOrcamento
             // 
-            this.btnSalvarOrcamento.Location = new System.Drawing.Point(160, 422);
+            this.btnSalvarOrcamento.Location = new System.Drawing.Point(160, 493);
             this.btnSalvarOrcamento.Name = "btnSalvarOrcamento";
             this.btnSalvarOrcamento.Size = new System.Drawing.Size(75, 33);
             this.btnSalvarOrcamento.TabIndex = 20;
             this.btnSalvarOrcamento.Text = "Salvar";
             this.btnSalvarOrcamento.UseVisualStyleBackColor = true;
+            this.btnSalvarOrcamento.Click += new System.EventHandler(this.btnSalvarOrcamento_Click);
             // 
             // cbRecebidoOrcamento
             // 
             this.cbRecebidoOrcamento.FormattingEnabled = true;
-            this.cbRecebidoOrcamento.Location = new System.Drawing.Point(142, 373);
+            this.cbRecebidoOrcamento.Location = new System.Drawing.Point(142, 444);
             this.cbRecebidoOrcamento.MaxLength = 60;
             this.cbRecebidoOrcamento.Name = "cbRecebidoOrcamento";
             this.cbRecebidoOrcamento.Size = new System.Drawing.Size(272, 29);
@@ -633,7 +626,7 @@
             // lblMoedaOrcamento
             // 
             this.lblMoedaOrcamento.AutoSize = true;
-            this.lblMoedaOrcamento.Location = new System.Drawing.Point(141, 330);
+            this.lblMoedaOrcamento.Location = new System.Drawing.Point(141, 401);
             this.lblMoedaOrcamento.Name = "lblMoedaOrcamento";
             this.lblMoedaOrcamento.Size = new System.Drawing.Size(29, 21);
             this.lblMoedaOrcamento.TabIndex = 12;
@@ -642,7 +635,7 @@
             // nudValorOrcamento
             // 
             this.nudValorOrcamento.DecimalPlaces = 2;
-            this.nudValorOrcamento.Location = new System.Drawing.Point(176, 326);
+            this.nudValorOrcamento.Location = new System.Drawing.Point(176, 397);
             this.nudValorOrcamento.Maximum = new decimal(new int[] {
             1410065407,
             2,
@@ -656,7 +649,7 @@
             // cbPecasOrcamento
             // 
             this.cbPecasOrcamento.FormattingEnabled = true;
-            this.cbPecasOrcamento.Location = new System.Drawing.Point(145, 279);
+            this.cbPecasOrcamento.Location = new System.Drawing.Point(145, 350);
             this.cbPecasOrcamento.MaxLength = 60;
             this.cbPecasOrcamento.Name = "cbPecasOrcamento";
             this.cbPecasOrcamento.Size = new System.Drawing.Size(269, 29);
@@ -664,7 +657,8 @@
             // 
             // txtDescricaoOrcamento
             // 
-            this.txtDescricaoOrcamento.Location = new System.Drawing.Point(145, 146);
+            this.txtDescricaoOrcamento.AllowDrop = true;
+            this.txtDescricaoOrcamento.Location = new System.Drawing.Point(145, 217);
             this.txtDescricaoOrcamento.Multiline = true;
             this.txtDescricaoOrcamento.Name = "txtDescricaoOrcamento";
             this.txtDescricaoOrcamento.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -674,7 +668,7 @@
             // dtpDataEntradaOrcamento
             // 
             this.dtpDataEntradaOrcamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEntradaOrcamento.Location = new System.Drawing.Point(145, 99);
+            this.dtpDataEntradaOrcamento.Location = new System.Drawing.Point(145, 170);
             this.dtpDataEntradaOrcamento.Name = "dtpDataEntradaOrcamento";
             this.dtpDataEntradaOrcamento.Size = new System.Drawing.Size(269, 29);
             this.dtpDataEntradaOrcamento.TabIndex = 8;
@@ -683,7 +677,7 @@
             // cbClienteOrcamento
             // 
             this.cbClienteOrcamento.FormattingEnabled = true;
-            this.cbClienteOrcamento.Location = new System.Drawing.Point(145, 52);
+            this.cbClienteOrcamento.Location = new System.Drawing.Point(145, 123);
             this.cbClienteOrcamento.MaxLength = 60;
             this.cbClienteOrcamento.Name = "cbClienteOrcamento";
             this.cbClienteOrcamento.Size = new System.Drawing.Size(269, 29);
@@ -692,7 +686,7 @@
             // lblPecasOrcamento
             // 
             this.lblPecasOrcamento.AutoSize = true;
-            this.lblPecasOrcamento.Location = new System.Drawing.Point(41, 283);
+            this.lblPecasOrcamento.Location = new System.Drawing.Point(41, 354);
             this.lblPecasOrcamento.Name = "lblPecasOrcamento";
             this.lblPecasOrcamento.Size = new System.Drawing.Size(51, 21);
             this.lblPecasOrcamento.TabIndex = 6;
@@ -701,7 +695,7 @@
             // lblRecebidoOrcamento
             // 
             this.lblRecebidoOrcamento.AutoSize = true;
-            this.lblRecebidoOrcamento.Location = new System.Drawing.Point(15, 377);
+            this.lblRecebidoOrcamento.Location = new System.Drawing.Point(15, 448);
             this.lblRecebidoOrcamento.Name = "lblRecebidoOrcamento";
             this.lblRecebidoOrcamento.Size = new System.Drawing.Size(105, 21);
             this.lblRecebidoOrcamento.TabIndex = 5;
@@ -710,16 +704,16 @@
             // lblValorOrcamento
             // 
             this.lblValorOrcamento.AutoSize = true;
-            this.lblValorOrcamento.Location = new System.Drawing.Point(4, 330);
+            this.lblValorOrcamento.Location = new System.Drawing.Point(4, 401);
             this.lblValorOrcamento.Name = "lblValorOrcamento";
-            this.lblValorOrcamento.Size = new System.Drawing.Size(126, 21);
+            this.lblValorOrcamento.Size = new System.Drawing.Size(124, 21);
             this.lblValorOrcamento.TabIndex = 4;
-            this.lblValorOrcamento.Text = "Valor do Serviço:";
+            this.lblValorOrcamento.Text = "Valor do serviço:";
             // 
             // lblDescricaoOrcamento
             // 
             this.lblDescricaoOrcamento.AutoSize = true;
-            this.lblDescricaoOrcamento.Location = new System.Drawing.Point(32, 193);
+            this.lblDescricaoOrcamento.Location = new System.Drawing.Point(32, 264);
             this.lblDescricaoOrcamento.Name = "lblDescricaoOrcamento";
             this.lblDescricaoOrcamento.Size = new System.Drawing.Size(80, 21);
             this.lblDescricaoOrcamento.TabIndex = 3;
@@ -728,16 +722,16 @@
             // lblDataEntradaOrcamento
             // 
             this.lblDataEntradaOrcamento.AutoSize = true;
-            this.lblDataEntradaOrcamento.Location = new System.Drawing.Point(6, 103);
+            this.lblDataEntradaOrcamento.Location = new System.Drawing.Point(6, 174);
             this.lblDataEntradaOrcamento.Name = "lblDataEntradaOrcamento";
             this.lblDataEntradaOrcamento.Size = new System.Drawing.Size(123, 21);
             this.lblDataEntradaOrcamento.TabIndex = 2;
-            this.lblDataEntradaOrcamento.Text = "Data de Entrada:";
+            this.lblDataEntradaOrcamento.Text = "Data de entrada:";
             // 
             // lblClienteOrcamento
             // 
             this.lblClienteOrcamento.AutoSize = true;
-            this.lblClienteOrcamento.Location = new System.Drawing.Point(32, 56);
+            this.lblClienteOrcamento.Location = new System.Drawing.Point(32, 127);
             this.lblClienteOrcamento.Name = "lblClienteOrcamento";
             this.lblClienteOrcamento.Size = new System.Drawing.Size(61, 21);
             this.lblClienteOrcamento.TabIndex = 1;
@@ -783,10 +777,10 @@
             this.tpClienteEmpresa.Controls.Add(this.lblCpfCnpj);
             this.tpClienteEmpresa.Controls.Add(this.lblNomePessoa);
             this.tpClienteEmpresa.Controls.Add(this.lblCadastroPessoa);
-            this.tpClienteEmpresa.Controls.Add(this.pbPessoa);
             this.tpClienteEmpresa.Controls.Add(this.btnExcluirPessoa);
             this.tpClienteEmpresa.Controls.Add(this.btnEditarPessoa);
             this.tpClienteEmpresa.Controls.Add(this.btnSalvarPessoa);
+            this.tpClienteEmpresa.Controls.Add(this.pbPessoa);
             this.tpClienteEmpresa.Location = new System.Drawing.Point(4, 30);
             this.tpClienteEmpresa.Name = "tpClienteEmpresa";
             this.tpClienteEmpresa.Size = new System.Drawing.Size(1247, 699);
@@ -1047,15 +1041,6 @@
             this.lblCadastroPessoa.TabIndex = 21;
             this.lblCadastroPessoa.Text = "Cadastro de Clientes / Fornecedores";
             // 
-            // pbPessoa
-            // 
-            this.pbPessoa.Image = global::SistemaOrdemServico.Properties.Resources.download1;
-            this.pbPessoa.Location = new System.Drawing.Point(177, 47);
-            this.pbPessoa.Name = "pbPessoa";
-            this.pbPessoa.Size = new System.Drawing.Size(84, 84);
-            this.pbPessoa.TabIndex = 20;
-            this.pbPessoa.TabStop = false;
-            // 
             // btnExcluirPessoa
             // 
             this.btnExcluirPessoa.Location = new System.Drawing.Point(456, 98);
@@ -1085,6 +1070,35 @@
             this.btnSalvarPessoa.Text = "Salvar";
             this.btnSalvarPessoa.UseVisualStyleBackColor = true;
             this.btnSalvarPessoa.Click += new System.EventHandler(this.btnSalvarPessoa_Click);
+            // 
+            // pbPeca
+            // 
+            this.pbPeca.Image = global::SistemaOrdemServico.Properties.Resources.Peca;
+            this.pbPeca.Location = new System.Drawing.Point(163, 41);
+            this.pbPeca.Name = "pbPeca";
+            this.pbPeca.Size = new System.Drawing.Size(84, 84);
+            this.pbPeca.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPeca.TabIndex = 21;
+            this.pbPeca.TabStop = false;
+            // 
+            // pbOrcamento
+            // 
+            this.pbOrcamento.Image = global::SistemaOrdemServico.Properties.Resources.Orcamento;
+            this.pbOrcamento.Location = new System.Drawing.Point(20, 6);
+            this.pbOrcamento.Name = "pbOrcamento";
+            this.pbOrcamento.Size = new System.Drawing.Size(84, 84);
+            this.pbOrcamento.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOrcamento.TabIndex = 24;
+            this.pbOrcamento.TabStop = false;
+            // 
+            // pbPessoa
+            // 
+            this.pbPessoa.Image = global::SistemaOrdemServico.Properties.Resources.Pessoa;
+            this.pbPessoa.Location = new System.Drawing.Point(177, 47);
+            this.pbPessoa.Name = "pbPessoa";
+            this.pbPessoa.Size = new System.Drawing.Size(84, 84);
+            this.pbPessoa.TabIndex = 20;
+            this.pbPessoa.TabStop = false;
             // 
             // cbEstadoFunc
             // 
@@ -1169,12 +1183,13 @@
             this.tpFuncionarios.PerformLayout();
             this.tpPecas.ResumeLayout(false);
             this.tpPecas.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).EndInit();
             this.tpOrcamento.ResumeLayout(false);
             this.tpOrcamento.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).EndInit();
             this.tpClienteEmpresa.ResumeLayout(false);
             this.tpClienteEmpresa.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPessoa)).EndInit();
             this.ResumeLayout(false);
 
@@ -1253,6 +1268,7 @@
         private System.Windows.Forms.Button btnExcluirOrcamento;
         private System.Windows.Forms.Button btnEditarOrcamento;
         private System.Windows.Forms.Button btnSalvarOrcamento;
+        private System.Windows.Forms.PictureBox pbOrcamento;
         private System.Windows.Forms.TextBox txtCidadeFunc;
         private System.Windows.Forms.TextBox txtNumFunc;
         private System.Windows.Forms.TextBox txtCepFunc;
