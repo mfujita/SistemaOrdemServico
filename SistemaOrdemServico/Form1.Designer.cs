@@ -31,6 +31,30 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tcOrdemServico = new System.Windows.Forms.TabControl();
             this.tpFuncionarios = new System.Windows.Forms.TabPage();
+            this.txtCidadeFunc = new System.Windows.Forms.TextBox();
+            this.txtNumFunc = new System.Windows.Forms.TextBox();
+            this.txtCepFunc = new System.Windows.Forms.TextBox();
+            this.txtBairroFunc = new System.Windows.Forms.TextBox();
+            this.txtRuaFunc = new System.Windows.Forms.TextBox();
+            this.txtDatanascFunc = new System.Windows.Forms.MaskedTextBox();
+            this.txtCPFFunc = new System.Windows.Forms.MaskedTextBox();
+            this.cbSexoFunc = new System.Windows.Forms.ComboBox();
+            this.txtNomeFunc = new System.Windows.Forms.TextBox();
+            this.lblEstadoFunc = new System.Windows.Forms.Label();
+            this.lblCidadeFunc = new System.Windows.Forms.Label();
+            this.lblEmailFunc = new System.Windows.Forms.Label();
+            this.lblCelularFunc = new System.Windows.Forms.Label();
+            this.lblTelefoneFunc = new System.Windows.Forms.Label();
+            this.lblCepFunc = new System.Windows.Forms.Label();
+            this.lblNumeroFunc = new System.Windows.Forms.Label();
+            this.lblBairroFunc = new System.Windows.Forms.Label();
+            this.lblRuaFunc = new System.Windows.Forms.Label();
+            this.lblEnderecoFunc = new System.Windows.Forms.Label();
+            this.lblCadastroFunc = new System.Windows.Forms.Label();
+            this.lblDatanascFunc = new System.Windows.Forms.Label();
+            this.lblSexoFunc = new System.Windows.Forms.Label();
+            this.lblCpfFunc = new System.Windows.Forms.Label();
+            this.lblNomeFunc = new System.Windows.Forms.Label();
             this.tpPecas = new System.Windows.Forms.TabPage();
             this.btnExcluirPeca = new System.Windows.Forms.Button();
             this.btnEditarPeca = new System.Windows.Forms.Button();
@@ -100,7 +124,16 @@
             this.btnExcluirPessoa = new System.Windows.Forms.Button();
             this.btnEditarPessoa = new System.Windows.Forms.Button();
             this.btnSalvarPessoa = new System.Windows.Forms.Button();
+            this.cbEstadoFunc = new System.Windows.Forms.ComboBox();
+            this.txtTelFunc = new System.Windows.Forms.TextBox();
+            this.txtCelFunc = new System.Windows.Forms.TextBox();
+            this.txtEmailFunc = new System.Windows.Forms.TextBox();
+            this.lblContatoFunc = new System.Windows.Forms.Label();
+            this.btnSalvarFunc = new System.Windows.Forms.Button();
+            this.btnEditFunc = new System.Windows.Forms.Button();
+            this.btnExcluirFunc = new System.Windows.Forms.Button();
             this.tcOrdemServico.SuspendLayout();
+            this.tpFuncionarios.SuspendLayout();
             this.tpPecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
             this.tpOrcamento.SuspendLayout();
@@ -125,6 +158,38 @@
             // 
             // tpFuncionarios
             // 
+            this.tpFuncionarios.Controls.Add(this.btnExcluirFunc);
+            this.tpFuncionarios.Controls.Add(this.btnEditFunc);
+            this.tpFuncionarios.Controls.Add(this.btnSalvarFunc);
+            this.tpFuncionarios.Controls.Add(this.lblContatoFunc);
+            this.tpFuncionarios.Controls.Add(this.txtEmailFunc);
+            this.tpFuncionarios.Controls.Add(this.txtCelFunc);
+            this.tpFuncionarios.Controls.Add(this.txtTelFunc);
+            this.tpFuncionarios.Controls.Add(this.cbEstadoFunc);
+            this.tpFuncionarios.Controls.Add(this.txtCidadeFunc);
+            this.tpFuncionarios.Controls.Add(this.txtNumFunc);
+            this.tpFuncionarios.Controls.Add(this.txtCepFunc);
+            this.tpFuncionarios.Controls.Add(this.txtBairroFunc);
+            this.tpFuncionarios.Controls.Add(this.txtRuaFunc);
+            this.tpFuncionarios.Controls.Add(this.txtDatanascFunc);
+            this.tpFuncionarios.Controls.Add(this.txtCPFFunc);
+            this.tpFuncionarios.Controls.Add(this.cbSexoFunc);
+            this.tpFuncionarios.Controls.Add(this.txtNomeFunc);
+            this.tpFuncionarios.Controls.Add(this.lblEstadoFunc);
+            this.tpFuncionarios.Controls.Add(this.lblCidadeFunc);
+            this.tpFuncionarios.Controls.Add(this.lblEmailFunc);
+            this.tpFuncionarios.Controls.Add(this.lblCelularFunc);
+            this.tpFuncionarios.Controls.Add(this.lblTelefoneFunc);
+            this.tpFuncionarios.Controls.Add(this.lblCepFunc);
+            this.tpFuncionarios.Controls.Add(this.lblNumeroFunc);
+            this.tpFuncionarios.Controls.Add(this.lblBairroFunc);
+            this.tpFuncionarios.Controls.Add(this.lblRuaFunc);
+            this.tpFuncionarios.Controls.Add(this.lblEnderecoFunc);
+            this.tpFuncionarios.Controls.Add(this.lblCadastroFunc);
+            this.tpFuncionarios.Controls.Add(this.lblDatanascFunc);
+            this.tpFuncionarios.Controls.Add(this.lblSexoFunc);
+            this.tpFuncionarios.Controls.Add(this.lblCpfFunc);
+            this.tpFuncionarios.Controls.Add(this.lblNomeFunc);
             this.tpFuncionarios.Location = new System.Drawing.Point(4, 30);
             this.tpFuncionarios.Name = "tpFuncionarios";
             this.tpFuncionarios.Padding = new System.Windows.Forms.Padding(3);
@@ -132,6 +197,207 @@
             this.tpFuncionarios.TabIndex = 0;
             this.tpFuncionarios.Text = "Cadastro funcionários";
             this.tpFuncionarios.UseVisualStyleBackColor = true;
+            // 
+            // txtCidadeFunc
+            // 
+            this.txtCidadeFunc.Location = new System.Drawing.Point(185, 444);
+            this.txtCidadeFunc.Name = "txtCidadeFunc";
+            this.txtCidadeFunc.Size = new System.Drawing.Size(100, 29);
+            this.txtCidadeFunc.TabIndex = 23;
+            // 
+            // txtNumFunc
+            // 
+            this.txtNumFunc.Location = new System.Drawing.Point(638, 363);
+            this.txtNumFunc.Name = "txtNumFunc";
+            this.txtNumFunc.Size = new System.Drawing.Size(100, 29);
+            this.txtNumFunc.TabIndex = 22;
+            // 
+            // txtCepFunc
+            // 
+            this.txtCepFunc.Location = new System.Drawing.Point(454, 405);
+            this.txtCepFunc.Name = "txtCepFunc";
+            this.txtCepFunc.Size = new System.Drawing.Size(168, 29);
+            this.txtCepFunc.TabIndex = 21;
+            // 
+            // txtBairroFunc
+            // 
+            this.txtBairroFunc.Location = new System.Drawing.Point(185, 405);
+            this.txtBairroFunc.Name = "txtBairroFunc";
+            this.txtBairroFunc.Size = new System.Drawing.Size(209, 29);
+            this.txtBairroFunc.TabIndex = 20;
+            // 
+            // txtRuaFunc
+            // 
+            this.txtRuaFunc.Location = new System.Drawing.Point(185, 363);
+            this.txtRuaFunc.Name = "txtRuaFunc";
+            this.txtRuaFunc.Size = new System.Drawing.Size(358, 29);
+            this.txtRuaFunc.TabIndex = 19;
+            // 
+            // txtDatanascFunc
+            // 
+            this.txtDatanascFunc.Location = new System.Drawing.Point(510, 216);
+            this.txtDatanascFunc.Name = "txtDatanascFunc";
+            this.txtDatanascFunc.Size = new System.Drawing.Size(149, 29);
+            this.txtDatanascFunc.TabIndex = 18;
+            // 
+            // txtCPFFunc
+            // 
+            this.txtCPFFunc.Location = new System.Drawing.Point(164, 216);
+            this.txtCPFFunc.Name = "txtCPFFunc";
+            this.txtCPFFunc.Size = new System.Drawing.Size(170, 29);
+            this.txtCPFFunc.TabIndex = 17;
+            // 
+            // cbSexoFunc
+            // 
+            this.cbSexoFunc.FormattingEnabled = true;
+            this.cbSexoFunc.Location = new System.Drawing.Point(741, 177);
+            this.cbSexoFunc.Name = "cbSexoFunc";
+            this.cbSexoFunc.Size = new System.Drawing.Size(96, 29);
+            this.cbSexoFunc.TabIndex = 16;
+            // 
+            // txtNomeFunc
+            // 
+            this.txtNomeFunc.Location = new System.Drawing.Point(249, 177);
+            this.txtNomeFunc.Name = "txtNomeFunc";
+            this.txtNomeFunc.Size = new System.Drawing.Size(410, 29);
+            this.txtNomeFunc.TabIndex = 15;
+            // 
+            // lblEstadoFunc
+            // 
+            this.lblEstadoFunc.AutoSize = true;
+            this.lblEstadoFunc.Location = new System.Drawing.Point(335, 447);
+            this.lblEstadoFunc.Name = "lblEstadoFunc";
+            this.lblEstadoFunc.Size = new System.Drawing.Size(59, 21);
+            this.lblEstadoFunc.TabIndex = 14;
+            this.lblEstadoFunc.Text = "Estado:";
+            // 
+            // lblCidadeFunc
+            // 
+            this.lblCidadeFunc.AutoSize = true;
+            this.lblCidadeFunc.Location = new System.Drawing.Point(118, 447);
+            this.lblCidadeFunc.Name = "lblCidadeFunc";
+            this.lblCidadeFunc.Size = new System.Drawing.Size(61, 21);
+            this.lblCidadeFunc.TabIndex = 13;
+            this.lblCidadeFunc.Text = "Cidade:";
+            // 
+            // lblEmailFunc
+            // 
+            this.lblEmailFunc.AutoSize = true;
+            this.lblEmailFunc.Location = new System.Drawing.Point(786, 447);
+            this.lblEmailFunc.Name = "lblEmailFunc";
+            this.lblEmailFunc.Size = new System.Drawing.Size(57, 21);
+            this.lblEmailFunc.TabIndex = 12;
+            this.lblEmailFunc.Text = "E-mail:";
+            // 
+            // lblCelularFunc
+            // 
+            this.lblCelularFunc.AutoSize = true;
+            this.lblCelularFunc.Location = new System.Drawing.Point(786, 408);
+            this.lblCelularFunc.Name = "lblCelularFunc";
+            this.lblCelularFunc.Size = new System.Drawing.Size(62, 21);
+            this.lblCelularFunc.TabIndex = 11;
+            this.lblCelularFunc.Text = "Celular:";
+            // 
+            // lblTelefoneFunc
+            // 
+            this.lblTelefoneFunc.AutoSize = true;
+            this.lblTelefoneFunc.Location = new System.Drawing.Point(786, 366);
+            this.lblTelefoneFunc.Name = "lblTelefoneFunc";
+            this.lblTelefoneFunc.Size = new System.Drawing.Size(70, 21);
+            this.lblTelefoneFunc.TabIndex = 10;
+            this.lblTelefoneFunc.Text = "Telefone:";
+            // 
+            // lblCepFunc
+            // 
+            this.lblCepFunc.AutoSize = true;
+            this.lblCepFunc.Location = new System.Drawing.Point(408, 408);
+            this.lblCepFunc.Name = "lblCepFunc";
+            this.lblCepFunc.Size = new System.Drawing.Size(40, 21);
+            this.lblCepFunc.TabIndex = 9;
+            this.lblCepFunc.Text = "CEP:";
+            // 
+            // lblNumeroFunc
+            // 
+            this.lblNumeroFunc.AutoSize = true;
+            this.lblNumeroFunc.Location = new System.Drawing.Point(561, 366);
+            this.lblNumeroFunc.Name = "lblNumeroFunc";
+            this.lblNumeroFunc.Size = new System.Drawing.Size(71, 21);
+            this.lblNumeroFunc.TabIndex = 8;
+            this.lblNumeroFunc.Text = "Nº/Apto:";
+            // 
+            // lblBairroFunc
+            // 
+            this.lblBairroFunc.AutoSize = true;
+            this.lblBairroFunc.Location = new System.Drawing.Point(118, 408);
+            this.lblBairroFunc.Name = "lblBairroFunc";
+            this.lblBairroFunc.Size = new System.Drawing.Size(55, 21);
+            this.lblBairroFunc.TabIndex = 7;
+            this.lblBairroFunc.Text = "Bairro:";
+            // 
+            // lblRuaFunc
+            // 
+            this.lblRuaFunc.AutoSize = true;
+            this.lblRuaFunc.Location = new System.Drawing.Point(118, 366);
+            this.lblRuaFunc.Name = "lblRuaFunc";
+            this.lblRuaFunc.Size = new System.Drawing.Size(40, 21);
+            this.lblRuaFunc.TabIndex = 6;
+            this.lblRuaFunc.Text = "Rua:";
+            // 
+            // lblEnderecoFunc
+            // 
+            this.lblEnderecoFunc.AutoSize = true;
+            this.lblEnderecoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lblEnderecoFunc.Location = new System.Drawing.Point(118, 318);
+            this.lblEnderecoFunc.Name = "lblEnderecoFunc";
+            this.lblEnderecoFunc.Size = new System.Drawing.Size(107, 24);
+            this.lblEnderecoFunc.TabIndex = 5;
+            this.lblEnderecoFunc.Text = "Endereço";
+            // 
+            // lblCadastroFunc
+            // 
+            this.lblCadastroFunc.AutoSize = true;
+            this.lblCadastroFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lblCadastroFunc.Location = new System.Drawing.Point(561, 46);
+            this.lblCadastroFunc.Name = "lblCadastroFunc";
+            this.lblCadastroFunc.Size = new System.Drawing.Size(240, 24);
+            this.lblCadastroFunc.TabIndex = 4;
+            this.lblCadastroFunc.Text = "Cadastro Funcionários";
+            // 
+            // lblDatanascFunc
+            // 
+            this.lblDatanascFunc.AutoSize = true;
+            this.lblDatanascFunc.Location = new System.Drawing.Point(354, 219);
+            this.lblDatanascFunc.Name = "lblDatanascFunc";
+            this.lblDatanascFunc.Size = new System.Drawing.Size(150, 21);
+            this.lblDatanascFunc.TabIndex = 3;
+            this.lblDatanascFunc.Text = "Data de nascimento:";
+            // 
+            // lblSexoFunc
+            // 
+            this.lblSexoFunc.AutoSize = true;
+            this.lblSexoFunc.Location = new System.Drawing.Point(689, 180);
+            this.lblSexoFunc.Name = "lblSexoFunc";
+            this.lblSexoFunc.Size = new System.Drawing.Size(46, 21);
+            this.lblSexoFunc.TabIndex = 2;
+            this.lblSexoFunc.Text = "Sexo:";
+            // 
+            // lblCpfFunc
+            // 
+            this.lblCpfFunc.AutoSize = true;
+            this.lblCpfFunc.Location = new System.Drawing.Point(118, 219);
+            this.lblCpfFunc.Name = "lblCpfFunc";
+            this.lblCpfFunc.Size = new System.Drawing.Size(40, 21);
+            this.lblCpfFunc.TabIndex = 1;
+            this.lblCpfFunc.Text = "CPF:";
+            // 
+            // lblNomeFunc
+            // 
+            this.lblNomeFunc.AutoSize = true;
+            this.lblNomeFunc.Location = new System.Drawing.Point(118, 180);
+            this.lblNomeFunc.Name = "lblNomeFunc";
+            this.lblNomeFunc.Size = new System.Drawing.Size(125, 21);
+            this.lblNomeFunc.TabIndex = 0;
+            this.lblNomeFunc.Text = "Nome completo:";
             // 
             // tpPecas
             // 
@@ -820,6 +1086,72 @@
             this.btnSalvarPessoa.UseVisualStyleBackColor = true;
             this.btnSalvarPessoa.Click += new System.EventHandler(this.btnSalvarPessoa_Click);
             // 
+            // cbEstadoFunc
+            // 
+            this.cbEstadoFunc.FormattingEnabled = true;
+            this.cbEstadoFunc.Location = new System.Drawing.Point(400, 444);
+            this.cbEstadoFunc.Name = "cbEstadoFunc";
+            this.cbEstadoFunc.Size = new System.Drawing.Size(62, 29);
+            this.cbEstadoFunc.TabIndex = 24;
+            // 
+            // txtTelFunc
+            // 
+            this.txtTelFunc.Location = new System.Drawing.Point(862, 363);
+            this.txtTelFunc.Name = "txtTelFunc";
+            this.txtTelFunc.Size = new System.Drawing.Size(157, 29);
+            this.txtTelFunc.TabIndex = 25;
+            // 
+            // txtCelFunc
+            // 
+            this.txtCelFunc.Location = new System.Drawing.Point(862, 405);
+            this.txtCelFunc.Name = "txtCelFunc";
+            this.txtCelFunc.Size = new System.Drawing.Size(157, 29);
+            this.txtCelFunc.TabIndex = 26;
+            // 
+            // txtEmailFunc
+            // 
+            this.txtEmailFunc.Location = new System.Drawing.Point(862, 444);
+            this.txtEmailFunc.Name = "txtEmailFunc";
+            this.txtEmailFunc.Size = new System.Drawing.Size(332, 29);
+            this.txtEmailFunc.TabIndex = 27;
+            // 
+            // lblContatoFunc
+            // 
+            this.lblContatoFunc.AutoSize = true;
+            this.lblContatoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lblContatoFunc.Location = new System.Drawing.Point(787, 320);
+            this.lblContatoFunc.Name = "lblContatoFunc";
+            this.lblContatoFunc.Size = new System.Drawing.Size(90, 24);
+            this.lblContatoFunc.TabIndex = 28;
+            this.lblContatoFunc.Text = "Contato";
+            // 
+            // btnSalvarFunc
+            // 
+            this.btnSalvarFunc.Location = new System.Drawing.Point(188, 102);
+            this.btnSalvarFunc.Name = "btnSalvarFunc";
+            this.btnSalvarFunc.Size = new System.Drawing.Size(79, 31);
+            this.btnSalvarFunc.TabIndex = 29;
+            this.btnSalvarFunc.Text = "Salvar";
+            this.btnSalvarFunc.UseVisualStyleBackColor = true;
+            // 
+            // btnEditFunc
+            // 
+            this.btnEditFunc.Location = new System.Drawing.Point(273, 102);
+            this.btnEditFunc.Name = "btnEditFunc";
+            this.btnEditFunc.Size = new System.Drawing.Size(79, 31);
+            this.btnEditFunc.TabIndex = 30;
+            this.btnEditFunc.Text = "Editar";
+            this.btnEditFunc.UseVisualStyleBackColor = true;
+            // 
+            // btnExcluirFunc
+            // 
+            this.btnExcluirFunc.Location = new System.Drawing.Point(358, 102);
+            this.btnExcluirFunc.Name = "btnExcluirFunc";
+            this.btnExcluirFunc.Size = new System.Drawing.Size(79, 31);
+            this.btnExcluirFunc.TabIndex = 31;
+            this.btnExcluirFunc.Text = "Excluir";
+            this.btnExcluirFunc.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -833,6 +1165,8 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tcOrdemServico.ResumeLayout(false);
+            this.tpFuncionarios.ResumeLayout(false);
+            this.tpFuncionarios.PerformLayout();
             this.tpPecas.ResumeLayout(false);
             this.tpPecas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).EndInit();
@@ -919,6 +1253,38 @@
         private System.Windows.Forms.Button btnExcluirOrcamento;
         private System.Windows.Forms.Button btnEditarOrcamento;
         private System.Windows.Forms.Button btnSalvarOrcamento;
+        private System.Windows.Forms.TextBox txtCidadeFunc;
+        private System.Windows.Forms.TextBox txtNumFunc;
+        private System.Windows.Forms.TextBox txtCepFunc;
+        private System.Windows.Forms.TextBox txtBairroFunc;
+        private System.Windows.Forms.TextBox txtRuaFunc;
+        private System.Windows.Forms.MaskedTextBox txtDatanascFunc;
+        private System.Windows.Forms.MaskedTextBox txtCPFFunc;
+        private System.Windows.Forms.ComboBox cbSexoFunc;
+        private System.Windows.Forms.TextBox txtNomeFunc;
+        private System.Windows.Forms.Label lblEstadoFunc;
+        private System.Windows.Forms.Label lblCidadeFunc;
+        private System.Windows.Forms.Label lblEmailFunc;
+        private System.Windows.Forms.Label lblCelularFunc;
+        private System.Windows.Forms.Label lblTelefoneFunc;
+        private System.Windows.Forms.Label lblCepFunc;
+        private System.Windows.Forms.Label lblNumeroFunc;
+        private System.Windows.Forms.Label lblBairroFunc;
+        private System.Windows.Forms.Label lblRuaFunc;
+        private System.Windows.Forms.Label lblEnderecoFunc;
+        private System.Windows.Forms.Label lblCadastroFunc;
+        private System.Windows.Forms.Label lblDatanascFunc;
+        private System.Windows.Forms.Label lblSexoFunc;
+        private System.Windows.Forms.Label lblCpfFunc;
+        private System.Windows.Forms.Label lblNomeFunc;
+        private System.Windows.Forms.Label lblContatoFunc;
+        private System.Windows.Forms.TextBox txtEmailFunc;
+        private System.Windows.Forms.TextBox txtCelFunc;
+        private System.Windows.Forms.TextBox txtTelFunc;
+        private System.Windows.Forms.ComboBox cbEstadoFunc;
+        private System.Windows.Forms.Button btnExcluirFunc;
+        private System.Windows.Forms.Button btnEditFunc;
+        private System.Windows.Forms.Button btnSalvarFunc;
     }
 }
 
