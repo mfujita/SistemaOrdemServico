@@ -30,6 +30,14 @@
         {
             this.tcOrdemServico = new System.Windows.Forms.TabControl();
             this.tpFuncionarios = new System.Windows.Forms.TabPage();
+            this.btnExcluirFunc = new System.Windows.Forms.Button();
+            this.btnEditFunc = new System.Windows.Forms.Button();
+            this.btnSalvarFunc = new System.Windows.Forms.Button();
+            this.lblContatoFunc = new System.Windows.Forms.Label();
+            this.txtEmailFunc = new System.Windows.Forms.TextBox();
+            this.txtCelFunc = new System.Windows.Forms.TextBox();
+            this.txtTelFunc = new System.Windows.Forms.TextBox();
+            this.cbEstadoFunc = new System.Windows.Forms.ComboBox();
             this.txtCidadeFunc = new System.Windows.Forms.TextBox();
             this.txtNumFunc = new System.Windows.Forms.TextBox();
             this.txtCepFunc = new System.Windows.Forms.TextBox();
@@ -69,7 +77,9 @@
             this.lblFornecedorPeca = new System.Windows.Forms.Label();
             this.lblNomePeca = new System.Windows.Forms.Label();
             this.lblCadastroPeca = new System.Windows.Forms.Label();
+            this.pbPeca = new System.Windows.Forms.PictureBox();
             this.tpOrcamento = new System.Windows.Forms.TabPage();
+            this.pbOrcamento = new System.Windows.Forms.PictureBox();
             this.lblCadastroOrcamento = new System.Windows.Forms.Label();
             this.btnExcluirOrcamento = new System.Windows.Forms.Button();
             this.btnEditarOrcamento = new System.Windows.Forms.Button();
@@ -97,13 +107,10 @@
             this.cbStatusPessoa = new System.Windows.Forms.ComboBox();
             this.txtEmailPessoa = new System.Windows.Forms.TextBox();
             this.txtCelularPessoa = new System.Windows.Forms.TextBox();
-            this.txtContatoPessoa = new System.Windows.Forms.TextBox();
+            this.txtTelefonePessoa = new System.Windows.Forms.TextBox();
             this.txtNumeroPessoa = new System.Windows.Forms.TextBox();
             this.txtBairroPessoa = new System.Windows.Forms.TextBox();
             this.txtEnderecoPessoa = new System.Windows.Forms.TextBox();
-            this.txtCepPessoa = new System.Windows.Forms.TextBox();
-            this.txtCpfCnpj = new System.Windows.Forms.TextBox();
-            this.txtNomePessoa = new System.Windows.Forms.TextBox();
             this.lblCategoriaPessoa = new System.Windows.Forms.Label();
             this.lblCadastroContatoPessoa = new System.Windows.Forms.Label();
             this.lblNumeroPessoa = new System.Windows.Forms.Label();
@@ -121,25 +128,18 @@
             this.btnExcluirPessoa = new System.Windows.Forms.Button();
             this.btnEditarPessoa = new System.Windows.Forms.Button();
             this.btnSalvarPessoa = new System.Windows.Forms.Button();
-            this.pbPeca = new System.Windows.Forms.PictureBox();
-            this.pbOrcamento = new System.Windows.Forms.PictureBox();
             this.pbPessoa = new System.Windows.Forms.PictureBox();
-            this.cbEstadoFunc = new System.Windows.Forms.ComboBox();
-            this.txtTelFunc = new System.Windows.Forms.TextBox();
-            this.txtCelFunc = new System.Windows.Forms.TextBox();
-            this.txtEmailFunc = new System.Windows.Forms.TextBox();
-            this.lblContatoFunc = new System.Windows.Forms.Label();
-            this.btnSalvarFunc = new System.Windows.Forms.Button();
-            this.btnEditFunc = new System.Windows.Forms.Button();
-            this.btnExcluirFunc = new System.Windows.Forms.Button();
+            this.txtCpfCnpj = new System.Windows.Forms.MaskedTextBox();
+            this.txtCepPessoa = new System.Windows.Forms.MaskedTextBox();
+            this.txtNomePessoa = new System.Windows.Forms.TextBox();
             this.tcOrdemServico.SuspendLayout();
             this.tpFuncionarios.SuspendLayout();
             this.tpPecas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
             this.tpOrcamento.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).BeginInit();
             this.tpClienteEmpresa.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPessoa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -198,6 +198,72 @@
             this.tpFuncionarios.TabIndex = 0;
             this.tpFuncionarios.Text = "Cadastro funcionários";
             this.tpFuncionarios.UseVisualStyleBackColor = true;
+            // 
+            // btnExcluirFunc
+            // 
+            this.btnExcluirFunc.Location = new System.Drawing.Point(358, 102);
+            this.btnExcluirFunc.Name = "btnExcluirFunc";
+            this.btnExcluirFunc.Size = new System.Drawing.Size(79, 31);
+            this.btnExcluirFunc.TabIndex = 31;
+            this.btnExcluirFunc.Text = "Excluir";
+            this.btnExcluirFunc.UseVisualStyleBackColor = true;
+            // 
+            // btnEditFunc
+            // 
+            this.btnEditFunc.Location = new System.Drawing.Point(273, 102);
+            this.btnEditFunc.Name = "btnEditFunc";
+            this.btnEditFunc.Size = new System.Drawing.Size(79, 31);
+            this.btnEditFunc.TabIndex = 30;
+            this.btnEditFunc.Text = "Editar";
+            this.btnEditFunc.UseVisualStyleBackColor = true;
+            // 
+            // btnSalvarFunc
+            // 
+            this.btnSalvarFunc.Location = new System.Drawing.Point(188, 102);
+            this.btnSalvarFunc.Name = "btnSalvarFunc";
+            this.btnSalvarFunc.Size = new System.Drawing.Size(79, 31);
+            this.btnSalvarFunc.TabIndex = 29;
+            this.btnSalvarFunc.Text = "Salvar";
+            this.btnSalvarFunc.UseVisualStyleBackColor = true;
+            // 
+            // lblContatoFunc
+            // 
+            this.lblContatoFunc.AutoSize = true;
+            this.lblContatoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lblContatoFunc.Location = new System.Drawing.Point(787, 320);
+            this.lblContatoFunc.Name = "lblContatoFunc";
+            this.lblContatoFunc.Size = new System.Drawing.Size(90, 24);
+            this.lblContatoFunc.TabIndex = 28;
+            this.lblContatoFunc.Text = "Contato";
+            // 
+            // txtEmailFunc
+            // 
+            this.txtEmailFunc.Location = new System.Drawing.Point(862, 444);
+            this.txtEmailFunc.Name = "txtEmailFunc";
+            this.txtEmailFunc.Size = new System.Drawing.Size(332, 29);
+            this.txtEmailFunc.TabIndex = 27;
+            // 
+            // txtCelFunc
+            // 
+            this.txtCelFunc.Location = new System.Drawing.Point(862, 405);
+            this.txtCelFunc.Name = "txtCelFunc";
+            this.txtCelFunc.Size = new System.Drawing.Size(157, 29);
+            this.txtCelFunc.TabIndex = 26;
+            // 
+            // txtTelFunc
+            // 
+            this.txtTelFunc.Location = new System.Drawing.Point(862, 363);
+            this.txtTelFunc.Name = "txtTelFunc";
+            this.txtTelFunc.Size = new System.Drawing.Size(157, 29);
+            this.txtTelFunc.TabIndex = 25;
+            // 
+            // cbEstadoFunc
+            // 
+            this.cbEstadoFunc.FormattingEnabled = true;
+            this.cbEstadoFunc.Location = new System.Drawing.Point(400, 444);
+            this.cbEstadoFunc.Name = "cbEstadoFunc";
+            this.cbEstadoFunc.Size = new System.Drawing.Size(62, 29);
+            this.cbEstadoFunc.TabIndex = 24;
             // 
             // txtCidadeFunc
             // 
@@ -548,6 +614,16 @@
             this.lblCadastroPeca.TabIndex = 22;
             this.lblCadastroPeca.Text = "Cadastro de peças";
             // 
+            // pbPeca
+            // 
+            this.pbPeca.Image = global::SistemaOrdemServico.Properties.Resources.Peca;
+            this.pbPeca.Location = new System.Drawing.Point(163, 41);
+            this.pbPeca.Name = "pbPeca";
+            this.pbPeca.Size = new System.Drawing.Size(84, 84);
+            this.pbPeca.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbPeca.TabIndex = 21;
+            this.pbPeca.TabStop = false;
+            // 
             // tpOrcamento
             // 
             this.tpOrcamento.Controls.Add(this.pbOrcamento);
@@ -575,6 +651,16 @@
             this.tpOrcamento.TabIndex = 2;
             this.tpOrcamento.Text = "Cadastro de orçamentos";
             this.tpOrcamento.UseVisualStyleBackColor = true;
+            // 
+            // pbOrcamento
+            // 
+            this.pbOrcamento.Image = global::SistemaOrdemServico.Properties.Resources.Orcamento;
+            this.pbOrcamento.Location = new System.Drawing.Point(20, 6);
+            this.pbOrcamento.Name = "pbOrcamento";
+            this.pbOrcamento.Size = new System.Drawing.Size(84, 84);
+            this.pbOrcamento.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbOrcamento.TabIndex = 24;
+            this.pbOrcamento.TabStop = false;
             // 
             // lblCadastroOrcamento
             // 
@@ -748,6 +834,8 @@
             // 
             // tpClienteEmpresa
             // 
+            this.tpClienteEmpresa.Controls.Add(this.txtCepPessoa);
+            this.tpClienteEmpresa.Controls.Add(this.txtCpfCnpj);
             this.tpClienteEmpresa.Controls.Add(this.txtCidadePessoa);
             this.tpClienteEmpresa.Controls.Add(this.lblCidadePessoa);
             this.tpClienteEmpresa.Controls.Add(this.txtEstadoPessoa);
@@ -756,12 +844,10 @@
             this.tpClienteEmpresa.Controls.Add(this.cbStatusPessoa);
             this.tpClienteEmpresa.Controls.Add(this.txtEmailPessoa);
             this.tpClienteEmpresa.Controls.Add(this.txtCelularPessoa);
-            this.tpClienteEmpresa.Controls.Add(this.txtContatoPessoa);
+            this.tpClienteEmpresa.Controls.Add(this.txtTelefonePessoa);
             this.tpClienteEmpresa.Controls.Add(this.txtNumeroPessoa);
             this.tpClienteEmpresa.Controls.Add(this.txtBairroPessoa);
             this.tpClienteEmpresa.Controls.Add(this.txtEnderecoPessoa);
-            this.tpClienteEmpresa.Controls.Add(this.txtCepPessoa);
-            this.tpClienteEmpresa.Controls.Add(this.txtCpfCnpj);
             this.tpClienteEmpresa.Controls.Add(this.txtNomePessoa);
             this.tpClienteEmpresa.Controls.Add(this.lblCategoriaPessoa);
             this.tpClienteEmpresa.Controls.Add(this.lblCadastroContatoPessoa);
@@ -790,9 +876,10 @@
             // 
             // txtCidadePessoa
             // 
+            this.txtCidadePessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.txtCidadePessoa.Location = new System.Drawing.Point(294, 403);
             this.txtCidadePessoa.Name = "txtCidadePessoa";
-            this.txtCidadePessoa.Size = new System.Drawing.Size(100, 29);
+            this.txtCidadePessoa.Size = new System.Drawing.Size(100, 26);
             this.txtCidadePessoa.TabIndex = 11;
             // 
             // lblCidadePessoa
@@ -807,9 +894,10 @@
             // 
             // txtEstadoPessoa
             // 
+            this.txtEstadoPessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.txtEstadoPessoa.Location = new System.Drawing.Point(294, 368);
             this.txtEstadoPessoa.Name = "txtEstadoPessoa";
-            this.txtEstadoPessoa.Size = new System.Drawing.Size(100, 29);
+            this.txtEstadoPessoa.Size = new System.Drawing.Size(100, 26);
             this.txtEstadoPessoa.TabIndex = 10;
             // 
             // lblEstadoPessoa
@@ -824,82 +912,69 @@
             // 
             // cbCategoriaPessoa
             // 
+            this.cbCategoriaPessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.cbCategoriaPessoa.FormattingEnabled = true;
             this.cbCategoriaPessoa.Location = new System.Drawing.Point(870, 214);
             this.cbCategoriaPessoa.Name = "cbCategoriaPessoa";
-            this.cbCategoriaPessoa.Size = new System.Drawing.Size(121, 29);
+            this.cbCategoriaPessoa.Size = new System.Drawing.Size(121, 26);
             this.cbCategoriaPessoa.TabIndex = 8;
             // 
             // cbStatusPessoa
             // 
+            this.cbStatusPessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.cbStatusPessoa.FormattingEnabled = true;
             this.cbStatusPessoa.Location = new System.Drawing.Point(870, 179);
             this.cbStatusPessoa.Name = "cbStatusPessoa";
-            this.cbStatusPessoa.Size = new System.Drawing.Size(121, 29);
+            this.cbStatusPessoa.Size = new System.Drawing.Size(121, 26);
             this.cbStatusPessoa.TabIndex = 7;
             // 
             // txtEmailPessoa
             // 
+            this.txtEmailPessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.txtEmailPessoa.Location = new System.Drawing.Point(859, 403);
             this.txtEmailPessoa.Name = "txtEmailPessoa";
-            this.txtEmailPessoa.Size = new System.Drawing.Size(137, 29);
+            this.txtEmailPessoa.Size = new System.Drawing.Size(137, 26);
             this.txtEmailPessoa.TabIndex = 17;
             // 
             // txtCelularPessoa
             // 
+            this.txtCelularPessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.txtCelularPessoa.Location = new System.Drawing.Point(859, 368);
             this.txtCelularPessoa.Name = "txtCelularPessoa";
-            this.txtCelularPessoa.Size = new System.Drawing.Size(137, 29);
+            this.txtCelularPessoa.Size = new System.Drawing.Size(137, 26);
             this.txtCelularPessoa.TabIndex = 16;
             // 
-            // txtContatoPessoa
+            // txtTelefonePessoa
             // 
-            this.txtContatoPessoa.Location = new System.Drawing.Point(859, 333);
-            this.txtContatoPessoa.Name = "txtContatoPessoa";
-            this.txtContatoPessoa.Size = new System.Drawing.Size(137, 29);
-            this.txtContatoPessoa.TabIndex = 15;
+            this.txtTelefonePessoa.Font = new System.Drawing.Font("Arial", 12F);
+            this.txtTelefonePessoa.Location = new System.Drawing.Point(859, 333);
+            this.txtTelefonePessoa.Name = "txtTelefonePessoa";
+            this.txtTelefonePessoa.Size = new System.Drawing.Size(137, 26);
+            this.txtTelefonePessoa.TabIndex = 15;
             // 
             // txtNumeroPessoa
             // 
+            this.txtNumeroPessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.txtNumeroPessoa.Location = new System.Drawing.Point(294, 508);
             this.txtNumeroPessoa.Name = "txtNumeroPessoa";
-            this.txtNumeroPessoa.Size = new System.Drawing.Size(234, 29);
+            this.txtNumeroPessoa.Size = new System.Drawing.Size(234, 26);
             this.txtNumeroPessoa.TabIndex = 14;
             // 
             // txtBairroPessoa
             // 
+            this.txtBairroPessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.txtBairroPessoa.Location = new System.Drawing.Point(294, 473);
             this.txtBairroPessoa.Name = "txtBairroPessoa";
-            this.txtBairroPessoa.Size = new System.Drawing.Size(234, 29);
+            this.txtBairroPessoa.Size = new System.Drawing.Size(234, 26);
             this.txtBairroPessoa.TabIndex = 13;
             // 
             // txtEnderecoPessoa
             // 
+            this.txtEnderecoPessoa.Font = new System.Drawing.Font("Arial", 12F);
             this.txtEnderecoPessoa.Location = new System.Drawing.Point(294, 438);
             this.txtEnderecoPessoa.Name = "txtEnderecoPessoa";
-            this.txtEnderecoPessoa.Size = new System.Drawing.Size(234, 29);
+            this.txtEnderecoPessoa.Size = new System.Drawing.Size(234, 26);
             this.txtEnderecoPessoa.TabIndex = 12;
-            // 
-            // txtCepPessoa
-            // 
-            this.txtCepPessoa.Location = new System.Drawing.Point(294, 333);
-            this.txtCepPessoa.Name = "txtCepPessoa";
-            this.txtCepPessoa.Size = new System.Drawing.Size(100, 29);
-            this.txtCepPessoa.TabIndex = 9;
-            // 
-            // txtCpfCnpj
-            // 
-            this.txtCpfCnpj.Location = new System.Drawing.Point(356, 214);
-            this.txtCpfCnpj.Name = "txtCpfCnpj";
-            this.txtCpfCnpj.Size = new System.Drawing.Size(175, 29);
-            this.txtCpfCnpj.TabIndex = 6;
-            // 
-            // txtNomePessoa
-            // 
-            this.txtNomePessoa.Location = new System.Drawing.Point(356, 179);
-            this.txtNomePessoa.Name = "txtNomePessoa";
-            this.txtNomePessoa.Size = new System.Drawing.Size(175, 29);
-            this.txtNomePessoa.TabIndex = 5;
             // 
             // lblCategoriaPessoa
             // 
@@ -1071,26 +1146,6 @@
             this.btnSalvarPessoa.UseVisualStyleBackColor = true;
             this.btnSalvarPessoa.Click += new System.EventHandler(this.btnSalvarPessoa_Click);
             // 
-            // pbPeca
-            // 
-            this.pbPeca.Image = global::SistemaOrdemServico.Properties.Resources.Peca;
-            this.pbPeca.Location = new System.Drawing.Point(163, 41);
-            this.pbPeca.Name = "pbPeca";
-            this.pbPeca.Size = new System.Drawing.Size(84, 84);
-            this.pbPeca.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbPeca.TabIndex = 21;
-            this.pbPeca.TabStop = false;
-            // 
-            // pbOrcamento
-            // 
-            this.pbOrcamento.Image = global::SistemaOrdemServico.Properties.Resources.Orcamento;
-            this.pbOrcamento.Location = new System.Drawing.Point(20, 6);
-            this.pbOrcamento.Name = "pbOrcamento";
-            this.pbOrcamento.Size = new System.Drawing.Size(84, 84);
-            this.pbOrcamento.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbOrcamento.TabIndex = 24;
-            this.pbOrcamento.TabStop = false;
-            // 
             // pbPessoa
             // 
             this.pbPessoa.Image = global::SistemaOrdemServico.Properties.Resources.Pessoa;
@@ -1100,71 +1155,31 @@
             this.pbPessoa.TabIndex = 20;
             this.pbPessoa.TabStop = false;
             // 
-            // cbEstadoFunc
+            // txtCpfCnpj
             // 
-            this.cbEstadoFunc.FormattingEnabled = true;
-            this.cbEstadoFunc.Location = new System.Drawing.Point(400, 444);
-            this.cbEstadoFunc.Name = "cbEstadoFunc";
-            this.cbEstadoFunc.Size = new System.Drawing.Size(62, 29);
-            this.cbEstadoFunc.TabIndex = 24;
+            this.txtCpfCnpj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCpfCnpj.Location = new System.Drawing.Point(356, 214);
+            this.txtCpfCnpj.Mask = "000,000,000-00";
+            this.txtCpfCnpj.Name = "txtCpfCnpj";
+            this.txtCpfCnpj.Size = new System.Drawing.Size(175, 26);
+            this.txtCpfCnpj.TabIndex = 49;
             // 
-            // txtTelFunc
+            // txtCepPessoa
             // 
-            this.txtTelFunc.Location = new System.Drawing.Point(862, 363);
-            this.txtTelFunc.Name = "txtTelFunc";
-            this.txtTelFunc.Size = new System.Drawing.Size(157, 29);
-            this.txtTelFunc.TabIndex = 25;
+            this.txtCepPessoa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCepPessoa.Location = new System.Drawing.Point(294, 333);
+            this.txtCepPessoa.Mask = "#####-###";
+            this.txtCepPessoa.Name = "txtCepPessoa";
+            this.txtCepPessoa.Size = new System.Drawing.Size(100, 26);
+            this.txtCepPessoa.TabIndex = 50;
             // 
-            // txtCelFunc
+            // txtNomePessoa
             // 
-            this.txtCelFunc.Location = new System.Drawing.Point(862, 405);
-            this.txtCelFunc.Name = "txtCelFunc";
-            this.txtCelFunc.Size = new System.Drawing.Size(157, 29);
-            this.txtCelFunc.TabIndex = 26;
-            // 
-            // txtEmailFunc
-            // 
-            this.txtEmailFunc.Location = new System.Drawing.Point(862, 444);
-            this.txtEmailFunc.Name = "txtEmailFunc";
-            this.txtEmailFunc.Size = new System.Drawing.Size(332, 29);
-            this.txtEmailFunc.TabIndex = 27;
-            // 
-            // lblContatoFunc
-            // 
-            this.lblContatoFunc.AutoSize = true;
-            this.lblContatoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblContatoFunc.Location = new System.Drawing.Point(787, 320);
-            this.lblContatoFunc.Name = "lblContatoFunc";
-            this.lblContatoFunc.Size = new System.Drawing.Size(90, 24);
-            this.lblContatoFunc.TabIndex = 28;
-            this.lblContatoFunc.Text = "Contato";
-            // 
-            // btnSalvarFunc
-            // 
-            this.btnSalvarFunc.Location = new System.Drawing.Point(188, 102);
-            this.btnSalvarFunc.Name = "btnSalvarFunc";
-            this.btnSalvarFunc.Size = new System.Drawing.Size(79, 31);
-            this.btnSalvarFunc.TabIndex = 29;
-            this.btnSalvarFunc.Text = "Salvar";
-            this.btnSalvarFunc.UseVisualStyleBackColor = true;
-            // 
-            // btnEditFunc
-            // 
-            this.btnEditFunc.Location = new System.Drawing.Point(273, 102);
-            this.btnEditFunc.Name = "btnEditFunc";
-            this.btnEditFunc.Size = new System.Drawing.Size(79, 31);
-            this.btnEditFunc.TabIndex = 30;
-            this.btnEditFunc.Text = "Editar";
-            this.btnEditFunc.UseVisualStyleBackColor = true;
-            // 
-            // btnExcluirFunc
-            // 
-            this.btnExcluirFunc.Location = new System.Drawing.Point(358, 102);
-            this.btnExcluirFunc.Name = "btnExcluirFunc";
-            this.btnExcluirFunc.Size = new System.Drawing.Size(79, 31);
-            this.btnExcluirFunc.TabIndex = 31;
-            this.btnExcluirFunc.Text = "Excluir";
-            this.btnExcluirFunc.UseVisualStyleBackColor = true;
+            this.txtNomePessoa.Font = new System.Drawing.Font("Arial", 12F);
+            this.txtNomePessoa.Location = new System.Drawing.Point(356, 179);
+            this.txtNomePessoa.Name = "txtNomePessoa";
+            this.txtNomePessoa.Size = new System.Drawing.Size(175, 26);
+            this.txtNomePessoa.TabIndex = 5;
             // 
             // Form1
             // 
@@ -1183,13 +1198,13 @@
             this.tpFuncionarios.PerformLayout();
             this.tpPecas.ResumeLayout(false);
             this.tpPecas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).EndInit();
             this.tpOrcamento.ResumeLayout(false);
             this.tpOrcamento.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).EndInit();
             this.tpClienteEmpresa.ResumeLayout(false);
             this.tpClienteEmpresa.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPessoa)).EndInit();
             this.ResumeLayout(false);
 
@@ -1220,18 +1235,15 @@
         private System.Windows.Forms.Button btnExcluirPessoa;
         private System.Windows.Forms.Button btnEditarPessoa;
         private System.Windows.Forms.Button btnSalvarPessoa;
-        private System.Windows.Forms.TextBox txtNomePessoa;
         private System.Windows.Forms.Label lblCategoriaPessoa;
         private System.Windows.Forms.ComboBox cbCategoriaPessoa;
         private System.Windows.Forms.ComboBox cbStatusPessoa;
         private System.Windows.Forms.TextBox txtEmailPessoa;
         private System.Windows.Forms.TextBox txtCelularPessoa;
-        private System.Windows.Forms.TextBox txtContatoPessoa;
+        private System.Windows.Forms.TextBox txtTelefonePessoa;
         private System.Windows.Forms.TextBox txtNumeroPessoa;
         private System.Windows.Forms.TextBox txtBairroPessoa;
         private System.Windows.Forms.TextBox txtEnderecoPessoa;
-        private System.Windows.Forms.TextBox txtCepPessoa;
-        private System.Windows.Forms.TextBox txtCpfCnpj;
         private System.Windows.Forms.TextBox txtCidadePessoa;
         private System.Windows.Forms.Label lblCidadePessoa;
         private System.Windows.Forms.TextBox txtEstadoPessoa;
@@ -1301,6 +1313,9 @@
         private System.Windows.Forms.Button btnExcluirFunc;
         private System.Windows.Forms.Button btnEditFunc;
         private System.Windows.Forms.Button btnSalvarFunc;
+        private System.Windows.Forms.MaskedTextBox txtCepPessoa;
+        private System.Windows.Forms.MaskedTextBox txtCpfCnpj;
+        private System.Windows.Forms.TextBox txtNomePessoa;
     }
 }
 

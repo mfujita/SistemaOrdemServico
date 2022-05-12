@@ -36,42 +36,82 @@ namespace SistemaOrdemServico
             }
 
         }
-
+        //Butão SALVAR do burim ***NÃO MEXER! SUJEITO A CACETE***
         private void btnSalvarPessoa_Click(object sender, EventArgs e)
         {
             verificaCampos();
+            salvaCampos();
         }
 
+        //Butão SALVAR do burim ***NÃO MEXER! SUJEITO A CACETE***
         private void btnEditarPessoa_Click(object sender, EventArgs e)
         {
             verificaCampos();
         }
-
+        //Butão SALVAR do burim ***NÃO MEXER! SUJEITO A CACETE***
         private void btnExcluirPessoa_Click(object sender, EventArgs e)
         {
 
         }
-
+        //Salva os campos puxar classe conecta banco e passar como parâmetros os valores dessa classe
+        //***NÃO MEXER! SUJEITO A CACETE***
+        public void salvaCampos()
+        {
+            int cpfCnpj       = Convert.ToInt32(txtCpfCnpj);
+            int cep           = Convert.ToInt32(txtCepPessoa.Text);
+            string nomePessoa = txtNomePessoa.Text;
+            string estado     = txtEstadoPessoa.Text;
+            string cidade     = txtCidadePessoa.Text;
+            string endereco   = txtEnderecoPessoa.Text;
+            string numEnd     = txtNumeroPessoa.Text;
+            string telefone   = txtTelefonePessoa.Text;
+            string celular    = txtCelularPessoa.Text;
+            string email      = txtEmailPessoa.Text;
+            string status     = cbStatusPessoa.Text;
+            string categoria  = cbCategoriaPessoa.Text;
+        }
+        //Classe BURIM que verifica os campos em branco e informa ao usuário na tela de CADASTRO DE CLIENTE/FORNECEDOR
+        //***NÃO MEXER! SUJEITO A CACETE***
         public void verificaCampos()
         {
-            string nome      = txtNomePessoa.Text;
-            string cpfCnpj   = txtCpfCnpj.Text;
-            string cep       = txtCepPessoa.Text;
-            string estado    = txtEstadoPessoa.Text;
-            string cidade    = txtCidadePessoa.Text;
-            string endereco  = txtEnderecoPessoa.Text;
-            string numero    = txtNumeroPessoa.Text;
-            string contato   = txtContatoPessoa.Text;
-            string celular   = txtCelularPessoa.Text;
-            string email     = txtEmailPessoa.Text;
-            string status    = cbStatusPessoa.Text;
-            string categoria = cbCategoriaPessoa.Text;
-
-
-
-            if (nome == string.Empty || cpfCnpj == string.Empty || cep == string.Empty || estado == string.Empty ||  cidade == string.Empty || endereco == string.Empty || numero == string.Empty || contato == string.Empty || celular == string.Empty || email == string.Empty || status == string.Empty ||categoria == string.Empty)
+            //Get de todos os campos da tela de cadastro de cliente
+            Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
             {
-                MessageBox.Show("Campo precisa ser preenchido");
+                {lblNomePessoa.Text     , txtNomePessoa.Text},
+                {lblCpfCnpj.Text        , txtCpfCnpj.Text},
+                {lblCepPessoa.Text      , txtCepPessoa.Text},
+                {lblEstadoPessoa.Text   , txtEstadoPessoa.Text},
+                {lblCidadePessoa.Text   , txtCidadePessoa.Text},
+                {lblEnderecoPessoa.Text , txtEnderecoPessoa.Text},
+                {lblNumeroPessoa.Text   , txtNumeroPessoa.Text},
+                {lblTelefonePessoa.Text , txtTelefonePessoa.Text},
+                {lblCelularPessoa.Text  , txtCelularPessoa.Text},
+                {lblEmailPessoa.Text    , txtEmailPessoa.Text},
+                {lblStatusPessoa.Text   , cbStatusPessoa.Text},
+                {lblCategoriaPessoa.Text, cbCategoriaPessoa.Text},
+            };
+            List<string> camposNulos = new List<string>();
+
+            foreach (KeyValuePair<string, string> campo in validaCamposCadClie)
+            {
+                if (campo.Value == string.Empty)
+                {
+                    camposNulos.Add(campo.Key.Replace(":", ""));
+                }
+            }
+
+            if (camposNulos.Count > 0)
+            {
+                //Exibe quais campos estão em branco
+                MessageBox.Show(
+                    $"Preencha o(s) campo(s) obrigatórios abaixo:{Environment.NewLine}{string.Join(Environment.NewLine, camposNulos)}",
+                    "Validação!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MessageBox.Show("OK", "Cadastro realizado com sucesso");
             }
         }
 
