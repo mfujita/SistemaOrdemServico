@@ -17,6 +17,29 @@ namespace SistemaOrdemServico
             InitializeComponent();
         }
 
+        //Metodo que verifica se existem campos em branco na tela em que foi chamado.
+        private bool TemCamposVazios(Dictionary<string, string> camposDeEntrada)
+        {
+            List<string> camposVazios = camposDeEntrada.Where(campo => campo.Value == string.Empty)
+                .Select(campo => campo.Key.Replace(":", "")).ToList();
+
+            if (camposVazios.Count > 0)
+            {
+                //Exibe quais campos estão em branco
+                MessageBox.Show(
+                    $"Preencha o(s) campo(s) obrigatório(s):{Environment.NewLine}{string.Join(Environment.NewLine, camposVazios)}",
+                    "Preencha todos os campos.",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             dtpDataEntradaOrcamento.Value = DateTime.Today;
@@ -36,17 +59,38 @@ namespace SistemaOrdemServico
             }
 
         }
+
         //Butão SALVAR do burim ***NÃO MEXER! SUJEITO A CACETE***
         private void btnSalvarPessoa_Click(object sender, EventArgs e)
         {
-            verificaCampos();
-            salvaCampos();
+            //Get de todos os campos da tela de cadastro de cliente
+            Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
+            {
+                {lblNomePessoa.Text     , txtNomePessoa.Text},
+                {lblCpfCnpj.Text        , txtCpfCnpj.Text},
+                {lblCepPessoa.Text      , txtCepPessoa.Text},
+                {lblEstadoPessoa.Text   , txtEstadoPessoa.Text},
+                {lblCidadePessoa.Text   , txtCidadePessoa.Text},
+                {lblEnderecoPessoa.Text , txtEnderecoPessoa.Text},
+                {lblNumeroPessoa.Text   , txtNumeroPessoa.Text},
+                {lblTelefonePessoa.Text , txtTelefonePessoa.Text},
+                {lblCelularPessoa.Text  , txtCelularPessoa.Text},
+                {lblEmailPessoa.Text    , txtEmailPessoa.Text},
+                {lblStatusPessoa.Text   , cbStatusPessoa.Text},
+                {lblCategoriaPessoa.Text, cbCategoriaPessoa.Text},
+            };
+
+            if (!TemCamposVazios(validaCamposCadClie))
+            {
+                salvaCampos();
+                MessageBox.Show("OK", "Cadastro realizado com sucesso");
+            }
         }
 
         //Butão SALVAR do burim ***NÃO MEXER! SUJEITO A CACETE***
         private void btnEditarPessoa_Click(object sender, EventArgs e)
         {
-            verificaCampos();
+            //verificaCampos();
         }
         //Butão SALVAR do burim ***NÃO MEXER! SUJEITO A CACETE***
         private void btnExcluirPessoa_Click(object sender, EventArgs e)
@@ -70,50 +114,6 @@ namespace SistemaOrdemServico
             string status     = cbStatusPessoa.Text;
             string categoria  = cbCategoriaPessoa.Text;
         }
-        //Classe BURIM que verifica os campos em branco e informa ao usuário na tela de CADASTRO DE CLIENTE/FORNECEDOR
-        //***NÃO MEXER! SUJEITO A CACETE***
-        public void verificaCampos()
-        {
-            //Get de todos os campos da tela de cadastro de cliente
-            Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
-            {
-                {lblNomePessoa.Text     , txtNomePessoa.Text},
-                {lblCpfCnpj.Text        , txtCpfCnpj.Text},
-                {lblCepPessoa.Text      , txtCepPessoa.Text},
-                {lblEstadoPessoa.Text   , txtEstadoPessoa.Text},
-                {lblCidadePessoa.Text   , txtCidadePessoa.Text},
-                {lblEnderecoPessoa.Text , txtEnderecoPessoa.Text},
-                {lblNumeroPessoa.Text   , txtNumeroPessoa.Text},
-                {lblTelefonePessoa.Text , txtTelefonePessoa.Text},
-                {lblCelularPessoa.Text  , txtCelularPessoa.Text},
-                {lblEmailPessoa.Text    , txtEmailPessoa.Text},
-                {lblStatusPessoa.Text   , cbStatusPessoa.Text},
-                {lblCategoriaPessoa.Text, cbCategoriaPessoa.Text},
-            };
-            List<string> camposNulos = new List<string>();
-
-            foreach (KeyValuePair<string, string> campo in validaCamposCadClie)
-            {
-                if (campo.Value == string.Empty)
-                {
-                    camposNulos.Add(campo.Key.Replace(":", ""));
-                }
-            }
-
-            if (camposNulos.Count > 0)
-            {
-                //Exibe quais campos estão em branco
-                MessageBox.Show(
-                    $"Preencha o(s) campo(s) obrigatórios abaixo:{Environment.NewLine}{string.Join(Environment.NewLine, camposNulos)}",
-                    "Validação!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            }
-            else
-            {
-                MessageBox.Show("OK", "Cadastro realizado com sucesso");
-            }
-        }
 
         private void btnSalvarOrcamento_Click(object sender, EventArgs e)
         {
@@ -124,30 +124,38 @@ namespace SistemaOrdemServico
                 {lblDescricaoOrcamento.Text, txtDescricaoOrcamento.Text},
                 {lblPecasOrcamento.Text, cbPecasOrcamento.Text},
                 {lblValorOrcamento.Text, nudValorOrcamento.Text == "0,00" ? string.Empty : nudValorOrcamento.Text},
-                {lblRecebidoOrcamento.Text, cbRecebidoOrcamento.Text},
+                {lblRecebidoOrcamento.Text, cbRecebidoOrcamento.Text}
             };
-            List<string> camposVazios = new List<string>();
 
-            foreach (KeyValuePair<string, string> campo in camposDeEntrada)
+            if (!TemCamposVazios(camposDeEntrada))
             {
-                if(campo.Value == string.Empty)
+                try
                 {
-                    camposVazios.Add(campo.Key.Replace(":", ""));
-                }
-            }
+                    /*string connection = "";
+                    SqlConnection sqlConnection = new SqlConnection(connection);
 
-            if (camposVazios.Count > 0)
-            {
-                MessageBox.Show(
-                    $"Preencha o(s) campo(s):{Environment.NewLine}{string.Join(Environment.NewLine, camposVazios)}",
-                    "Preencha todos os campos.",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-            }
-            else
-            {
-                MessageBox.Show("Todos os campos estão preenchidos", "Mensagem Temporária");
-                //Enviar para o banco de dados.
+                    string sql = $"INSERT INTO cadOrcamento VALUES({string.Join(", ", camposDeEntrada)})";
+                    SqlCommand command = new SqlCommand(sql, sqlConnection);
+                    command.Connection.Open();
+                    command.ExecuteNonQuery();
+
+                    command.Dispose();
+                    sqlConnection.Close();
+
+                    */
+                    MessageBox.Show(
+                        "Enviado para o banco de dados com sucesso.",
+                        "Sucesso",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                } catch(Exception ex)
+                {
+                    MessageBox.Show(
+                        ex.ToString(),
+                        "Erro",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
             }
         }
     }

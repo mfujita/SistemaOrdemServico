@@ -81,9 +81,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Peca.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Peca.png" />
   </ItemGroup>
   <ItemGroup>

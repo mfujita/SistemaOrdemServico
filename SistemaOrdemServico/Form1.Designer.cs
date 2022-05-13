@@ -99,6 +99,8 @@
             this.lblClienteOrcamento = new System.Windows.Forms.Label();
             this.tpOrdemServico = new System.Windows.Forms.TabPage();
             this.tpClienteEmpresa = new System.Windows.Forms.TabPage();
+            this.txtCepPessoa = new System.Windows.Forms.MaskedTextBox();
+            this.txtCpfCnpj = new System.Windows.Forms.MaskedTextBox();
             this.txtCidadePessoa = new System.Windows.Forms.TextBox();
             this.lblCidadePessoa = new System.Windows.Forms.Label();
             this.txtEstadoPessoa = new System.Windows.Forms.TextBox();
@@ -111,6 +113,7 @@
             this.txtNumeroPessoa = new System.Windows.Forms.TextBox();
             this.txtBairroPessoa = new System.Windows.Forms.TextBox();
             this.txtEnderecoPessoa = new System.Windows.Forms.TextBox();
+            this.txtNomePessoa = new System.Windows.Forms.TextBox();
             this.lblCategoriaPessoa = new System.Windows.Forms.Label();
             this.lblCadastroContatoPessoa = new System.Windows.Forms.Label();
             this.lblNumeroPessoa = new System.Windows.Forms.Label();
@@ -129,9 +132,6 @@
             this.btnEditarPessoa = new System.Windows.Forms.Button();
             this.btnSalvarPessoa = new System.Windows.Forms.Button();
             this.pbPessoa = new System.Windows.Forms.PictureBox();
-            this.txtCpfCnpj = new System.Windows.Forms.MaskedTextBox();
-            this.txtCepPessoa = new System.Windows.Forms.MaskedTextBox();
-            this.txtNomePessoa = new System.Windows.Forms.TextBox();
             this.tcOrdemServico.SuspendLayout();
             this.tpFuncionarios.SuspendLayout();
             this.tpPecas.SuspendLayout();
@@ -712,7 +712,7 @@
             // lblMoedaOrcamento
             // 
             this.lblMoedaOrcamento.AutoSize = true;
-            this.lblMoedaOrcamento.Location = new System.Drawing.Point(141, 401);
+            this.lblMoedaOrcamento.Location = new System.Drawing.Point(141, 399);
             this.lblMoedaOrcamento.Name = "lblMoedaOrcamento";
             this.lblMoedaOrcamento.Size = new System.Drawing.Size(29, 21);
             this.lblMoedaOrcamento.TabIndex = 12;
@@ -874,6 +874,24 @@
             this.tpClienteEmpresa.Text = "Cadastros de clientes/empresas";
             this.tpClienteEmpresa.UseVisualStyleBackColor = true;
             // 
+            // txtCepPessoa
+            // 
+            this.txtCepPessoa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCepPessoa.Location = new System.Drawing.Point(294, 333);
+            this.txtCepPessoa.Mask = "#####-###";
+            this.txtCepPessoa.Name = "txtCepPessoa";
+            this.txtCepPessoa.Size = new System.Drawing.Size(100, 26);
+            this.txtCepPessoa.TabIndex = 50;
+            // 
+            // txtCpfCnpj
+            // 
+            this.txtCpfCnpj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCpfCnpj.Location = new System.Drawing.Point(356, 214);
+            this.txtCpfCnpj.Mask = "000,000,000-00";
+            this.txtCpfCnpj.Name = "txtCpfCnpj";
+            this.txtCpfCnpj.Size = new System.Drawing.Size(175, 26);
+            this.txtCpfCnpj.TabIndex = 49;
+            // 
             // txtCidadePessoa
             // 
             this.txtCidadePessoa.Font = new System.Drawing.Font("Arial", 12F);
@@ -975,6 +993,14 @@
             this.txtEnderecoPessoa.Name = "txtEnderecoPessoa";
             this.txtEnderecoPessoa.Size = new System.Drawing.Size(234, 26);
             this.txtEnderecoPessoa.TabIndex = 12;
+            // 
+            // txtNomePessoa
+            // 
+            this.txtNomePessoa.Font = new System.Drawing.Font("Arial", 12F);
+            this.txtNomePessoa.Location = new System.Drawing.Point(356, 179);
+            this.txtNomePessoa.Name = "txtNomePessoa";
+            this.txtNomePessoa.Size = new System.Drawing.Size(175, 26);
+            this.txtNomePessoa.TabIndex = 5;
             // 
             // lblCategoriaPessoa
             // 
@@ -1154,32 +1180,6 @@
             this.pbPessoa.Size = new System.Drawing.Size(84, 84);
             this.pbPessoa.TabIndex = 20;
             this.pbPessoa.TabStop = false;
-            // 
-            // txtCpfCnpj
-            // 
-            this.txtCpfCnpj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCpfCnpj.Location = new System.Drawing.Point(356, 214);
-            this.txtCpfCnpj.Mask = "000,000,000-00";
-            this.txtCpfCnpj.Name = "txtCpfCnpj";
-            this.txtCpfCnpj.Size = new System.Drawing.Size(175, 26);
-            this.txtCpfCnpj.TabIndex = 49;
-            // 
-            // txtCepPessoa
-            // 
-            this.txtCepPessoa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCepPessoa.Location = new System.Drawing.Point(294, 333);
-            this.txtCepPessoa.Mask = "#####-###";
-            this.txtCepPessoa.Name = "txtCepPessoa";
-            this.txtCepPessoa.Size = new System.Drawing.Size(100, 26);
-            this.txtCepPessoa.TabIndex = 50;
-            // 
-            // txtNomePessoa
-            // 
-            this.txtNomePessoa.Font = new System.Drawing.Font("Arial", 12F);
-            this.txtNomePessoa.Location = new System.Drawing.Point(356, 179);
-            this.txtNomePessoa.Name = "txtNomePessoa";
-            this.txtNomePessoa.Size = new System.Drawing.Size(175, 26);
-            this.txtNomePessoa.TabIndex = 5;
             // 
             // Form1
             // 
