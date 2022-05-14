@@ -98,6 +98,17 @@
             this.lblDataEntradaOrcamento = new System.Windows.Forms.Label();
             this.lblClienteOrcamento = new System.Windows.Forms.Label();
             this.tpOrdemServico = new System.Windows.Forms.TabPage();
+            this.btn_Limpar = new System.Windows.Forms.Button();
+            this.btn_Salvar = new System.Windows.Forms.Button();
+            this.tb_Garantia = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tb_RespServico = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tb_DataSaida = new System.Windows.Forms.TextBox();
+            this.tb_ID = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.tpClienteEmpresa = new System.Windows.Forms.TabPage();
             this.txtCepPessoa = new System.Windows.Forms.MaskedTextBox();
             this.txtCpfCnpj = new System.Windows.Forms.MaskedTextBox();
@@ -139,6 +150,7 @@
             this.tpOrcamento.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).BeginInit();
+            this.tpOrdemServico.SuspendLayout();
             this.tpClienteEmpresa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPessoa)).BeginInit();
             this.SuspendLayout();
@@ -825,12 +837,117 @@
             // 
             // tpOrdemServico
             // 
+            this.tpOrdemServico.Controls.Add(this.btn_Limpar);
+            this.tpOrdemServico.Controls.Add(this.btn_Salvar);
+            this.tpOrdemServico.Controls.Add(this.tb_Garantia);
+            this.tpOrdemServico.Controls.Add(this.label5);
+            this.tpOrdemServico.Controls.Add(this.label4);
+            this.tpOrdemServico.Controls.Add(this.tb_RespServico);
+            this.tpOrdemServico.Controls.Add(this.label3);
+            this.tpOrdemServico.Controls.Add(this.tb_DataSaida);
+            this.tpOrdemServico.Controls.Add(this.tb_ID);
+            this.tpOrdemServico.Controls.Add(this.label2);
+            this.tpOrdemServico.Controls.Add(this.label1);
             this.tpOrdemServico.Location = new System.Drawing.Point(4, 30);
             this.tpOrdemServico.Name = "tpOrdemServico";
             this.tpOrdemServico.Size = new System.Drawing.Size(1247, 699);
             this.tpOrdemServico.TabIndex = 3;
             this.tpOrdemServico.Text = "Cadastro de ordem de serviço";
             this.tpOrdemServico.UseVisualStyleBackColor = true;
+            // 
+            // btn_Limpar
+            // 
+            this.btn_Limpar.Location = new System.Drawing.Point(319, 342);
+            this.btn_Limpar.Name = "btn_Limpar";
+            this.btn_Limpar.Size = new System.Drawing.Size(166, 36);
+            this.btn_Limpar.TabIndex = 10;
+            this.btn_Limpar.Text = "LIMPAR";
+            this.btn_Limpar.UseVisualStyleBackColor = true;
+            this.btn_Limpar.Click += new System.EventHandler(this.btn_Limpar_Click);
+            // 
+            // btn_Salvar
+            // 
+            this.btn_Salvar.Location = new System.Drawing.Point(319, 299);
+            this.btn_Salvar.Name = "btn_Salvar";
+            this.btn_Salvar.Size = new System.Drawing.Size(166, 36);
+            this.btn_Salvar.TabIndex = 9;
+            this.btn_Salvar.Text = "Salvar";
+            this.btn_Salvar.UseVisualStyleBackColor = true;
+            this.btn_Salvar.Click += new System.EventHandler(this.btn_Salvar_Click);
+            // 
+            // tb_Garantia
+            // 
+            this.tb_Garantia.Location = new System.Drawing.Point(339, 210);
+            this.tb_Garantia.Name = "tb_Garantia";
+            this.tb_Garantia.Size = new System.Drawing.Size(176, 29);
+            this.tb_Garantia.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(217, 210);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(126, 21);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Data de Garantia";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(213, 169);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(120, 21);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Respon. Serviço";
+            // 
+            // tb_RespServico
+            // 
+            this.tb_RespServico.Location = new System.Drawing.Point(339, 161);
+            this.tb_RespServico.Name = "tb_RespServico";
+            this.tb_RespServico.Size = new System.Drawing.Size(176, 29);
+            this.tb_RespServico.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(213, 123);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(105, 21);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Data de Saída";
+            // 
+            // tb_DataSaida
+            // 
+            this.tb_DataSaida.Location = new System.Drawing.Point(327, 115);
+            this.tb_DataSaida.Name = "tb_DataSaida";
+            this.tb_DataSaida.Size = new System.Drawing.Size(188, 29);
+            this.tb_DataSaida.TabIndex = 3;
+            // 
+            // tb_ID
+            // 
+            this.tb_ID.Location = new System.Drawing.Point(327, 79);
+            this.tb_ID.Name = "tb_ID";
+            this.tb_ID.Size = new System.Drawing.Size(188, 29);
+            this.tb_ID.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(213, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(107, 21);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "ID Orçamento";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(297, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(188, 30);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Ordem de Serviço";
             // 
             // tpClienteEmpresa
             // 
@@ -1203,6 +1320,8 @@
             this.tpOrcamento.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).EndInit();
+            this.tpOrdemServico.ResumeLayout(false);
+            this.tpOrdemServico.PerformLayout();
             this.tpClienteEmpresa.ResumeLayout(false);
             this.tpClienteEmpresa.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPessoa)).EndInit();
@@ -1316,6 +1435,17 @@
         private System.Windows.Forms.MaskedTextBox txtCepPessoa;
         private System.Windows.Forms.MaskedTextBox txtCpfCnpj;
         private System.Windows.Forms.TextBox txtNomePessoa;
+        private System.Windows.Forms.Button btn_Salvar;
+        private System.Windows.Forms.TextBox tb_Garantia;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tb_RespServico;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox tb_DataSaida;
+        private System.Windows.Forms.TextBox tb_ID;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btn_Limpar;
     }
 }
 
