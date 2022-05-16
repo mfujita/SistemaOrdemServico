@@ -52,19 +52,19 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ordem de servico.cs">
+    <Compile Include="OrdemDeServico.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Ordem de servico.Designer.cs">
-      <DependentUpon>Ordem de servico.cs</DependentUpon>
+    <Compile Include="OrdemDeServico.Designer.cs">
+      <DependentUpon>OrdemDeServico.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Ordem de servico.resx">
-      <DependentUpon>Ordem de servico.cs</DependentUpon>
+    <EmbeddedResource Include="OrdemDeServico.resx">
+      <DependentUpon>OrdemDeServico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

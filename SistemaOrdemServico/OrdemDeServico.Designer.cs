@@ -1,6 +1,6 @@
 ﻿namespace SistemaOrdemServico
 {
-    partial class Ordem_de_servico
+    partial class OrdemDeServico
     {
         /// <summary>
         /// Required designer variable.

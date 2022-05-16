@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SistemaOrdemServico
 {
-    public partial class Ordem_de_servico : Form
+    public partial class OrdemDeServico : Form
     {
-        public Ordem_de_servico()
+        public OrdemDeServico()
         {
             InitializeComponent();
         }
