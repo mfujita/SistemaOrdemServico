@@ -16,7 +16,7 @@ namespace SistemaOrdemServico
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OrdemDeServico ());
+            Application.Run(new Form1());
         }
     }
 }
