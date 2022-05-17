@@ -64,6 +64,12 @@
     <Compile Include="OrdemDeServico.Designer.cs">
       <DependentUpon>OrdemDeServico.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pecas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pecas.Designer.cs">
+      <DependentUpon>Pecas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CadastroFunc.resx">
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OrdemDeServico.resx">
       <DependentUpon>OrdemDeServico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pecas.resx">
+      <DependentUpon>Pecas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
