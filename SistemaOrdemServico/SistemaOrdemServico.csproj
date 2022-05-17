@@ -58,6 +58,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Orcamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Orcamento.Designer.cs">
+      <DependentUpon>Orcamento.cs</DependentUpon>
+    </Compile>
     <Compile Include="OrdemDeServico.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,11 +78,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SelecionarOrcamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelecionarOrcamento.Designer.cs">
+      <DependentUpon>SelecionarOrcamento.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CadastroFunc.resx">
       <DependentUpon>CadastroFunc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Orcamento.resx">
+      <DependentUpon>Orcamento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OrdemDeServico.resx">
       <DependentUpon>OrdemDeServico.cs</DependentUpon>
@@ -88,6 +103,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelecionarOrcamento.resx">
+      <DependentUpon>SelecionarOrcamento.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

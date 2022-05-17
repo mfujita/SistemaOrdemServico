@@ -18,7 +18,7 @@ namespace SistemaOrdemServico
         }
 
         //Metodo que verifica se existem campos em branco na tela em que foi chamado.
-        private bool TemCamposVazios(Dictionary<string, string> camposDeEntrada)
+        public static bool TemCamposVazios(Dictionary<string, string> camposDeEntrada)
         {
             List<string> camposVazios = camposDeEntrada.Where(campo => campo.Value == string.Empty)
                 .Select(campo => campo.Key.Replace(":", "")).ToList();
