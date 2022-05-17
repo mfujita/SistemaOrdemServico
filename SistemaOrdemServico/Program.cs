@@ -16,7 +16,11 @@ namespace SistemaOrdemServico
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+<<<<<<< HEAD
             Application.Run(new OrdemDeServico ());
+=======
+            Application.Run(new CadastroFunc());
+>>>>>>> 194771a (Validacao de campos no cad Funcionarios)
         }
     }
 }
