@@ -19,6 +19,7 @@ namespace SistemaOrdemServico
 
             Application.Run(new OrdemDeServico ());
             Application.Run(new CadastroFunc());
+
         }
     }
 }

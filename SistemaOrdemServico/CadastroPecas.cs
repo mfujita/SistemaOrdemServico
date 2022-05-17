@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SistemaOrdemServico
 {
-    public partial class Pecas : Form
+    public partial class CadastroPecas : Form
     {
-        public Pecas()
+        public CadastroPecas()
         {
             InitializeComponent();
         }
