@@ -30,13 +30,13 @@ namespace SistemaOrdemServico
         private void InitializeComponent()
         {
             this.tabControlPecas = new System.Windows.Forms.TabControl();
-            this.tabAreaPecas = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtValorVendaPeca = new System.Windows.Forms.TextBox();
-            this.txtValorCompraPeca = new System.Windows.Forms.TextBox();
-            this.txtFabricantePeca = new System.Windows.Forms.TextBox();
-            this.txtFornecedorPeca = new System.Windows.Forms.TextBox();
-            this.txtNomePeca = new System.Windows.Forms.TextBox();
+            this.tabCadastrarPecas = new System.Windows.Forms.TabPage();
+            this.btnSalvarPeca = new System.Windows.Forms.Button();
+            this.txtValorVendaCadastrarPeca = new System.Windows.Forms.TextBox();
+            this.txtValorCompraCadastrarPeca = new System.Windows.Forms.TextBox();
+            this.txtFabricanteCadastrarPeca = new System.Windows.Forms.TextBox();
+            this.txtFornecedorCadastrarPeca = new System.Windows.Forms.TextBox();
+            this.txtNomeCadastrarPeca = new System.Windows.Forms.TextBox();
             this.lblValorVendaPeca = new System.Windows.Forms.Label();
             this.lblValorCompraPeca = new System.Windows.Forms.Label();
             this.lblFabricantePeca = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@ namespace SistemaOrdemServico
             this.lblNomePeca = new System.Windows.Forms.Label();
             this.lblCadastroPeca = new System.Windows.Forms.Label();
             this.pbPeca = new System.Windows.Forms.PictureBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabEditarPeca = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,26 +60,28 @@ namespace SistemaOrdemServico
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabDeletarPeca = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tabConsultaPeca = new System.Windows.Forms.TabPage();
             this.tabControlPecas.SuspendLayout();
-            this.tabAreaPecas.SuspendLayout();
+            this.tabCadastrarPecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
-            this.tabPage2.SuspendLayout();
+            this.tabEditarPeca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabDeletarPeca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlPecas
             // 
-            this.tabControlPecas.Controls.Add(this.tabAreaPecas);
-            this.tabControlPecas.Controls.Add(this.tabPage2);
-            this.tabControlPecas.Controls.Add(this.tabPage3);
+            this.tabControlPecas.Controls.Add(this.tabCadastrarPecas);
+            this.tabControlPecas.Controls.Add(this.tabEditarPeca);
+            this.tabControlPecas.Controls.Add(this.tabDeletarPeca);
+            this.tabControlPecas.Controls.Add(this.tabConsultaPeca);
             this.tabControlPecas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlPecas.Location = new System.Drawing.Point(0, 0);
             this.tabControlPecas.Name = "tabControlPecas";
@@ -87,72 +89,73 @@ namespace SistemaOrdemServico
             this.tabControlPecas.Size = new System.Drawing.Size(979, 541);
             this.tabControlPecas.TabIndex = 0;
             // 
-            // tabAreaPecas
+            // tabCadastrarPecas
             // 
-            this.tabAreaPecas.Controls.Add(this.button1);
-            this.tabAreaPecas.Controls.Add(this.txtValorVendaPeca);
-            this.tabAreaPecas.Controls.Add(this.txtValorCompraPeca);
-            this.tabAreaPecas.Controls.Add(this.txtFabricantePeca);
-            this.tabAreaPecas.Controls.Add(this.txtFornecedorPeca);
-            this.tabAreaPecas.Controls.Add(this.txtNomePeca);
-            this.tabAreaPecas.Controls.Add(this.lblValorVendaPeca);
-            this.tabAreaPecas.Controls.Add(this.lblValorCompraPeca);
-            this.tabAreaPecas.Controls.Add(this.lblFabricantePeca);
-            this.tabAreaPecas.Controls.Add(this.lblFornecedorPeca);
-            this.tabAreaPecas.Controls.Add(this.lblNomePeca);
-            this.tabAreaPecas.Controls.Add(this.lblCadastroPeca);
-            this.tabAreaPecas.Controls.Add(this.pbPeca);
-            this.tabAreaPecas.Location = new System.Drawing.Point(4, 22);
-            this.tabAreaPecas.Name = "tabAreaPecas";
-            this.tabAreaPecas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAreaPecas.Size = new System.Drawing.Size(971, 515);
-            this.tabAreaPecas.TabIndex = 0;
-            this.tabAreaPecas.Text = "Cadastrar";
-            this.tabAreaPecas.UseVisualStyleBackColor = true;
+            this.tabCadastrarPecas.Controls.Add(this.btnSalvarPeca);
+            this.tabCadastrarPecas.Controls.Add(this.txtValorVendaCadastrarPeca);
+            this.tabCadastrarPecas.Controls.Add(this.txtValorCompraCadastrarPeca);
+            this.tabCadastrarPecas.Controls.Add(this.txtFabricanteCadastrarPeca);
+            this.tabCadastrarPecas.Controls.Add(this.txtFornecedorCadastrarPeca);
+            this.tabCadastrarPecas.Controls.Add(this.txtNomeCadastrarPeca);
+            this.tabCadastrarPecas.Controls.Add(this.lblValorVendaPeca);
+            this.tabCadastrarPecas.Controls.Add(this.lblValorCompraPeca);
+            this.tabCadastrarPecas.Controls.Add(this.lblFabricantePeca);
+            this.tabCadastrarPecas.Controls.Add(this.lblFornecedorPeca);
+            this.tabCadastrarPecas.Controls.Add(this.lblNomePeca);
+            this.tabCadastrarPecas.Controls.Add(this.lblCadastroPeca);
+            this.tabCadastrarPecas.Controls.Add(this.pbPeca);
+            this.tabCadastrarPecas.Location = new System.Drawing.Point(4, 22);
+            this.tabCadastrarPecas.Name = "tabCadastrarPecas";
+            this.tabCadastrarPecas.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCadastrarPecas.Size = new System.Drawing.Size(971, 515);
+            this.tabCadastrarPecas.TabIndex = 0;
+            this.tabCadastrarPecas.Text = "                              Cadastrar                              ";
+            this.tabCadastrarPecas.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnSalvarPeca
             // 
-            this.button1.Location = new System.Drawing.Point(83, 419);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(141, 33);
-            this.button1.TabIndex = 56;
-            this.button1.Text = "Gravar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSalvarPeca.Location = new System.Drawing.Point(83, 419);
+            this.btnSalvarPeca.Name = "btnSalvarPeca";
+            this.btnSalvarPeca.Size = new System.Drawing.Size(141, 33);
+            this.btnSalvarPeca.TabIndex = 56;
+            this.btnSalvarPeca.Text = "Gravar";
+            this.btnSalvarPeca.UseVisualStyleBackColor = true;
+            this.btnSalvarPeca.Click += new System.EventHandler(this.btnSalvarPeca_Click);
             // 
-            // txtValorVendaPeca
+            // txtValorVendaCadastrarPeca
             // 
-            this.txtValorVendaPeca.Location = new System.Drawing.Point(212, 357);
-            this.txtValorVendaPeca.Name = "txtValorVendaPeca";
-            this.txtValorVendaPeca.Size = new System.Drawing.Size(234, 20);
-            this.txtValorVendaPeca.TabIndex = 55;
+            this.txtValorVendaCadastrarPeca.Location = new System.Drawing.Point(212, 357);
+            this.txtValorVendaCadastrarPeca.Name = "txtValorVendaCadastrarPeca";
+            this.txtValorVendaCadastrarPeca.Size = new System.Drawing.Size(234, 20);
+            this.txtValorVendaCadastrarPeca.TabIndex = 55;
             // 
-            // txtValorCompraPeca
+            // txtValorCompraCadastrarPeca
             // 
-            this.txtValorCompraPeca.Location = new System.Drawing.Point(212, 310);
-            this.txtValorCompraPeca.Name = "txtValorCompraPeca";
-            this.txtValorCompraPeca.Size = new System.Drawing.Size(234, 20);
-            this.txtValorCompraPeca.TabIndex = 54;
+            this.txtValorCompraCadastrarPeca.Location = new System.Drawing.Point(212, 310);
+            this.txtValorCompraCadastrarPeca.Name = "txtValorCompraCadastrarPeca";
+            this.txtValorCompraCadastrarPeca.Size = new System.Drawing.Size(234, 20);
+            this.txtValorCompraCadastrarPeca.TabIndex = 54;
             // 
-            // txtFabricantePeca
+            // txtFabricanteCadastrarPeca
             // 
-            this.txtFabricantePeca.Location = new System.Drawing.Point(212, 264);
-            this.txtFabricantePeca.Name = "txtFabricantePeca";
-            this.txtFabricantePeca.Size = new System.Drawing.Size(234, 20);
-            this.txtFabricantePeca.TabIndex = 53;
+            this.txtFabricanteCadastrarPeca.Location = new System.Drawing.Point(212, 264);
+            this.txtFabricanteCadastrarPeca.Name = "txtFabricanteCadastrarPeca";
+            this.txtFabricanteCadastrarPeca.Size = new System.Drawing.Size(234, 20);
+            this.txtFabricanteCadastrarPeca.TabIndex = 53;
             // 
-            // txtFornecedorPeca
+            // txtFornecedorCadastrarPeca
             // 
-            this.txtFornecedorPeca.Location = new System.Drawing.Point(212, 219);
-            this.txtFornecedorPeca.Name = "txtFornecedorPeca";
-            this.txtFornecedorPeca.Size = new System.Drawing.Size(234, 20);
-            this.txtFornecedorPeca.TabIndex = 52;
+            this.txtFornecedorCadastrarPeca.Location = new System.Drawing.Point(212, 219);
+            this.txtFornecedorCadastrarPeca.Name = "txtFornecedorCadastrarPeca";
+            this.txtFornecedorCadastrarPeca.Size = new System.Drawing.Size(234, 20);
+            this.txtFornecedorCadastrarPeca.TabIndex = 52;
             // 
-            // txtNomePeca
+            // txtNomeCadastrarPeca
             // 
-            this.txtNomePeca.Location = new System.Drawing.Point(212, 177);
-            this.txtNomePeca.Name = "txtNomePeca";
-            this.txtNomePeca.Size = new System.Drawing.Size(234, 20);
-            this.txtNomePeca.TabIndex = 51;
+            this.txtNomeCadastrarPeca.Location = new System.Drawing.Point(212, 177);
+            this.txtNomeCadastrarPeca.Name = "txtNomeCadastrarPeca";
+            this.txtNomeCadastrarPeca.Size = new System.Drawing.Size(234, 20);
+            this.txtNomeCadastrarPeca.TabIndex = 51;
             // 
             // lblValorVendaPeca
             // 
@@ -224,30 +227,30 @@ namespace SistemaOrdemServico
             this.pbPeca.TabIndex = 44;
             this.pbPeca.TabStop = false;
             // 
-            // tabPage2
+            // tabEditarPeca
             // 
-            this.tabPage2.Controls.Add(this.button2);
-            this.tabPage2.Controls.Add(this.textBox6);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.textBox1);
-            this.tabPage2.Controls.Add(this.textBox2);
-            this.tabPage2.Controls.Add(this.textBox3);
-            this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Controls.Add(this.textBox5);
-            this.tabPage2.Controls.Add(this.label1);
-            this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.label4);
-            this.tabPage2.Controls.Add(this.label5);
-            this.tabPage2.Controls.Add(this.label6);
-            this.tabPage2.Controls.Add(this.pictureBox1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(971, 515);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Editar";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabEditarPeca.Controls.Add(this.button2);
+            this.tabEditarPeca.Controls.Add(this.textBox6);
+            this.tabEditarPeca.Controls.Add(this.label7);
+            this.tabEditarPeca.Controls.Add(this.textBox1);
+            this.tabEditarPeca.Controls.Add(this.textBox2);
+            this.tabEditarPeca.Controls.Add(this.textBox3);
+            this.tabEditarPeca.Controls.Add(this.textBox4);
+            this.tabEditarPeca.Controls.Add(this.textBox5);
+            this.tabEditarPeca.Controls.Add(this.label1);
+            this.tabEditarPeca.Controls.Add(this.label2);
+            this.tabEditarPeca.Controls.Add(this.label3);
+            this.tabEditarPeca.Controls.Add(this.label4);
+            this.tabEditarPeca.Controls.Add(this.label5);
+            this.tabEditarPeca.Controls.Add(this.label6);
+            this.tabEditarPeca.Controls.Add(this.pictureBox1);
+            this.tabEditarPeca.Location = new System.Drawing.Point(4, 22);
+            this.tabEditarPeca.Name = "tabEditarPeca";
+            this.tabEditarPeca.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEditarPeca.Size = new System.Drawing.Size(971, 515);
+            this.tabEditarPeca.TabIndex = 1;
+            this.tabEditarPeca.Text = "                              Editar                              ";
+            this.tabEditarPeca.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -380,19 +383,19 @@ namespace SistemaOrdemServico
             this.pictureBox1.TabIndex = 44;
             this.pictureBox1.TabStop = false;
             // 
-            // tabPage3
+            // tabDeletarPeca
             // 
-            this.tabPage3.Controls.Add(this.button3);
-            this.tabPage3.Controls.Add(this.textBox10);
-            this.tabPage3.Controls.Add(this.label11);
-            this.tabPage3.Controls.Add(this.label12);
-            this.tabPage3.Controls.Add(this.pictureBox2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(971, 515);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Deletar";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabDeletarPeca.Controls.Add(this.button3);
+            this.tabDeletarPeca.Controls.Add(this.textBox10);
+            this.tabDeletarPeca.Controls.Add(this.label11);
+            this.tabDeletarPeca.Controls.Add(this.label12);
+            this.tabDeletarPeca.Controls.Add(this.pictureBox2);
+            this.tabDeletarPeca.Location = new System.Drawing.Point(4, 22);
+            this.tabDeletarPeca.Name = "tabDeletarPeca";
+            this.tabDeletarPeca.Size = new System.Drawing.Size(971, 515);
+            this.tabDeletarPeca.TabIndex = 2;
+            this.tabDeletarPeca.Text = "                              Deletar                              ";
+            this.tabDeletarPeca.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -440,6 +443,15 @@ namespace SistemaOrdemServico
             this.pictureBox2.TabIndex = 44;
             this.pictureBox2.TabStop = false;
             // 
+            // tabConsultaPeca
+            // 
+            this.tabConsultaPeca.Location = new System.Drawing.Point(4, 22);
+            this.tabConsultaPeca.Name = "tabConsultaPeca";
+            this.tabConsultaPeca.Size = new System.Drawing.Size(971, 515);
+            this.tabConsultaPeca.TabIndex = 3;
+            this.tabConsultaPeca.Text = "                              Consultar                              ";
+            this.tabConsultaPeca.UseVisualStyleBackColor = true;
+            // 
             // CadastroPecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -452,14 +464,14 @@ namespace SistemaOrdemServico
             this.ShowIcon = false;
             this.Text = "Pecas";
             this.tabControlPecas.ResumeLayout(false);
-            this.tabAreaPecas.ResumeLayout(false);
-            this.tabAreaPecas.PerformLayout();
+            this.tabCadastrarPecas.ResumeLayout(false);
+            this.tabCadastrarPecas.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
+            this.tabEditarPeca.ResumeLayout(false);
+            this.tabEditarPeca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabDeletarPeca.ResumeLayout(false);
+            this.tabDeletarPeca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
@@ -468,14 +480,14 @@ namespace SistemaOrdemServico
         #endregion
 
         private System.Windows.Forms.TabControl tabControlPecas;
-        private System.Windows.Forms.TabPage tabAreaPecas;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TextBox txtValorVendaPeca;
-        private System.Windows.Forms.TextBox txtValorCompraPeca;
-        private System.Windows.Forms.TextBox txtFabricantePeca;
-        private System.Windows.Forms.TextBox txtFornecedorPeca;
-        private System.Windows.Forms.TextBox txtNomePeca;
+        private System.Windows.Forms.TabPage tabCadastrarPecas;
+        private System.Windows.Forms.TabPage tabEditarPeca;
+        private System.Windows.Forms.TabPage tabDeletarPeca;
+        private System.Windows.Forms.TextBox txtValorVendaCadastrarPeca;
+        private System.Windows.Forms.TextBox txtValorCompraCadastrarPeca;
+        private System.Windows.Forms.TextBox txtFabricanteCadastrarPeca;
+        private System.Windows.Forms.TextBox txtFornecedorCadastrarPeca;
+        private System.Windows.Forms.TextBox txtNomeCadastrarPeca;
         private System.Windows.Forms.Label lblValorVendaPeca;
         private System.Windows.Forms.Label lblValorCompraPeca;
         private System.Windows.Forms.Label lblFabricantePeca;
@@ -501,8 +513,9 @@ namespace SistemaOrdemServico
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSalvarPeca;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabPage tabConsultaPeca;
     }
 }
