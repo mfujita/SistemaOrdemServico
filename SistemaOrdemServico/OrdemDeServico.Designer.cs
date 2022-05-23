@@ -30,15 +30,15 @@
         {
             this.btn_Limpar = new System.Windows.Forms.Button();
             this.btn_Salvar = new System.Windows.Forms.Button();
-            this.tb_Garantia = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.tb_RespServico = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tb_DataSaida = new System.Windows.Forms.TextBox();
-            this.tb_ID = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtp_Saida = new System.Windows.Forms.DateTimePicker();
+            this.dtp_Garantia = new System.Windows.Forms.DateTimePicker();
+            this.mtb_Id = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // btn_Limpar
@@ -61,13 +61,6 @@
             this.btn_Salvar.UseVisualStyleBackColor = true;
             this.btn_Salvar.Click += new System.EventHandler(this.btn_Salvar_Click_1);
             // 
-            // tb_Garantia
-            // 
-            this.tb_Garantia.Location = new System.Drawing.Point(375, 231);
-            this.tb_Garantia.Name = "tb_Garantia";
-            this.tb_Garantia.Size = new System.Drawing.Size(176, 20);
-            this.tb_Garantia.TabIndex = 19;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -88,9 +81,9 @@
             // 
             // tb_RespServico
             // 
-            this.tb_RespServico.Location = new System.Drawing.Point(375, 182);
+            this.tb_RespServico.Location = new System.Drawing.Point(363, 182);
             this.tb_RespServico.Name = "tb_RespServico";
-            this.tb_RespServico.Size = new System.Drawing.Size(176, 20);
+            this.tb_RespServico.Size = new System.Drawing.Size(188, 20);
             this.tb_RespServico.TabIndex = 16;
             // 
             // label3
@@ -101,20 +94,6 @@
             this.label3.Size = new System.Drawing.Size(77, 13);
             this.label3.TabIndex = 15;
             this.label3.Text = "Data de Saída";
-            // 
-            // tb_DataSaida
-            // 
-            this.tb_DataSaida.Location = new System.Drawing.Point(363, 136);
-            this.tb_DataSaida.Name = "tb_DataSaida";
-            this.tb_DataSaida.Size = new System.Drawing.Size(188, 20);
-            this.tb_DataSaida.TabIndex = 14;
-            // 
-            // tb_ID
-            // 
-            this.tb_ID.Location = new System.Drawing.Point(363, 100);
-            this.tb_ID.Name = "tb_ID";
-            this.tb_ID.Size = new System.Drawing.Size(188, 20);
-            this.tb_ID.TabIndex = 13;
             // 
             // label2
             // 
@@ -135,23 +114,51 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Ordem de Serviço";
             // 
-            // Ordem_de_servico
+            // dtp_Saida
+            // 
+            this.dtp_Saida.CustomFormat = "";
+            this.dtp_Saida.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_Saida.Location = new System.Drawing.Point(363, 136);
+            this.dtp_Saida.Name = "dtp_Saida";
+            this.dtp_Saida.Size = new System.Drawing.Size(200, 20);
+            this.dtp_Saida.TabIndex = 22;
+            // 
+            // dtp_Garantia
+            // 
+            this.dtp_Garantia.CustomFormat = "";
+            this.dtp_Garantia.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_Garantia.Location = new System.Drawing.Point(363, 223);
+            this.dtp_Garantia.Name = "dtp_Garantia";
+            this.dtp_Garantia.Size = new System.Drawing.Size(200, 20);
+            this.dtp_Garantia.TabIndex = 23;
+            // 
+            // mtb_Id
+            // 
+            this.mtb_Id.Location = new System.Drawing.Point(363, 92);
+            this.mtb_Id.Mask = "00000";
+            this.mtb_Id.Name = "mtb_Id";
+            this.mtb_Id.PasswordChar = '*';
+            this.mtb_Id.Size = new System.Drawing.Size(59, 20);
+            this.mtb_Id.TabIndex = 24;
+            this.mtb_Id.ValidatingType = typeof(int);
+            // 
+            // OrdemDeServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.mtb_Id);
+            this.Controls.Add(this.dtp_Garantia);
+            this.Controls.Add(this.dtp_Saida);
             this.Controls.Add(this.btn_Limpar);
             this.Controls.Add(this.btn_Salvar);
-            this.Controls.Add(this.tb_Garantia);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tb_RespServico);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.tb_DataSaida);
-            this.Controls.Add(this.tb_ID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Ordem_de_servico";
+            this.Name = "OrdemDeServico";
             this.Text = "Ordem_de_servico";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -162,14 +169,14 @@
 
         private System.Windows.Forms.Button btn_Limpar;
         private System.Windows.Forms.Button btn_Salvar;
-        private System.Windows.Forms.TextBox tb_Garantia;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tb_RespServico;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tb_DataSaida;
-        private System.Windows.Forms.TextBox tb_ID;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker dtp_Saida;
+        private System.Windows.Forms.DateTimePicker dtp_Garantia;
+        private System.Windows.Forms.MaskedTextBox mtb_Id;
     }
 }

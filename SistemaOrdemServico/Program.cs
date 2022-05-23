@@ -17,8 +17,8 @@ namespace SistemaOrdemServico
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.Run(new Form1());
-            //Application.Run(new OrdemDeServico());
+            //Application.Run(new Form1());
+            Application.Run(new OrdemDeServico());
             //Application.Run(new CadastroFunc());
             //Application.Run(new CadastroPecas());
             //Application.Run(new Orcamento());
