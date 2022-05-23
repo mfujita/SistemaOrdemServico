@@ -12,7 +12,6 @@ namespace SistemaOrdemServico
 {
     public partial class cadPessoa : Form
     {
-        Form1 frm = new Form1();
         public cadPessoa()
         {
             InitializeComponent();
@@ -37,7 +36,7 @@ namespace SistemaOrdemServico
                 {lblCategoriaPessoa.Text, cbCategoriaPessoa.Text},
             };
 
-            if (!frm.TemCamposVazios(validaCamposCadClie))
+            if (!Form1.TemCamposVazios(validaCamposCadClie))
             {
                 salvaCampos();
                 MessageBox.Show("OK", "Cadastro realizado com sucesso");
