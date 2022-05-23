@@ -73,6 +73,8 @@
             // 
             // cbRecebidoOrcamento
             // 
+            this.cbRecebidoOrcamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbRecebidoOrcamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbRecebidoOrcamento.FormattingEnabled = true;
             this.cbRecebidoOrcamento.Location = new System.Drawing.Point(148, 449);
             this.cbRecebidoOrcamento.MaxLength = 60;
@@ -105,6 +107,8 @@
             // 
             // cbPecasOrcamento
             // 
+            this.cbPecasOrcamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbPecasOrcamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbPecasOrcamento.FormattingEnabled = true;
             this.cbPecasOrcamento.Location = new System.Drawing.Point(151, 355);
             this.cbPecasOrcamento.MaxLength = 60;
@@ -133,6 +137,8 @@
             // 
             // cbClienteOrcamento
             // 
+            this.cbClienteOrcamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbClienteOrcamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbClienteOrcamento.FormattingEnabled = true;
             this.cbClienteOrcamento.Location = new System.Drawing.Point(151, 128);
             this.cbClienteOrcamento.MaxLength = 60;
@@ -236,6 +242,7 @@
             // 
             // Orcamento
             // 
+            this.AcceptButton = this.btnEnviar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(473, 545);
