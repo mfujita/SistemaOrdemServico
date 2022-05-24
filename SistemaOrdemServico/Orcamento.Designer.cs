@@ -96,8 +96,8 @@
             this.nudValorOrcamento.DecimalPlaces = 2;
             this.nudValorOrcamento.Location = new System.Drawing.Point(182, 402);
             this.nudValorOrcamento.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
+            99999999,
+            0,
             0,
             131072});
             this.nudValorOrcamento.Name = "nudValorOrcamento";
@@ -151,7 +151,7 @@
             this.lblPecasOrcamento.AutoSize = true;
             this.lblPecasOrcamento.Location = new System.Drawing.Point(47, 359);
             this.lblPecasOrcamento.Name = "lblPecasOrcamento";
-            this.lblPecasOrcamento.Size = new System.Drawing.Size(52, 21);
+            this.lblPecasOrcamento.Size = new System.Drawing.Size(51, 21);
             this.lblPecasOrcamento.TabIndex = 30;
             this.lblPecasOrcamento.Text = "Peças:";
             // 
@@ -169,7 +169,7 @@
             this.lblValorOrcamento.AutoSize = true;
             this.lblValorOrcamento.Location = new System.Drawing.Point(10, 406);
             this.lblValorOrcamento.Name = "lblValorOrcamento";
-            this.lblValorOrcamento.Size = new System.Drawing.Size(125, 21);
+            this.lblValorOrcamento.Size = new System.Drawing.Size(124, 21);
             this.lblValorOrcamento.TabIndex = 28;
             this.lblValorOrcamento.Text = "Valor do serviço:";
             // 

@@ -25,7 +25,7 @@ namespace SistemaOrdemServico
             Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
             {
                 {lblNomePessoa.Text     , txtNomePessoa.Text},
-                {lblCpfCnpj.Text        , txtCpfCnpj.Text == },//ta pegando a máscara dos campos
+                //{lblCpfCnpj.Text        , txtCpfCnpj.Text == },//ta pegando a máscara dos campos
                 {lblCepPessoa.Text      , txtCepPessoa.Text},
                 {lblEstadoPessoa.Text   , txtEstadoPessoa.Text},
                 {lblCidadePessoa.Text   , txtCidadePessoa.Text},

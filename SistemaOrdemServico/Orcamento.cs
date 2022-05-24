@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -14,14 +13,63 @@ namespace SistemaOrdemServico
 {
     public partial class Orcamento : Form
     {
-        //private static string conexaoString = ConfigurationManager.ConnectionStrings["GustavoDanielCasa"].ToString();
-        private static string conexaoString = ConfigurationManager.ConnectionStrings["GustavoDanielFaculdade"].ToString();
-        private static SqlConnection conexaoSql = new SqlConnection(conexaoString);
+        private static SqlConnection conexaoSql;
+        private static Dictionary<string, Action> modos;
+        Dictionary<string, string> camposDeEntrada;
 
 
         public Orcamento()
         {
+            conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielCasa"));
+            //conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielFaculdade"));
+            modos = new Dictionary<string, Action>
+            {
+                { "Inserir", Inserir },
+                { "Editar", Editar },
+                { "Deletar", Deletar }
+            };
+            camposDeEntrada = new Dictionary<string, string>();
+
             InitializeComponent();
+        }
+
+        private void Inserir()
+        {
+            CarregarValorCampos();
+
+            if (!Form1.TemCamposVazios(camposDeEntrada) && ValidaComboBoxes())
+            {
+                Dictionary<string, string> dadosAEnviar = new Dictionary<string, string>();
+
+                camposDeEntrada.ToList().ForEach(campo => dadosAEnviar.Add(
+                    "@" + campo.Key.Split(' ')[0].Replace(":", ""),
+                    campo.Value)
+                );
+
+                SqlInsert("cadOrcamento", dadosAEnviar);
+            }
+        }
+
+        private void Deletar()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Editar()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CarregarValorCampos()
+        {
+            this.camposDeEntrada = new Dictionary<string, string>{
+                { lblClienteOrcamento.Text, cbClienteOrcamento.Text},
+                { lblDataEntradaOrcamento.Text, dtpDataEntradaOrcamento.Value.Date.ToString("yyyy-MM-dd")},
+                { lblDescricaoOrcamento.Text, txtDescricaoOrcamento.Text},
+                { lblPecasOrcamento.Text, cbPecasOrcamento.Text},
+                { lblValorOrcamento.Text, nudValorOrcamento.Text == "0,00" ? string.Empty : nudValorOrcamento.Text.Replace(",", ".")},
+                { lblRecebidoOrcamento.Text, cbRecebidoOrcamento.Text}
+            };
         }
 
         private void PopularComboBox(ComboBox comboBox, List<List<string>> itens)
@@ -37,25 +85,25 @@ namespace SistemaOrdemServico
             comboBox.SelectedIndex = -1;
         }
 
-        private List<List<string>> SqlSelect(string tabela, params string[] colunas)
+        public List<List<string>> SqlSelect(string tabela, params string[] colunas)
         {
             List<List<string>> registros = new List<List<string>>();
 
-            string comandString = $"SELECT {string.Join(", ", colunas)} from {tabela}";
-            SqlCommand comandoSql = new SqlCommand(comandString, conexaoSql);
+            string comandoString = $"SELECT {string.Join(", ", colunas)} from {tabela}";
+            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
 
             try
             {
                 comandoSql.Connection.Open();
-                SqlDataReader reader = comandoSql.ExecuteReader();
+                SqlDataReader leitor = comandoSql.ExecuteReader();
 
-                while (reader.Read())
+                while (leitor.Read())
                 {
                     List<string> campos = new List<string>();
 
-                    for (int i = 0; i < reader.FieldCount; i++)
+                    for (int i = 0; i < leitor.FieldCount; i++)
                     {
-                        campos.Add(reader[i].ToString());
+                        campos.Add(leitor[i].GetType() != typeof(DateTime) ? leitor[i].ToString() : ((DateTime)leitor[i]).ToShortDateString());
                     }
 
                     registros.Add(campos);
@@ -63,7 +111,7 @@ namespace SistemaOrdemServico
             }
             catch (Exception ex)
             {
-                MostrarMensagemErro(ex);
+                MostrarMensagemErro(ex.Message);
             }
             finally
             {
@@ -73,15 +121,76 @@ namespace SistemaOrdemServico
 
             return registros;
         }
+        
+        private void SqlInsert(string tabela, Dictionary<string, string> campos)
+        {
+            string comandoString = $"INSERT INTO cadOrcamento VALUES({ string.Join(", ", campos.Select(campo => campo.Key) )})";
+            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
+            campos.ToList().ForEach(campo => comandoSql.Parameters.AddWithValue(campo.Key, campo.Value));
 
-        private void MostrarMensagemErro(Exception ex)
+            try
+            {
+                comandoSql.Connection.Open();
+                comandoSql.ExecuteNonQuery();
+
+                MostrarMensagemSucesso("Enviado para o banco de dados com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagemErro(ex.Message);
+            }
+            finally
+            {
+                comandoSql.Connection.Close();
+                comandoSql.Dispose();
+            }
+        }
+
+        public void MostrarMensagemErro(string message)
         {
             MessageBox.Show(
-                ex.ToString(),
+                message,
                 "Erro",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Error
                 );
+        }
+        
+        private void MostrarMensagemSucesso(string message)
+        {
+            MessageBox.Show(
+                message,
+                "Sucesso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+                );
+        }
+
+        private bool ValidaComboBoxes()
+        {
+            var comboBoxes = new Dictionary<string, ComboBox>
+            {
+                { lblClienteOrcamento.Text, cbClienteOrcamento },
+                { lblPecasOrcamento.Text, cbPecasOrcamento },
+                { lblRecebidoOrcamento.Text, cbRecebidoOrcamento }
+            };
+
+            foreach (var comboBox in comboBoxes)
+            {
+                if (comboBox.Value.SelectedIndex != -1)
+                {
+                    var itemSelecionado = (KeyValuePair<string, string>)comboBox.Value.SelectedItem;
+
+                    camposDeEntrada[comboBox.Key] = itemSelecionado.Key;
+                }
+                else
+                {
+                    MostrarMensagemErro($"Selecione um valor valido no campo \"{comboBox.Key.Replace(":", "")}\"");
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private void Orcamento_Load(object sender, EventArgs e)
@@ -95,62 +204,14 @@ namespace SistemaOrdemServico
 
         private void btnInserirOrcamento_Click(object sender, EventArgs e)
         {
-            Dictionary<string, string> camposDeEntrada = new Dictionary<string, string>
-            {
-                {lblClienteOrcamento.Text, cbClienteOrcamento.Text},
-                {lblDataEntradaOrcamento.Text, dtpDataEntradaOrcamento.Value.Date.ToString("yyyy-MM-dd")},
-                {lblDescricaoOrcamento.Text, txtDescricaoOrcamento.Text},
-                {lblPecasOrcamento.Text, cbPecasOrcamento.Text},
-                {lblValorOrcamento.Text, nudValorOrcamento.Text == "0,00" ? string.Empty : nudValorOrcamento.Text.Replace(",", ".")},
-                {lblRecebidoOrcamento.Text, cbRecebidoOrcamento.Text}
-            };
-
-            //Codigo temporáreo
-            if (cbClienteOrcamento.SelectedIndex != -1)
-            {
-                var clienteSelecionado = (KeyValuePair<string, string>)cbClienteOrcamento.SelectedItem;
-                Console.WriteLine("Item " + clienteSelecionado.Key);
-                Console.WriteLine("Item " + clienteSelecionado.Value);
-            }
-            //Fim
-
-            if (!Form1.TemCamposVazios(camposDeEntrada))
-            {
-                //ValidaCampos();
-                var camposCorrigidos = camposDeEntrada.Values.Select(campo => $"'{campo}'");
-
-                string sql = $"INSERT INTO cadOrcamento VALUES({string.Join(", ", camposCorrigidos)})";
-                SqlCommand command = new SqlCommand(sql, conexaoSql);
-
-                try
-                {
-                    command.Connection.Open();
-                    command.ExecuteNonQuery();
-
-                    MessageBox.Show(
-                        "Enviado para o banco de dados com sucesso.",
-                        "Sucesso",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-                catch (Exception ex)
-                {
-                    MostrarMensagemErro(ex);
-                }
-                finally
-                {
-                    command.Dispose();
-                    conexaoSql.Close();
-                }
-            }
-            //Modificar comportamento do botão dependendo da função ativada
+            modos[btnEnviar.Text]();
         }
 
         private void MudarModo(object sender, EventArgs e)
         {
             Button btnClicado = (Button)sender;
             btnEnviar.Text = btnClicado.Text;
-            string[] btnsChamarJanela = {"Editar", "Excluir"};
+            string[] btnsChamarJanela = { "Editar", "Excluir" };
 
             if (btnsChamarJanela.Contains(btnClicado.Text))
             {
