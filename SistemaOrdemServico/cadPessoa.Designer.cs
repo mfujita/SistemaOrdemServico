@@ -365,7 +365,7 @@
             // pbPessoa
             // 
             this.pbPessoa.Image = global::SistemaOrdemServico.Properties.Resources.Pessoa;
-            this.pbPessoa.Location = new System.Drawing.Point(206, 85);
+            this.pbPessoa.Location = new System.Drawing.Point(227, 85);
             this.pbPessoa.Name = "pbPessoa";
             this.pbPessoa.Size = new System.Drawing.Size(84, 84);
             this.pbPessoa.TabIndex = 65;
