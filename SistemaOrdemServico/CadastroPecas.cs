@@ -43,7 +43,7 @@ namespace SistemaOrdemServico
             {
                 //Area do banco de dados
 
-                string sql = "INSERT INTO  nomeTabela VALUES ( '"+cadastroNomePeca+"'," +
+                string sql = "INSERT INTO  'nomeTabela' VALUES ( '"+cadastroNomePeca+"'," +
                     "'"+cadastroFornecedorPeca+"'," +
                     "'"+cadastroFabricantePeca+"'," +
                     ""+Convert.ToDouble(cadastroValorCompra.Replace(",","."))+"," +
