@@ -140,8 +140,8 @@ namespace SistemaOrdemServico
             this.numericValorVendaCadastrarPeca.DecimalPlaces = 2;
             this.numericValorVendaCadastrarPeca.Location = new System.Drawing.Point(212, 357);
             this.numericValorVendaCadastrarPeca.Maximum = new decimal(new int[] {
-            1215752191,
-            23,
+            99999999,
+            0,
             0,
             131072});
             this.numericValorVendaCadastrarPeca.Name = "numericValorVendaCadastrarPeca";
@@ -154,8 +154,8 @@ namespace SistemaOrdemServico
             this.numericValorCompraCadastrarPeca.DecimalPlaces = 2;
             this.numericValorCompraCadastrarPeca.Location = new System.Drawing.Point(212, 310);
             this.numericValorCompraCadastrarPeca.Maximum = new decimal(new int[] {
-            1215752191,
-            23,
+            99999999,
+            0,
             0,
             131072});
             this.numericValorCompraCadastrarPeca.Name = "numericValorCompraCadastrarPeca";
@@ -295,8 +295,8 @@ namespace SistemaOrdemServico
             this.numericValorVendaEditar.DecimalPlaces = 2;
             this.numericValorVendaEditar.Location = new System.Drawing.Point(212, 385);
             this.numericValorVendaEditar.Maximum = new decimal(new int[] {
-            1215752191,
-            23,
+            99999999,
+            0,
             0,
             131072});
             this.numericValorVendaEditar.Name = "numericValorVendaEditar";
@@ -309,8 +309,8 @@ namespace SistemaOrdemServico
             this.numericValorCompraEditar.DecimalPlaces = 2;
             this.numericValorCompraEditar.Location = new System.Drawing.Point(212, 338);
             this.numericValorCompraEditar.Maximum = new decimal(new int[] {
-            1215752191,
-            23,
+            99999999,
+            0,
             0,
             131072});
             this.numericValorCompraEditar.Name = "numericValorCompraEditar";
