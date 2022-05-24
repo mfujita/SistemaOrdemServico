@@ -14,7 +14,8 @@ namespace SistemaOrdemServico
 {
     public partial class Orcamento : Form
     {
-        private static string conexaoString = ConfigurationManager.ConnectionStrings["GustavoDanielCasa"].ToString();
+        //private static string conexaoString = ConfigurationManager.ConnectionStrings["GustavoDanielCasa"].ToString();
+        private static string conexaoString = ConfigurationManager.ConnectionStrings["GustavoDanielFaculdade"].ToString();
         private static SqlConnection conexaoSql = new SqlConnection(conexaoString);
 
 
@@ -115,7 +116,7 @@ namespace SistemaOrdemServico
 
             if (!Form1.TemCamposVazios(camposDeEntrada))
             {
-                //Validar valores do combobox antes de enviar
+                //ValidaCampos();
                 var camposCorrigidos = camposDeEntrada.Values.Select(campo => $"'{campo}'");
 
                 string sql = $"INSERT INTO cadOrcamento VALUES({string.Join(", ", camposCorrigidos)})";

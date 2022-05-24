@@ -361,7 +361,6 @@
             this.btnSalvarPessoa.TabIndex = 51;
             this.btnSalvarPessoa.Text = "Salvar";
             this.btnSalvarPessoa.UseVisualStyleBackColor = true;
-            this.btnSalvarPessoa.Click += new System.EventHandler(this.btnSalvarPessoa_Click_1);
             // 
             // pbPessoa
             // 
