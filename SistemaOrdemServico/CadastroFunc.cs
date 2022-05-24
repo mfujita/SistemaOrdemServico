@@ -17,30 +17,9 @@ namespace SistemaOrdemServico
             InitializeComponent();
         }
 
-        private bool TemCamposVazios(Dictionary<string, string> camposDeEntrada)
-        {
-            List<string> camposVazios = camposDeEntrada.Where(campo => campo.Value == string.Empty)
-                .Select(campo => campo.Key.Replace(":", "")).ToList();
-
-            if (camposVazios.Count > 0)
-            {
-                //Exibe quais campos estão em branco
-                MessageBox.Show(
-                    $"Preencha o(s) campo(s) obrigatório(s):{Environment.NewLine}{string.Join(Environment.NewLine, camposVazios)}",
-                    "Preencha todos os campos.",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         private void btnSalvarFunc_Click(object sender, EventArgs e)
         {
+
             Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
             {
                 {lblNomeFunc.Text     , txtNomeFunc.Text},
@@ -58,23 +37,55 @@ namespace SistemaOrdemServico
                 {lblEmailFunc.Text    , txtEmailFunc.Text},
             };
 
-            if (!TemCamposVazios(validaCamposCadClie))
+            if (!Form1.TemCamposVazios(validaCamposCadClie))
             {
                 getCampos();
-                MessageBox.Show("OK", "Cadastro realizado com sucesso");
+                MessageBox.Show("Funcionário cadastrado", "Cadastro realizado com sucesso");
             }
         }
+        /*
+        public static void verificaTrue(int dia, int mes, int ano)
+        {
+            if (dia < 1 || dia > 31)
+            {
+                MessageBox.Show("Dia inválido");
+                return;
+            }
+            
+            if (mes < 1 || mes > 12)
+            {
+                MessageBox.Show("Mês inválido");
+                return;
+            }
 
+            if (ano < 1890 || ano > 2022)
+            {
+                MessageBox.Show("Ano inválido");
+                return;
+            }
+
+        }
+        */
         public void getCampos()
         {
             string nomeFunc = txtNomeFunc.Text;
             string cpf = txtCPFFunc.Text;
             string strDataNasc = txtDatanascFunc.Text;
+            string sexo = cbSexoFunc.Text;
+
             int dia = Convert.ToInt32(strDataNasc.Substring(0, 2));
             int mes = Convert.ToInt32(strDataNasc.Substring(3, 2));
             int ano = Convert.ToInt32(strDataNasc.Substring(6, 4));
             DateTime dataNasc = new DateTime(ano, mes, dia);
-            string sexo = cbSexoFunc.Text;
+            
+            /*
+            if(dataNasc == null)
+            {
+                MessageBox.Show("Data invalida");
+                return;
+
+            }
+            */
 
             string rua = txtRuaFunc.Text;
             string bairro = txtBairroFunc.Text;
@@ -87,6 +98,11 @@ namespace SistemaOrdemServico
             string celular = txtCelFunc.Text;
             string email = txtEmailFunc.Text;
 
+        }
+
+        private void btnEditFunc_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Selecione o funcionário", "Editar funcionário", MessageBoxButtons.OK);
         }
     }
 }
