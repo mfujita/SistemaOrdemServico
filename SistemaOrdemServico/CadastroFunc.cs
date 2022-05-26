@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace SistemaOrdemServico
 {
+
     public partial class CadastroFunc : Form
     {
         public CadastroFunc()
@@ -19,7 +20,22 @@ namespace SistemaOrdemServico
 
         private void btnSalvarFunc_Click(object sender, EventArgs e)
         {
+            if(Validador() == true)
+            {
+                var yesno = MessageBox.Show("Confirmar cadastro", "Confirmar envio", MessageBoxButtons.YesNo);
 
+                if(yesno == DialogResult.Yes)
+                {
+                    MessageBox.Show("Funcionário cadastrado com sucesso!", "Cadastro concluido");
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+        public bool Validador() { 
             Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
             {
                 {lblNomeFunc.Text     , txtNomeFunc.Text},
@@ -40,32 +56,15 @@ namespace SistemaOrdemServico
             if (!Form1.TemCamposVazios(validaCamposCadClie))
             {
                 getCampos();
-                MessageBox.Show("Funcionário cadastrado", "Cadastro realizado com sucesso");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
-        /*
-        public static void verificaTrue(int dia, int mes, int ano)
-        {
-            if (dia < 1 || dia > 31)
-            {
-                MessageBox.Show("Dia inválido");
-                return;
-            }
-            
-            if (mes < 1 || mes > 12)
-            {
-                MessageBox.Show("Mês inválido");
-                return;
-            }
 
-            if (ano < 1890 || ano > 2022)
-            {
-                MessageBox.Show("Ano inválido");
-                return;
-            }
 
-        }
-        */
         public void getCampos()
         {
             string nomeFunc = txtNomeFunc.Text;
@@ -76,16 +75,15 @@ namespace SistemaOrdemServico
             int dia = Convert.ToInt32(strDataNasc.Substring(0, 2));
             int mes = Convert.ToInt32(strDataNasc.Substring(3, 2));
             int ano = Convert.ToInt32(strDataNasc.Substring(6, 4));
-            DateTime dataNasc = new DateTime(ano, mes, dia);
-            
-            /*
-            if(dataNasc == null)
+            try
             {
-                MessageBox.Show("Data invalida");
-                return;
-
+                DateTime dataNasc = new DateTime(ano, mes, dia);
             }
-            */
+            catch (Exception)
+            {
+                MessageBox.Show("Data inválida");
+                return;
+            }
 
             string rua = txtRuaFunc.Text;
             string bairro = txtBairroFunc.Text;
@@ -99,7 +97,6 @@ namespace SistemaOrdemServico
             string email = txtEmailFunc.Text;
 
         }
-
         private void btnEditFunc_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Selecione o funcionário", "Editar funcionário", MessageBoxButtons.OK);
