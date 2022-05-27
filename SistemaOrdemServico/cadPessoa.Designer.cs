@@ -350,6 +350,7 @@
             this.btnExcluirPessoa.TabIndex = 2;
             this.btnExcluirPessoa.Text = "Excluir";
             this.btnExcluirPessoa.UseVisualStyleBackColor = true;
+            this.btnExcluirPessoa.Click += new System.EventHandler(this.btnExcluirPessoa_Click_1);
             // 
             // btnEditarPessoa
             // 
@@ -360,6 +361,7 @@
             this.btnEditarPessoa.TabIndex = 1;
             this.btnEditarPessoa.Text = "Editar";
             this.btnEditarPessoa.UseVisualStyleBackColor = true;
+            this.btnEditarPessoa.Click += new System.EventHandler(this.btnEditarPessoa_Click_1);
             // 
             // btnSalvarPessoa
             // 
@@ -370,6 +372,7 @@
             this.btnSalvarPessoa.TabIndex = 0;
             this.btnSalvarPessoa.Text = "Salvar";
             this.btnSalvarPessoa.UseVisualStyleBackColor = true;
+            this.btnSalvarPessoa.Click += new System.EventHandler(this.btnSalvarPessoa_Click_1);
             // 
             // pbPessoa
             // 

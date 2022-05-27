@@ -19,14 +19,41 @@ namespace SistemaOrdemServico
         {
             InitializeComponent();
         }
-        private void btnSalvarPessoa_Click(object sender, EventArgs e)
+        private void btnSalvarPessoa_Click_1(object sender, EventArgs e)
         {
             //Get de todos os campos da tela de cadastro de cliente e verifica se estão em branco
+            if (validaCampos() == true)
+            {
+                var yesno = MessageBox.Show("Confirmar cadastro", "Confirmar envio", MessageBoxButtons.YesNo);
+
+                if (yesno == DialogResult.Yes)
+                {
+                    MessageBox.Show("Funcionário cadastrado com sucesso!", "Cadastro concluido");
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+        private void btnEditarPessoa_Click_1(object sender, EventArgs e)
+        {
+
+        }
+        private void btnExcluirPessoa_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        //valida campos em branco
+        public bool validaCampos()
+        {
             Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
             {
                 {lblNomePessoa.Text     , txtNomePessoa.Text},
-                //{lblCpfCnpj.Text        , txtCpfCnpj.Text == },//ta pegando a máscara dos campos
-                {lblCepPessoa.Text      , txtCepPessoa.Text},
+                {lblCpfCnpj.Text        , txtCpfCnpj.Text == "   .   .   -" ? string.Empty :txtCpfCnpj.Text},
+                {lblCepPessoa.Text      , txtCepPessoa.Text == "     -" ? string.Empty :txtCpfCnpj.Text},
                 {lblEstadoPessoa.Text   , txtEstadoPessoa.Text},
                 {lblCidadePessoa.Text   , txtCidadePessoa.Text},
                 {lblEnderecoPessoa.Text , txtEnderecoPessoa.Text},
@@ -41,17 +68,14 @@ namespace SistemaOrdemServico
             if (!Form1.TemCamposVazios(validaCamposCadClie))
             {
                 getDados();
-                MessageBox.Show("OK", "Cadastro realizado com sucesso");
+                return true;
+                //envia para o banco
             }
-        }
-
-        private void btnEditarPessoa_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void btnExcluirPessoa_Click(object sender, EventArgs e)
-        {
-
+            else
+            {
+                return false;
+                //cancela o processo
+            }
         }
         //coleta todos os dados e passa em variáveis
         public void getDados()
