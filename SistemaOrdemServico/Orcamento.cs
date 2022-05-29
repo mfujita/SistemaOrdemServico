@@ -13,9 +13,9 @@ namespace SistemaOrdemServico
 {
     public partial class Orcamento : Form
     {
-        private static SqlConnection conexaoSql;
-        private static Dictionary<string, Action> modos;
-        Dictionary<string, string> camposDeEntrada;
+        private readonly SqlConnection conexaoSql;
+        private readonly Dictionary<string, Action> modos;
+        private Dictionary<string, string> camposDeEntrada;
 
 
         public Orcamento()
@@ -28,7 +28,6 @@ namespace SistemaOrdemServico
                 { "Editar", Editar },
                 { "Deletar", Deletar }
             };
-            camposDeEntrada = new Dictionary<string, string>();
 
             InitializeComponent();
         }
@@ -62,7 +61,7 @@ namespace SistemaOrdemServico
 
         private void CarregarValorCampos()
         {
-            this.camposDeEntrada = new Dictionary<string, string>{
+            camposDeEntrada = new Dictionary<string, string>{
                 { lblClienteOrcamento.Text, cbClienteOrcamento.Text},
                 { lblDataEntradaOrcamento.Text, dtpDataEntradaOrcamento.Value.Date.ToString("yyyy-MM-dd")},
                 { lblDescricaoOrcamento.Text, txtDescricaoOrcamento.Text},
@@ -87,44 +86,58 @@ namespace SistemaOrdemServico
 
         public List<List<string>> SqlSelect(string tabela, params string[] colunas)
         {
-            List<List<string>> registros = new List<List<string>>();
-
             string comandoString = $"SELECT {string.Join(", ", colunas)} from {tabela}";
-            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
 
-            try
-            {
-                comandoSql.Connection.Open();
-                SqlDataReader leitor = comandoSql.ExecuteReader();
-
-                while (leitor.Read())
-                {
-                    List<string> campos = new List<string>();
-
-                    for (int i = 0; i < leitor.FieldCount; i++)
-                    {
-                        campos.Add(leitor[i].GetType() != typeof(DateTime) ? leitor[i].ToString() : ((DateTime)leitor[i]).ToShortDateString());
-                    }
-
-                    registros.Add(campos);
-                }
-            }
-            catch (Exception ex)
-            {
-                MostrarMensagemErro(ex.Message);
-            }
-            finally
-            {
-                comandoSql.Connection.Close();
-                comandoSql.Dispose();
-            }
-
-            return registros;
+            return FazerSelect(comandoString);
         }
-        
+        public List<List<string>> SqlSelect(string tabela, Dictionary<string, string> condicoes, string operacao, params string[] colunas)
+        {
+            string comandoString = $"SELECT {string.Join(", ", colunas)} from {tabela}" +
+                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key}='{condicao.Value}'"))}";
+
+            Console.WriteLine(comandoString);
+            return FazerSelect(comandoString);
+        }
+
+        private List<List<string>> FazerSelect(string comandoString)
+        {
+                List<List<string>> registros = new List<List<string>>();
+
+                SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
+
+                try
+                {
+                    comandoSql.Connection.Open();
+                    SqlDataReader leitor = comandoSql.ExecuteReader();
+
+                    while (leitor.Read())
+                    {
+                        List<string> campos = new List<string>();
+
+                        for (int i = 0; i < leitor.FieldCount; i++)
+                        {
+                            campos.Add(leitor[i].GetType() != typeof(DateTime) ? leitor[i].ToString() : ((DateTime)leitor[i]).ToShortDateString());
+                        }
+
+                        registros.Add(campos);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MostrarMensagemErro(ex.Message);
+                }
+                finally
+                {
+                    comandoSql.Connection.Close();
+                    comandoSql.Dispose();
+                }
+
+                return registros;
+            }
+
         private void SqlInsert(string tabela, Dictionary<string, string> campos)
         {
-            string comandoString = $"INSERT INTO cadOrcamento VALUES({ string.Join(", ", campos.Select(campo => campo.Key) )})";
+            string comandoString = $"INSERT INTO {tabela} VALUES({ string.Join(", ", campos.Select(campo => campo.Key) )})";
             SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
             campos.ToList().ForEach(campo => comandoSql.Parameters.AddWithValue(campo.Key, campo.Value));
 
@@ -145,7 +158,7 @@ namespace SistemaOrdemServico
                 comandoSql.Dispose();
             }
         }
-
+        
         public void MostrarMensagemErro(string message)
         {
             MessageBox.Show(
@@ -196,10 +209,11 @@ namespace SistemaOrdemServico
         private void Orcamento_Load(object sender, EventArgs e)
         {
             dtpDataEntradaOrcamento.Value = DateTime.Today;
+            var whereCliente = new Dictionary<string, string> { { "categoria", "Cliente" } };
 
             PopularComboBox(cbPecasOrcamento, SqlSelect("cadPeca", "codPeca", "nomePeca", "fabricante"));
-            PopularComboBox(cbClienteOrcamento, SqlSelect("cadClientForn", "idCad", "nomeRazSoc"));
             PopularComboBox(cbRecebidoOrcamento, SqlSelect("cadFunc", "idFunc", "nome"));
+            PopularComboBox(cbClienteOrcamento, SqlSelect("cadClientForn", whereCliente, "AND", "idCad", "nomeRazSoc"));
         }
 
         private void btnInserirOrcamento_Click(object sender, EventArgs e)
