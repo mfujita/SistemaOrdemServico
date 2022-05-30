@@ -53,6 +53,12 @@
     <Compile Include="CadastroFunc.Designer.cs">
       <DependentUpon>CadastroFunc.cs</DependentUpon>
     </Compile>
+    <Compile Include="cadPessoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cadPessoa.Designer.cs">
+      <DependentUpon>cadPessoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="CadastroFunc.resx">
       <DependentUpon>CadastroFunc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="cadPessoa.resx">
+      <DependentUpon>cadPessoa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

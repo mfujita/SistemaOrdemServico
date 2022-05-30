@@ -71,7 +71,7 @@
             this.txtCepPessoa.Mask = "#####-###";
             this.txtCepPessoa.Name = "txtCepPessoa";
             this.txtCepPessoa.Size = new System.Drawing.Size(100, 26);
-            this.txtCepPessoa.TabIndex = 83;
+            this.txtCepPessoa.TabIndex = 7;
             // 
             // txtCpfCnpj
             // 
@@ -80,7 +80,7 @@
             this.txtCpfCnpj.Mask = "000,000,000-00";
             this.txtCpfCnpj.Name = "txtCpfCnpj";
             this.txtCpfCnpj.Size = new System.Drawing.Size(175, 26);
-            this.txtCpfCnpj.TabIndex = 82;
+            this.txtCpfCnpj.TabIndex = 4;
             // 
             // txtCidadePessoa
             // 
@@ -88,7 +88,7 @@
             this.txtCidadePessoa.Location = new System.Drawing.Point(323, 441);
             this.txtCidadePessoa.Name = "txtCidadePessoa";
             this.txtCidadePessoa.Size = new System.Drawing.Size(100, 26);
-            this.txtCidadePessoa.TabIndex = 58;
+            this.txtCidadePessoa.TabIndex = 9;
             // 
             // lblCidadePessoa
             // 
@@ -106,7 +106,7 @@
             this.txtEstadoPessoa.Location = new System.Drawing.Point(323, 406);
             this.txtEstadoPessoa.Name = "txtEstadoPessoa";
             this.txtEstadoPessoa.Size = new System.Drawing.Size(100, 26);
-            this.txtEstadoPessoa.TabIndex = 57;
+            this.txtEstadoPessoa.TabIndex = 8;
             // 
             // lblEstadoPessoa
             // 
@@ -120,21 +120,30 @@
             // 
             // cbCategoriaPessoa
             // 
+            this.cbCategoriaPessoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoriaPessoa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCategoriaPessoa.FormattingEnabled = true;
+            this.cbCategoriaPessoa.Items.AddRange(new object[] {
+            "Cliente",
+            "Empresa"});
             this.cbCategoriaPessoa.Location = new System.Drawing.Point(899, 252);
             this.cbCategoriaPessoa.Name = "cbCategoriaPessoa";
             this.cbCategoriaPessoa.Size = new System.Drawing.Size(121, 26);
-            this.cbCategoriaPessoa.TabIndex = 56;
+            this.cbCategoriaPessoa.TabIndex = 6;
             // 
             // cbStatusPessoa
             // 
+            this.cbStatusPessoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbStatusPessoa.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbStatusPessoa.FormattingEnabled = true;
+            this.cbStatusPessoa.IntegralHeight = false;
+            this.cbStatusPessoa.Items.AddRange(new object[] {
+            "Ativo",
+            "Inativo"});
             this.cbStatusPessoa.Location = new System.Drawing.Point(899, 217);
             this.cbStatusPessoa.Name = "cbStatusPessoa";
             this.cbStatusPessoa.Size = new System.Drawing.Size(121, 26);
-            this.cbStatusPessoa.TabIndex = 55;
+            this.cbStatusPessoa.TabIndex = 5;
             // 
             // txtEmailPessoa
             // 
@@ -142,7 +151,7 @@
             this.txtEmailPessoa.Location = new System.Drawing.Point(888, 441);
             this.txtEmailPessoa.Name = "txtEmailPessoa";
             this.txtEmailPessoa.Size = new System.Drawing.Size(137, 26);
-            this.txtEmailPessoa.TabIndex = 64;
+            this.txtEmailPessoa.TabIndex = 15;
             // 
             // txtCelularPessoa
             // 
@@ -150,7 +159,7 @@
             this.txtCelularPessoa.Location = new System.Drawing.Point(888, 406);
             this.txtCelularPessoa.Name = "txtCelularPessoa";
             this.txtCelularPessoa.Size = new System.Drawing.Size(137, 26);
-            this.txtCelularPessoa.TabIndex = 63;
+            this.txtCelularPessoa.TabIndex = 14;
             // 
             // txtTelefonePessoa
             // 
@@ -158,7 +167,7 @@
             this.txtTelefonePessoa.Location = new System.Drawing.Point(888, 371);
             this.txtTelefonePessoa.Name = "txtTelefonePessoa";
             this.txtTelefonePessoa.Size = new System.Drawing.Size(137, 26);
-            this.txtTelefonePessoa.TabIndex = 62;
+            this.txtTelefonePessoa.TabIndex = 13;
             // 
             // txtNumeroPessoa
             // 
@@ -166,7 +175,7 @@
             this.txtNumeroPessoa.Location = new System.Drawing.Point(323, 546);
             this.txtNumeroPessoa.Name = "txtNumeroPessoa";
             this.txtNumeroPessoa.Size = new System.Drawing.Size(234, 26);
-            this.txtNumeroPessoa.TabIndex = 61;
+            this.txtNumeroPessoa.TabIndex = 12;
             // 
             // txtBairroPessoa
             // 
@@ -174,7 +183,7 @@
             this.txtBairroPessoa.Location = new System.Drawing.Point(323, 511);
             this.txtBairroPessoa.Name = "txtBairroPessoa";
             this.txtBairroPessoa.Size = new System.Drawing.Size(234, 26);
-            this.txtBairroPessoa.TabIndex = 60;
+            this.txtBairroPessoa.TabIndex = 11;
             // 
             // txtEnderecoPessoa
             // 
@@ -182,7 +191,7 @@
             this.txtEnderecoPessoa.Location = new System.Drawing.Point(323, 476);
             this.txtEnderecoPessoa.Name = "txtEnderecoPessoa";
             this.txtEnderecoPessoa.Size = new System.Drawing.Size(234, 26);
-            this.txtEnderecoPessoa.TabIndex = 59;
+            this.txtEnderecoPessoa.TabIndex = 10;
             // 
             // txtNomePessoa
             // 
@@ -190,7 +199,7 @@
             this.txtNomePessoa.Location = new System.Drawing.Point(385, 217);
             this.txtNomePessoa.Name = "txtNomePessoa";
             this.txtNomePessoa.Size = new System.Drawing.Size(175, 26);
-            this.txtNomePessoa.TabIndex = 54;
+            this.txtNomePessoa.TabIndex = 3;
             // 
             // lblCategoriaPessoa
             // 
@@ -338,9 +347,10 @@
             this.btnExcluirPessoa.Location = new System.Drawing.Point(485, 136);
             this.btnExcluirPessoa.Name = "btnExcluirPessoa";
             this.btnExcluirPessoa.Size = new System.Drawing.Size(75, 33);
-            this.btnExcluirPessoa.TabIndex = 53;
+            this.btnExcluirPessoa.TabIndex = 2;
             this.btnExcluirPessoa.Text = "Excluir";
             this.btnExcluirPessoa.UseVisualStyleBackColor = true;
+            this.btnExcluirPessoa.Click += new System.EventHandler(this.btnExcluirPessoa_Click_1);
             // 
             // btnEditarPessoa
             // 
@@ -348,9 +358,10 @@
             this.btnEditarPessoa.Location = new System.Drawing.Point(404, 136);
             this.btnEditarPessoa.Name = "btnEditarPessoa";
             this.btnEditarPessoa.Size = new System.Drawing.Size(75, 33);
-            this.btnEditarPessoa.TabIndex = 52;
+            this.btnEditarPessoa.TabIndex = 1;
             this.btnEditarPessoa.Text = "Editar";
             this.btnEditarPessoa.UseVisualStyleBackColor = true;
+            this.btnEditarPessoa.Click += new System.EventHandler(this.btnEditarPessoa_Click_1);
             // 
             // btnSalvarPessoa
             // 
@@ -358,14 +369,15 @@
             this.btnSalvarPessoa.Location = new System.Drawing.Point(323, 136);
             this.btnSalvarPessoa.Name = "btnSalvarPessoa";
             this.btnSalvarPessoa.Size = new System.Drawing.Size(75, 33);
-            this.btnSalvarPessoa.TabIndex = 51;
+            this.btnSalvarPessoa.TabIndex = 0;
             this.btnSalvarPessoa.Text = "Salvar";
             this.btnSalvarPessoa.UseVisualStyleBackColor = true;
+            this.btnSalvarPessoa.Click += new System.EventHandler(this.btnSalvarPessoa_Click_1);
             // 
             // pbPessoa
             // 
             this.pbPessoa.Image = global::SistemaOrdemServico.Properties.Resources.Pessoa;
-            this.pbPessoa.Location = new System.Drawing.Point(206, 85);
+            this.pbPessoa.Location = new System.Drawing.Point(227, 85);
             this.pbPessoa.Name = "pbPessoa";
             this.pbPessoa.Size = new System.Drawing.Size(84, 84);
             this.pbPessoa.TabIndex = 65;

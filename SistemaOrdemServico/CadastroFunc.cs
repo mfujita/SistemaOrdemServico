@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace SistemaOrdemServico
 {
+
     public partial class CadastroFunc : Form
     {
         public CadastroFunc()
@@ -17,30 +18,24 @@ namespace SistemaOrdemServico
             InitializeComponent();
         }
 
-        private bool TemCamposVazios(Dictionary<string, string> camposDeEntrada)
+        private void btnSalvarFunc_Click(object sender, EventArgs e)
         {
-            List<string> camposVazios = camposDeEntrada.Where(campo => campo.Value == string.Empty)
-                .Select(campo => campo.Key.Replace(":", "")).ToList();
-
-            if (camposVazios.Count > 0)
+            if(Validador() == true)
             {
-                //Exibe quais campos estão em branco
-                MessageBox.Show(
-                    $"Preencha o(s) campo(s) obrigatório(s):{Environment.NewLine}{string.Join(Environment.NewLine, camposVazios)}",
-                    "Preencha todos os campos.",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
+                var yesno = MessageBox.Show("Confirmar cadastro", "Confirmar envio", MessageBoxButtons.YesNo);
 
-                return true;
-            }
-            else
-            {
-                return false;
+                if(yesno == DialogResult.Yes)
+                {
+                    MessageBox.Show("Funcionário cadastrado com sucesso!", "Cadastro concluido");
+                }
+                else
+                {
+                    return;
+                }
             }
         }
 
-        private void btnSalvarFunc_Click(object sender, EventArgs e)
-        {
+        public bool Validador() { 
             Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
             {
                 {lblNomeFunc.Text     , txtNomeFunc.Text},
@@ -58,23 +53,37 @@ namespace SistemaOrdemServico
                 {lblEmailFunc.Text    , txtEmailFunc.Text},
             };
 
-            if (!TemCamposVazios(validaCamposCadClie))
+            if (!Form1.TemCamposVazios(validaCamposCadClie))
             {
                 getCampos();
-                MessageBox.Show("OK", "Cadastro realizado com sucesso");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
+
 
         public void getCampos()
         {
             string nomeFunc = txtNomeFunc.Text;
             string cpf = txtCPFFunc.Text;
             string strDataNasc = txtDatanascFunc.Text;
+            string sexo = cbSexoFunc.Text;
+
             int dia = Convert.ToInt32(strDataNasc.Substring(0, 2));
             int mes = Convert.ToInt32(strDataNasc.Substring(3, 2));
             int ano = Convert.ToInt32(strDataNasc.Substring(6, 4));
-            DateTime dataNasc = new DateTime(ano, mes, dia);
-            string sexo = cbSexoFunc.Text;
+            try
+            {
+                DateTime dataNasc = new DateTime(ano, mes, dia);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Data inválida");
+                return;
+            }
 
             string rua = txtRuaFunc.Text;
             string bairro = txtBairroFunc.Text;
@@ -87,6 +96,10 @@ namespace SistemaOrdemServico
             string celular = txtCelFunc.Text;
             string email = txtEmailFunc.Text;
 
+        }
+        private void btnEditFunc_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Selecione o funcionário", "Editar funcionário", MessageBoxButtons.OK);
         }
     }
 }

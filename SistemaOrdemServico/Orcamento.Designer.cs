@@ -96,8 +96,8 @@
             this.nudValorOrcamento.DecimalPlaces = 2;
             this.nudValorOrcamento.Location = new System.Drawing.Point(182, 402);
             this.nudValorOrcamento.Maximum = new decimal(new int[] {
-            1410065407,
-            2,
+            99999999,
+            0,
             0,
             131072});
             this.nudValorOrcamento.Name = "nudValorOrcamento";
@@ -268,7 +268,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Orcamento";
-            this.Text = "Orcamento";
+            this.Text = "Orçamento";
             this.Load += new System.EventHandler(this.Orcamento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).EndInit();

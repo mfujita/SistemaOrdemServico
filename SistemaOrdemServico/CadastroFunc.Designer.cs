@@ -81,6 +81,7 @@
             this.btnEditFunc.TabIndex = 62;
             this.btnEditFunc.Text = "Editar";
             this.btnEditFunc.UseVisualStyleBackColor = true;
+            this.btnEditFunc.Click += new System.EventHandler(this.btnEditFunc_Click);
             // 
             // btnSalvarFunc
             // 
@@ -131,6 +132,7 @@
             // 
             // cbEstadoFunc
             // 
+            this.cbEstadoFunc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstadoFunc.FormattingEnabled = true;
             this.cbEstadoFunc.Items.AddRange(new object[] {
             "AC",
@@ -163,6 +165,7 @@
             this.cbEstadoFunc.Location = new System.Drawing.Point(521, 408);
             this.cbEstadoFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbEstadoFunc.Name = "cbEstadoFunc";
+            this.cbEstadoFunc.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cbEstadoFunc.Size = new System.Drawing.Size(91, 29);
             this.cbEstadoFunc.TabIndex = 56;
             // 
@@ -226,6 +229,7 @@
             // 
             // cbSexoFunc
             // 
+            this.cbSexoFunc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSexoFunc.FormattingEnabled = true;
             this.cbSexoFunc.Items.AddRange(new object[] {
             "Masculino",
