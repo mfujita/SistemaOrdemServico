@@ -40,10 +40,10 @@ namespace SistemaOrdemServico
             {
                 Dictionary<string, string> dadosAEnviar = new Dictionary<string, string>();
 
-                camposDeEntrada.ToList().ForEach(campo => dadosAEnviar.Add(
-                    "@" + campo.Key.Split(' ')[0].Replace(":", ""),
-                    campo.Value)
-                );
+                foreach (var campo in camposDeEntrada)
+                {
+                    dadosAEnviar.Add("@" + campo.Key.Split(' ')[0].Replace(":", ""), campo.Value);
+                }
 
                 SqlInsert("cadOrcamento", dadosAEnviar);
             }
@@ -62,13 +62,28 @@ namespace SistemaOrdemServico
         private void CarregarValorCampos()
         {
             camposDeEntrada = new Dictionary<string, string>{
-                { lblClienteOrcamento.Text, cbClienteOrcamento.Text},
-                { lblDataEntradaOrcamento.Text, dtpDataEntradaOrcamento.Value.Date.ToString("yyyy-MM-dd")},
-                { lblDescricaoOrcamento.Text, txtDescricaoOrcamento.Text},
-                { lblPecasOrcamento.Text, cbPecasOrcamento.Text},
-                { lblValorOrcamento.Text, nudValorOrcamento.Text == "0,00" ? string.Empty : nudValorOrcamento.Text.Replace(",", ".")},
-                { lblRecebidoOrcamento.Text, cbRecebidoOrcamento.Text}
+                { lblClienteOrcamento.Text, cbClienteOrcamento.Text },
+                { lblDataEntradaOrcamento.Text, dtpDataEntradaOrcamento.Value.Date.ToString("yyyy-MM-dd") },
+                { lblDescricaoOrcamento.Text, txtDescricaoOrcamento.Text },
+                { lblPecasOrcamento.Text, cbPecasOrcamento.Text },
+                { lblValorOrcamento.Text, nudValorOrcamento.Text == "0,00" ? string.Empty : nudValorOrcamento.Text.Replace(",", ".") },
+                { lblRecebidoOrcamento.Text, cbRecebidoOrcamento.Text }
             };
+        }
+
+        private void InserirValorCampos(IEnumerable<string> valores)
+        {
+            var campos = new List<Action<string>>()
+            {
+                (valor) => { cbClienteOrcamento.SelectedValue = valor; },
+                (valor) => { dtpDataEntradaOrcamento.Value = DateTime.Parse(valor); },
+                (valor) => { txtDescricaoOrcamento.Text = valor; },
+                (valor) => { cbPecasOrcamento.SelectedValue = valor; },
+                (valor) => { nudValorOrcamento.Value = Convert.ToDecimal(valor); },
+                (valor) => { cbRecebidoOrcamento.SelectedValue = valor; },                
+            };
+
+            foreach (var _ in campos.Zip(valores, (campo, valor) => { campo(valor); return true; }) );
         }
 
         private void PopularComboBox(ComboBox comboBox, List<List<string>> itens)
@@ -88,18 +103,17 @@ namespace SistemaOrdemServico
         {
             string comandoString = $"SELECT {string.Join(", ", colunas)} from {tabela}";
 
-            return FazerSelect(comandoString);
+            return SqlSelect(comandoString);
         }
         public List<List<string>> SqlSelect(string tabela, Dictionary<string, string> condicoes, string operacao, params string[] colunas)
         {
             string comandoString = $"SELECT {string.Join(", ", colunas)} from {tabela}" +
                 $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key}='{condicao.Value}'"))}";
 
-            Console.WriteLine(comandoString);
-            return FazerSelect(comandoString);
+            return SqlSelect(comandoString);
         }
 
-        private List<List<string>> FazerSelect(string comandoString)
+        private List<List<string>> SqlSelect(string comandoString)
         {
                 List<List<string>> registros = new List<List<string>>();
 
@@ -139,7 +153,7 @@ namespace SistemaOrdemServico
         {
             string comandoString = $"INSERT INTO {tabela} VALUES({ string.Join(", ", campos.Select(campo => campo.Key) )})";
             SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
-            campos.ToList().ForEach(campo => comandoSql.Parameters.AddWithValue(campo.Key, campo.Value));
+            foreach (var campo in campos) { comandoSql.Parameters.AddWithValue(campo.Key, campo.Value); }
 
             try
             {
@@ -229,8 +243,14 @@ namespace SistemaOrdemServico
 
             if (btnsChamarJanela.Contains(btnClicado.Text))
             {
-                SelecionarOrcamento selecionarOrcamento = new SelecionarOrcamento();
-                selecionarOrcamento.Show();
+                using (var selecionarOrcamento = new SelecionarOrcamento())
+                {
+                    selecionarOrcamento.ShowDialog();
+
+                    var valores = selecionarOrcamento.Valores;
+                    var id = valores[0];
+                    InserirValorCampos(valores.Skip(1));
+                }
             }
             //Melhorar visualização do modo ativado no design do formulário
         }

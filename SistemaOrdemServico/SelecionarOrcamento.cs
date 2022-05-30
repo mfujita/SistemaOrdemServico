@@ -13,8 +13,9 @@ namespace SistemaOrdemServico
 {
     public partial class SelecionarOrcamento : Form
     {
-        private static SqlConnection conexaoSql;
-        private static Orcamento orcamento;
+        private readonly SqlConnection conexaoSql;
+        private readonly Orcamento orcamento;
+        public List<string> Valores { get; private set; }
 
 
         public SelecionarOrcamento()
@@ -68,12 +69,9 @@ namespace SistemaOrdemServico
 
         private void EnviarParaFormulario()
         {
-            //Código Temporário
-            var values = dgResultados.SelectedCells.Cast<DataGridViewCell>().Select(cell => cell.Value);
-
-            MessageBox.Show(string.Join(", ", values));
-
-            //Enviar valores para o formulário Orçamento
+            Valores = dgResultados.SelectedCells.Cast<DataGridViewCell>()
+                     .Select(cell => cell.Value.ToString()).ToList();
+            Close();
         }
 
         private void SelecionarOrcamento_Load(object sender, EventArgs e)
