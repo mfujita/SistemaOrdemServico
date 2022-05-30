@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -12,10 +13,72 @@ namespace SistemaOrdemServico
 {
     public partial class CadastroPecas : Form
     {
+        string sql;
         public CadastroPecas()
         {
             InitializeComponent();
         }
+
+
+        //Conexao com banco de dados
+        public SqlConnection abreConexao()
+        {
+            string conexao = @"Server=DESKTOP-U3P4RMT\SQLEXPRESS;
+                            Database=OSFujita;
+                            User Id=sa;
+                            Password=1234;";
+            return new SqlConnection(conexao);
+        }
+
+
+
+        //Prencher Combobox
+        private void preencherComboBox ()
+        {
+            SqlConnection conexao = abreConexao();
+
+            try
+            {
+                conexao.Open();
+
+                sql = "SELECT * FROM cadClientForn WHERE categoria = 'Fornecedor'";
+
+                SqlCommand comando = new SqlCommand(sql, conexao);
+
+                SqlDataReader dados = comando.ExecuteReader();
+
+                DataTable dt = new DataTable();
+
+                dt.Load(dados);
+
+                
+                //Combobox Cadastrar Peca
+                cboxFornecedorCadastrarPeca.DisplayMember = "idCad";
+
+                cboxFornecedorCadastrarPeca.ValueMember = "cpfCnpj";
+
+                cboxFornecedorCadastrarPeca.DataSource = dt;
+
+                //Combobox Editar peca
+                cboxFornecedorEditarPeca.DisplayMember = "nomeRazSoc";
+
+                cboxFornecedorEditarPeca.ValueMember = "idCad";
+
+                cboxFornecedorEditarPeca.DataSource = dt;
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro");
+            }
+            finally
+            {
+                conexao.Close();
+            }
+            
+        }
+
+
 
 
 
@@ -42,12 +105,22 @@ namespace SistemaOrdemServico
             else
             {
                 //Area do banco de dados
+                SqlConnection conexao = abreConexao();
 
-                string sql = "INSERT INTO  'nomeTabela' VALUES ( '"+cadastroNomePeca+"'," +
-                    "'"+cadastroFornecedorPeca+"'," +
+                sql = "INSERT INTO cadPeca VALUES ( '"+cadastroNomePeca+"'," +
+                    "'"+Convert.ToInt32(cadastroFornecedorPeca) +"'," +
                     "'"+cadastroFabricantePeca+"'," +
                     ""+Convert.ToDouble(cadastroValorCompra.Replace(",","."))+"," +
                     ""+Convert.ToDouble(cadastroValorVenda.Replace(",","."))+")";
+
+                SqlCommand comandCadastro = new SqlCommand(sql, conexao);
+                conexao.Open();
+
+                comandCadastro.ExecuteNonQuery();
+
+                comandCadastro.Dispose();
+
+                conexao.Close();
 
             }
 
@@ -66,7 +139,7 @@ namespace SistemaOrdemServico
             }
             else
             {
-                //string sql = "DELETE FROM 'cadastropeca' WHERE ID = " + Convert.ToInt32( idDelete) + "";
+                // sql = "DELETE FROM 'cadastropeca' WHERE ID = " + Convert.ToInt32( idDelete) + "";
 
                 /*SqlCommand comando = new SqlCommand(sql, conexao);
 
@@ -95,7 +168,7 @@ namespace SistemaOrdemServico
         {
 
 
-            string sql = "SELECT * FROM 'nome da tabela'";
+             sql = "SELECT * FROM 'nome da tabela'";
 
             /*SqlCommand comando = new SqlCommand(sql, conexao);
 
@@ -113,5 +186,12 @@ namespace SistemaOrdemServico
 
         }
 
+
+
+        private void CadastroPecas_Shown(object sender, EventArgs e)
+        {
+            preencherComboBox();
+           
+        }
     }
 }
