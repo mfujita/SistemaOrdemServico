@@ -222,7 +222,7 @@
             // 
             this.txtCPFFunc.Location = new System.Drawing.Point(124, 200);
             this.txtCPFFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCPFFunc.Mask = "###,###,###-##";
+            this.txtCPFFunc.Mask = "#########-##";
             this.txtCPFFunc.Name = "txtCPFFunc";
             this.txtCPFFunc.Size = new System.Drawing.Size(131, 29);
             this.txtCPFFunc.TabIndex = 49;
@@ -295,7 +295,7 @@
             this.lblTelefoneFunc.Location = new System.Drawing.Point(53, 531);
             this.lblTelefoneFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefoneFunc.Name = "lblTelefoneFunc";
-            this.lblTelefoneFunc.Size = new System.Drawing.Size(72, 21);
+            this.lblTelefoneFunc.Size = new System.Drawing.Size(70, 21);
             this.lblTelefoneFunc.TabIndex = 42;
             this.lblTelefoneFunc.Text = "Telefone:";
             // 
