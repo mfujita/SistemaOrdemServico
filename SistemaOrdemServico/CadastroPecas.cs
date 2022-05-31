@@ -23,7 +23,7 @@ namespace SistemaOrdemServico
         //Conexao com banco de dados
         public SqlConnection abreConexao()
         {
-            string conexao = @"Server=DESKTOP-U3P4RMT\SQLEXPRESS;
+            string conexao = @"Server=GODOY\SQLEXPRESS;
                             Database=OSFujita;
                             User Id=sa;
                             Password=1234;";
@@ -60,11 +60,11 @@ namespace SistemaOrdemServico
                 cboxFornecedorCadastrarPeca.DataSource = dt;
 
                 //Combobox Editar peca
-                cboxFornecedorEditarPeca.DisplayMember = "idCad";
+                //cboxFornecedorEditarPeca.DisplayMember = "idCad";
 
-                cboxFornecedorEditarPeca.ValueMember = "nomeRazSoc";
+                //cboxFornecedorEditarPeca.ValueMember = "nomeRazSoc";
 
-                cboxFornecedorEditarPeca.DataSource = dt;
+                //cboxFornecedorEditarPeca.DataSource = dt;
 
             }
             catch (Exception)
@@ -100,7 +100,7 @@ namespace SistemaOrdemServico
             string cadastroNomePeca = txtNomeCadastrarPeca.Text;
             string cadastroFornecedorPeca = cboxFornecedorCadastrarPeca.Text;
             string cadastroFabricantePeca = txtFabricanteCadastrarPeca.Text;
-            string cadastroValorCompra = numericValorCompraCadastrarPeca.Text;
+            string cadastroValorCompra = txtCadastroValorCompraPeca.Text;
             string cadastroValorVenda = numericValorVendaCadastrarPeca.Text;
 
             //Validaçao do formulario 
@@ -120,7 +120,7 @@ namespace SistemaOrdemServico
                 sql = "INSERT INTO cadPeca VALUES ( '"+cadastroNomePeca+"'," +
                     "'"+idFornecedorPeca +"'," +
                     "'"+cadastroFabricantePeca+"'," +
-                    ""+Convert.ToDouble(cadastroValorCompra.Replace(",","."))+"," +
+                    ""+Convert.ToDouble( cadastroValorCompra.Replace(",","."))+"," +
                     ""+Convert.ToDouble(cadastroValorVenda.Replace(",","."))+")";
 
                 SqlCommand comandCadastro = new SqlCommand(sql, conexao);
@@ -172,10 +172,11 @@ namespace SistemaOrdemServico
         private void btnConsultar_Click(object sender, EventArgs e)
         {
             listagem();
-            btnConsultar.Enabled = false;
-
- 
+            //btnConsultar.Enabled = false;
         }
+
+
+
 
 
         //Listagem para dar select
@@ -203,6 +204,9 @@ namespace SistemaOrdemServico
         }
 
 
+
+
+
         //Metodo que preenche o combobox ao iniciar o form
         private void CadastroPecas_Shown(object sender, EventArgs e)
         {
@@ -212,6 +216,10 @@ namespace SistemaOrdemServico
 
 
 
+
+
+
+        //Botao de pesquisa na area de editar peca
         private void btnConsultaEditaPeca_Click(object sender, EventArgs e)
         {
             string idConsutarPeca = txtIdEditarPeca.Text;
@@ -236,17 +244,17 @@ namespace SistemaOrdemServico
                 dados.Read();
 
                 double valorCompraEditarPeca = Convert.ToDouble( dados[4]);
+                double valorVendaEditarPeca = Convert.ToDouble(dados[5]);
 
                 txtNomeEditarPeca.Text = (string)dados[1];
                 txtFabricanteEditarPeca.Text = (string)dados[3];
                 numericValorCompraEditar.Text = valorCompraEditarPeca.ToString();
-
-                    
-                
-
+                txtValorVendaEditarPeca.Text = valorVendaEditarPeca.ToString();
 
                 comandoConsultaEdita.Dispose();
             }
         }
+
+
     }
 }
