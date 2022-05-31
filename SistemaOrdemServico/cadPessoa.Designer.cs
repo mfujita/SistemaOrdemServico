@@ -77,10 +77,10 @@
             // 
             this.txtCpfCnpj.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCpfCnpj.Location = new System.Drawing.Point(385, 252);
-            this.txtCpfCnpj.Mask = "000,000,000-00";
             this.txtCpfCnpj.Name = "txtCpfCnpj";
             this.txtCpfCnpj.Size = new System.Drawing.Size(175, 26);
             this.txtCpfCnpj.TabIndex = 4;
+            this.txtCpfCnpj.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCpfCnpj_KeyPress);
             // 
             // txtCidadePessoa
             // 

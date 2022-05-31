@@ -105,5 +105,25 @@ namespace SistemaOrdemServico
         {
 
         }
+
+        private void txtCpfCnpj_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string entrada = txtCpfCnpj.Text;
+            string formatado = String.Join("", System.Text.RegularExpressions.Regex.Split(entrada, @"[^\d]"));
+            if (formatado.Length >10)
+            {
+                this.txtCpfCnpj.Mask = "00,000,000/0000-00";//cnpj
+                this.txtCpfCnpj.TextMaskFormat = { };
+                Console.WriteLine(txtCpfCnpj.TextLength);
+                Console.WriteLine(formatado);
+            }
+            else
+            {
+                this.txtCpfCnpj.Mask = "000,000,000-00";//cpf
+                Console.WriteLine(txtCpfCnpj.TextLength);
+                Console.WriteLine(formatado);
+            }
+        }
+
     }
 }
