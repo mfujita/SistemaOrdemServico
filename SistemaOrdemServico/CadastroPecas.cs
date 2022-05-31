@@ -53,16 +53,16 @@ namespace SistemaOrdemServico
 
                 
                 //Combobox Cadastrar Peca
-                cboxFornecedorCadastrarPeca.DisplayMember = "idCad";
+                cboxFornecedorCadastrarPeca.DisplayMember = "nomeRazSoc";
 
-                cboxFornecedorCadastrarPeca.ValueMember = "cpfCnpj";
+                cboxFornecedorCadastrarPeca.ValueMember = "codPeca";
 
                 cboxFornecedorCadastrarPeca.DataSource = dt;
 
                 //Combobox Editar peca
-                cboxFornecedorEditarPeca.DisplayMember = "nomeRazSoc";
+                cboxFornecedorEditarPeca.DisplayMember = "idCad";
 
-                cboxFornecedorEditarPeca.ValueMember = "idCad";
+                cboxFornecedorEditarPeca.ValueMember = "nomeRazSoc";
 
                 cboxFornecedorEditarPeca.DataSource = dt;
 
@@ -87,6 +87,16 @@ namespace SistemaOrdemServico
         {
             //Declarações das variaveis do input text
 
+            
+
+            SqlConnection conexao = abreConexao();
+             sql = "SELECT idCad FROM cadClientForn where nomeRazSoc = '"+ cboxFornecedorCadastrarPeca.Text +"'";
+
+            SqlCommand cmd = new SqlCommand(sql, conexao);
+            conexao.Open();
+            int idFornecedorPeca = (int)cmd.ExecuteScalar();
+
+
             string cadastroNomePeca = txtNomeCadastrarPeca.Text;
             string cadastroFornecedorPeca = cboxFornecedorCadastrarPeca.Text;
             string cadastroFabricantePeca = txtFabricanteCadastrarPeca.Text;
@@ -104,11 +114,11 @@ namespace SistemaOrdemServico
             }
             else
             {
-                //Area do banco de dados
-                SqlConnection conexao = abreConexao();
+             
+                conexao = abreConexao();
 
                 sql = "INSERT INTO cadPeca VALUES ( '"+cadastroNomePeca+"'," +
-                    "'"+Convert.ToInt32(cadastroFornecedorPeca) +"'," +
+                    "'"+idFornecedorPeca +"'," +
                     "'"+cadastroFabricantePeca+"'," +
                     ""+Convert.ToDouble(cadastroValorCompra.Replace(",","."))+"," +
                     ""+Convert.ToDouble(cadastroValorVenda.Replace(",","."))+")";
@@ -139,15 +149,19 @@ namespace SistemaOrdemServico
             }
             else
             {
-                // sql = "DELETE FROM 'cadastropeca' WHERE ID = " + Convert.ToInt32( idDelete) + "";
+                SqlConnection conexao = abreConexao();
 
-                /*SqlCommand comando = new SqlCommand(sql, conexao);
+                sql = "DELETE FROM cadPeca WHERE codPeca = " + Convert.ToInt32( idDelete) + "";
+
+                SqlCommand comandoDelete = new SqlCommand(sql, conexao);
 
                 conexao.Open();
-                comando.ExecuteNonQuery();
+                comandoDelete.ExecuteNonQuery();
 
-                comando.Dispose();
-                conexao.Close();*/
+                comandoDelete.Dispose();
+                conexao.Close();
+
+                MessageBox.Show("Deletado com exito");
             }
         }
 
@@ -163,35 +177,76 @@ namespace SistemaOrdemServico
  
         }
 
+
         //Listagem para dar select
         private void listagem()
         {
+            SqlConnection conexao = abreConexao();
 
 
-             sql = "SELECT * FROM 'nome da tabela'";
+            sql = "SELECT * FROM cadPeca";
 
-            /*SqlCommand comando = new SqlCommand(sql, conexao);
+            SqlCommand comandoConsulta = new SqlCommand(sql, conexao);
 
             conexao.Open();
-            SqlDataReader dados = comando.ExecuteReader();
+            SqlDataReader dados = comandoConsulta.ExecuteReader();
 
-            comando.Dispose();
+            comandoConsulta.Dispose();
 
             while (dados.Read())
             {
                 dgvPecas.Rows.Add(dados[0], dados[1], dados[2], dados[3], dados[4], dados[5]);
             }
 
-            conexao.Close();*/
+            conexao.Close();
 
         }
 
 
-
+        //Metodo que preenche o combobox ao iniciar o form
         private void CadastroPecas_Shown(object sender, EventArgs e)
         {
             preencherComboBox();
            
+        }
+
+
+
+        private void btnConsultaEditaPeca_Click(object sender, EventArgs e)
+        {
+            string idConsutarPeca = txtIdEditarPeca.Text;
+
+            if( idConsutarPeca == string.Empty)
+            {
+                MessageBox.Show("Digite um id");
+            }
+            else
+            {
+
+                SqlConnection conexao = abreConexao();
+
+
+                sql = "SELECT * FROM cadPeca WHERE codPeca = "+idConsutarPeca+" ";
+
+                SqlCommand comandoConsultaEdita = new SqlCommand(sql, conexao);
+
+                conexao.Open();
+                SqlDataReader dados = comandoConsultaEdita.ExecuteReader();
+
+                dados.Read();
+
+                double valorCompraEditarPeca = Convert.ToDouble( dados[4]);
+
+                txtNomeEditarPeca.Text = (string)dados[1];
+                txtFabricanteEditarPeca.Text = (string)dados[3];
+                numericValorCompraEditar.Text = valorCompraEditarPeca.ToString();
+
+                    
+                
+
+
+                comandoConsultaEdita.Dispose();
+            }
         }
     }
 }

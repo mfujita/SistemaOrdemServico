@@ -45,10 +45,11 @@ namespace SistemaOrdemServico
             this.lblCadastroPeca = new System.Windows.Forms.Label();
             this.pbPeca = new System.Windows.Forms.PictureBox();
             this.tabEditarPeca = new System.Windows.Forms.TabPage();
+            this.btnConsultaEditaPeca = new System.Windows.Forms.Button();
+            this.cboxFornecedorEditarPeca = new System.Windows.Forms.ComboBox();
             this.numericValorVendaEditar = new System.Windows.Forms.NumericUpDown();
-            this.numericValorCompraEditar = new System.Windows.Forms.NumericUpDown();
             this.buttonEditarPeca = new System.Windows.Forms.Button();
-            this.txtIdEditar = new System.Windows.Forms.TextBox();
+            this.txtIdEditarPeca = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtFabricanteEditarPeca = new System.Windows.Forms.TextBox();
             this.txtNomeEditarPeca = new System.Windows.Forms.TextBox();
@@ -74,7 +75,7 @@ namespace SistemaOrdemServico
             this.fabricanteConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorCompraConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorVendaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cboxFornecedorEditarPeca = new System.Windows.Forms.ComboBox();
+            this.numericValorCompraEditar = new System.Windows.Forms.TextBox();
             this.tabControlPecas.SuspendLayout();
             this.tabCadastrarPecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericValorVendaCadastrarPeca)).BeginInit();
@@ -82,7 +83,6 @@ namespace SistemaOrdemServico
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
             this.tabEditarPeca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericValorVendaEditar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericValorCompraEditar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabDeletarPeca.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -259,11 +259,12 @@ namespace SistemaOrdemServico
             // 
             // tabEditarPeca
             // 
+            this.tabEditarPeca.Controls.Add(this.numericValorCompraEditar);
+            this.tabEditarPeca.Controls.Add(this.btnConsultaEditaPeca);
             this.tabEditarPeca.Controls.Add(this.cboxFornecedorEditarPeca);
             this.tabEditarPeca.Controls.Add(this.numericValorVendaEditar);
-            this.tabEditarPeca.Controls.Add(this.numericValorCompraEditar);
             this.tabEditarPeca.Controls.Add(this.buttonEditarPeca);
-            this.tabEditarPeca.Controls.Add(this.txtIdEditar);
+            this.tabEditarPeca.Controls.Add(this.txtIdEditarPeca);
             this.tabEditarPeca.Controls.Add(this.label7);
             this.tabEditarPeca.Controls.Add(this.txtFabricanteEditarPeca);
             this.tabEditarPeca.Controls.Add(this.txtNomeEditarPeca);
@@ -282,6 +283,25 @@ namespace SistemaOrdemServico
             this.tabEditarPeca.Text = "                              Editar                              ";
             this.tabEditarPeca.UseVisualStyleBackColor = true;
             // 
+            // btnConsultaEditaPeca
+            // 
+            this.btnConsultaEditaPeca.Location = new System.Drawing.Point(305, 156);
+            this.btnConsultaEditaPeca.Name = "btnConsultaEditaPeca";
+            this.btnConsultaEditaPeca.Size = new System.Drawing.Size(141, 33);
+            this.btnConsultaEditaPeca.TabIndex = 62;
+            this.btnConsultaEditaPeca.Text = "Pesquisar";
+            this.btnConsultaEditaPeca.UseVisualStyleBackColor = true;
+            this.btnConsultaEditaPeca.Click += new System.EventHandler(this.btnConsultaEditaPeca_Click);
+            // 
+            // cboxFornecedorEditarPeca
+            // 
+            this.cboxFornecedorEditarPeca.FormattingEnabled = true;
+            this.cboxFornecedorEditarPeca.Location = new System.Drawing.Point(212, 246);
+            this.cboxFornecedorEditarPeca.Name = "cboxFornecedorEditarPeca";
+            this.cboxFornecedorEditarPeca.Size = new System.Drawing.Size(234, 21);
+            this.cboxFornecedorEditarPeca.TabIndex = 61;
+            this.cboxFornecedorEditarPeca.Text = "Selecionar";
+            // 
             // numericValorVendaEditar
             // 
             this.numericValorVendaEditar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -296,20 +316,6 @@ namespace SistemaOrdemServico
             this.numericValorVendaEditar.Size = new System.Drawing.Size(234, 20);
             this.numericValorVendaEditar.TabIndex = 60;
             // 
-            // numericValorCompraEditar
-            // 
-            this.numericValorCompraEditar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numericValorCompraEditar.DecimalPlaces = 2;
-            this.numericValorCompraEditar.Location = new System.Drawing.Point(212, 338);
-            this.numericValorCompraEditar.Maximum = new decimal(new int[] {
-            99999999,
-            0,
-            0,
-            131072});
-            this.numericValorCompraEditar.Name = "numericValorCompraEditar";
-            this.numericValorCompraEditar.Size = new System.Drawing.Size(234, 20);
-            this.numericValorCompraEditar.TabIndex = 59;
-            // 
             // buttonEditarPeca
             // 
             this.buttonEditarPeca.Location = new System.Drawing.Point(83, 444);
@@ -319,12 +325,12 @@ namespace SistemaOrdemServico
             this.buttonEditarPeca.Text = "Editar";
             this.buttonEditarPeca.UseVisualStyleBackColor = true;
             // 
-            // txtIdEditar
+            // txtIdEditarPeca
             // 
-            this.txtIdEditar.Location = new System.Drawing.Point(212, 163);
-            this.txtIdEditar.Name = "txtIdEditar";
-            this.txtIdEditar.Size = new System.Drawing.Size(81, 20);
-            this.txtIdEditar.TabIndex = 57;
+            this.txtIdEditarPeca.Location = new System.Drawing.Point(212, 163);
+            this.txtIdEditarPeca.Name = "txtIdEditarPeca";
+            this.txtIdEditarPeca.Size = new System.Drawing.Size(81, 20);
+            this.txtIdEditarPeca.TabIndex = 57;
             // 
             // label7
             // 
@@ -534,7 +540,7 @@ namespace SistemaOrdemServico
             // 
             // fornecedorConsultaPeca
             // 
-            this.fornecedorConsultaPeca.HeaderText = "Fornecedor";
+            this.fornecedorConsultaPeca.HeaderText = "ID Fornecedor";
             this.fornecedorConsultaPeca.Name = "fornecedorConsultaPeca";
             // 
             // fabricanteConsultaPeca
@@ -552,14 +558,12 @@ namespace SistemaOrdemServico
             this.valorVendaPeca.HeaderText = "Valor Venda";
             this.valorVendaPeca.Name = "valorVendaPeca";
             // 
-            // cboxFornecedorEditarPeca
+            // numericValorCompraEditar
             // 
-            this.cboxFornecedorEditarPeca.FormattingEnabled = true;
-            this.cboxFornecedorEditarPeca.Location = new System.Drawing.Point(212, 246);
-            this.cboxFornecedorEditarPeca.Name = "cboxFornecedorEditarPeca";
-            this.cboxFornecedorEditarPeca.Size = new System.Drawing.Size(234, 21);
-            this.cboxFornecedorEditarPeca.TabIndex = 61;
-            this.cboxFornecedorEditarPeca.Text = "Selecionar";
+            this.numericValorCompraEditar.Location = new System.Drawing.Point(212, 340);
+            this.numericValorCompraEditar.Name = "numericValorCompraEditar";
+            this.numericValorCompraEditar.Size = new System.Drawing.Size(234, 20);
+            this.numericValorCompraEditar.TabIndex = 63;
             // 
             // CadastroPecas
             // 
@@ -582,7 +586,6 @@ namespace SistemaOrdemServico
             this.tabEditarPeca.ResumeLayout(false);
             this.tabEditarPeca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericValorVendaEditar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericValorCompraEditar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabDeletarPeca.ResumeLayout(false);
             this.tabDeletarPeca.PerformLayout();
@@ -608,7 +611,7 @@ namespace SistemaOrdemServico
         private System.Windows.Forms.Label lblNomePeca;
         private System.Windows.Forms.Label lblCadastroPeca;
         private System.Windows.Forms.PictureBox pbPeca;
-        private System.Windows.Forms.TextBox txtIdEditar;
+        private System.Windows.Forms.TextBox txtIdEditarPeca;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtFabricanteEditarPeca;
         private System.Windows.Forms.TextBox txtNomeEditarPeca;
@@ -632,14 +635,15 @@ namespace SistemaOrdemServico
         private System.Windows.Forms.NumericUpDown numericValorCompraCadastrarPeca;
         private System.Windows.Forms.NumericUpDown numericValorVendaCadastrarPeca;
         private System.Windows.Forms.ComboBox cboxFornecedorCadastrarPeca;
+        private System.Windows.Forms.NumericUpDown numericValorVendaEditar;
+        private System.Windows.Forms.ComboBox cboxFornecedorEditarPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn idConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn fornecedorConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn fabricanteConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorCompraConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorVendaPeca;
-        private System.Windows.Forms.NumericUpDown numericValorVendaEditar;
-        private System.Windows.Forms.NumericUpDown numericValorCompraEditar;
-        private System.Windows.Forms.ComboBox cboxFornecedorEditarPeca;
+        private System.Windows.Forms.Button btnConsultaEditaPeca;
+        private System.Windows.Forms.TextBox numericValorCompraEditar;
     }
 }
