@@ -31,6 +31,8 @@ namespace SistemaOrdemServico
         {
             this.tabControlPecas = new System.Windows.Forms.TabControl();
             this.tabCadastrarPecas = new System.Windows.Forms.TabPage();
+            this.numericValorVendaCadastrarPeca = new System.Windows.Forms.TextBox();
+            this.txtCadastroValorCompraPeca = new System.Windows.Forms.TextBox();
             this.cboxFornecedorCadastrarPeca = new System.Windows.Forms.ComboBox();
             this.btnSalvarPeca = new System.Windows.Forms.Button();
             this.txtFabricanteCadastrarPeca = new System.Windows.Forms.TextBox();
@@ -74,8 +76,6 @@ namespace SistemaOrdemServico
             this.fabricanteConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorCompraConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorVendaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtCadastroValorCompraPeca = new System.Windows.Forms.TextBox();
-            this.numericValorVendaCadastrarPeca = new System.Windows.Forms.TextBox();
             this.tabControlPecas.SuspendLayout();
             this.tabCadastrarPecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
@@ -122,6 +122,20 @@ namespace SistemaOrdemServico
             this.tabCadastrarPecas.TabIndex = 0;
             this.tabCadastrarPecas.Text = "                              Cadastrar                              ";
             this.tabCadastrarPecas.UseVisualStyleBackColor = true;
+            // 
+            // numericValorVendaCadastrarPeca
+            // 
+            this.numericValorVendaCadastrarPeca.Location = new System.Drawing.Point(212, 356);
+            this.numericValorVendaCadastrarPeca.Name = "numericValorVendaCadastrarPeca";
+            this.numericValorVendaCadastrarPeca.Size = new System.Drawing.Size(234, 20);
+            this.numericValorVendaCadastrarPeca.TabIndex = 61;
+            // 
+            // txtCadastroValorCompraPeca
+            // 
+            this.txtCadastroValorCompraPeca.Location = new System.Drawing.Point(212, 310);
+            this.txtCadastroValorCompraPeca.Name = "txtCadastroValorCompraPeca";
+            this.txtCadastroValorCompraPeca.Size = new System.Drawing.Size(234, 20);
+            this.txtCadastroValorCompraPeca.TabIndex = 60;
             // 
             // cboxFornecedorCadastrarPeca
             // 
@@ -293,6 +307,7 @@ namespace SistemaOrdemServico
             this.buttonEditarPeca.TabIndex = 58;
             this.buttonEditarPeca.Text = "Editar";
             this.buttonEditarPeca.UseVisualStyleBackColor = true;
+            this.buttonEditarPeca.Click += new System.EventHandler(this.buttonEditarPeca_Click);
             // 
             // txtIdEditarPeca
             // 
@@ -526,20 +541,6 @@ namespace SistemaOrdemServico
             // 
             this.valorVendaPeca.HeaderText = "Valor Venda";
             this.valorVendaPeca.Name = "valorVendaPeca";
-            // 
-            // txtCadastroValorCompraPeca
-            // 
-            this.txtCadastroValorCompraPeca.Location = new System.Drawing.Point(212, 310);
-            this.txtCadastroValorCompraPeca.Name = "txtCadastroValorCompraPeca";
-            this.txtCadastroValorCompraPeca.Size = new System.Drawing.Size(234, 20);
-            this.txtCadastroValorCompraPeca.TabIndex = 60;
-            // 
-            // numericValorVendaCadastrarPeca
-            // 
-            this.numericValorVendaCadastrarPeca.Location = new System.Drawing.Point(212, 356);
-            this.numericValorVendaCadastrarPeca.Name = "numericValorVendaCadastrarPeca";
-            this.numericValorVendaCadastrarPeca.Size = new System.Drawing.Size(234, 20);
-            this.numericValorVendaCadastrarPeca.TabIndex = 61;
             // 
             // CadastroPecas
             // 

@@ -17,13 +17,16 @@ namespace SistemaOrdemServico
         public CadastroPecas()
         {
             InitializeComponent();
+
+            cboxFornecedorEditarPeca.Enabled = false;
         }
+
 
 
         //Conexao com banco de dados
         public SqlConnection abreConexao()
         {
-            string conexao = @"Server=GODOY\SQLEXPRESS;
+            string conexao = @"Server=DESKTOP-U3P4RMT\SQLEXPRESS;
                             Database=OSFujita;
                             User Id=sa;
                             Password=1234;";
@@ -31,9 +34,53 @@ namespace SistemaOrdemServico
         }
 
 
+ 
 
-        //Prencher Combobox
-        private void preencherComboBox ()
+        //Prencher Combobox Cadastro de peças
+        private void preencherComboBoxCadastrar ()
+        {
+            SqlConnection conexao = abreConexao();
+
+            try
+            {
+                conexao.Open();
+
+                sql = "SELECT * FROM cadClientForn WHERE categoria = 'Fornecedor'";
+
+                SqlCommand comando = new SqlCommand(sql, conexao);
+
+                SqlDataReader dados = comando.ExecuteReader();
+
+                DataTable dt = new DataTable();
+
+                dt.Load(dados);
+               
+
+                //Combobox Cadastrar Peca
+                cboxFornecedorCadastrarPeca.DisplayMember = "nomeRazSoc";
+
+                cboxFornecedorCadastrarPeca.ValueMember = "codPeca";
+
+                cboxFornecedorCadastrarPeca.DataSource = dt;
+
+                cboxFornecedorCadastrarPeca.Text = "Selecionar";
+               
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro");
+            }
+            finally
+            {
+                conexao.Close();
+            }
+            
+        }
+
+
+
+        //Preencher combobox de Editar  Peca
+        private void preencherComboBoxEditar()
         {
             SqlConnection conexao = abreConexao();
 
@@ -51,20 +98,15 @@ namespace SistemaOrdemServico
 
                 dt.Load(dados);
 
-                
-                //Combobox Cadastrar Peca
-                cboxFornecedorCadastrarPeca.DisplayMember = "nomeRazSoc";
-
-                cboxFornecedorCadastrarPeca.ValueMember = "codPeca";
-
-                cboxFornecedorCadastrarPeca.DataSource = dt;
 
                 //Combobox Editar peca
-                //cboxFornecedorEditarPeca.DisplayMember = "idCad";
+                cboxFornecedorEditarPeca.DisplayMember = "nomeRazSoc";
 
-                //cboxFornecedorEditarPeca.ValueMember = "nomeRazSoc";
+                cboxFornecedorEditarPeca.ValueMember = "codPeca";
 
-                //cboxFornecedorEditarPeca.DataSource = dt;
+                cboxFornecedorEditarPeca.DataSource = dt;
+
+                cboxFornecedorEditarPeca.Text = "Selecionar";
 
             }
             catch (Exception)
@@ -75,9 +117,8 @@ namespace SistemaOrdemServico
             {
                 conexao.Close();
             }
-            
-        }
 
+        }
 
 
 
@@ -86,26 +127,16 @@ namespace SistemaOrdemServico
         private void btnSalvarPeca_Click(object sender, EventArgs e)
         {
             //Declarações das variaveis do input text
-
-            
-
-            SqlConnection conexao = abreConexao();
-             sql = "SELECT idCad FROM cadClientForn where nomeRazSoc = '"+ cboxFornecedorCadastrarPeca.Text +"'";
-
-            SqlCommand cmd = new SqlCommand(sql, conexao);
-            conexao.Open();
-            int idFornecedorPeca = (int)cmd.ExecuteScalar();
-
-
             string cadastroNomePeca = txtNomeCadastrarPeca.Text;
             string cadastroFornecedorPeca = cboxFornecedorCadastrarPeca.Text;
             string cadastroFabricantePeca = txtFabricanteCadastrarPeca.Text;
             string cadastroValorCompra = txtCadastroValorCompraPeca.Text;
             string cadastroValorVenda = numericValorVendaCadastrarPeca.Text;
 
+
             //Validaçao do formulario 
             if( cadastroNomePeca == string.Empty || 
-                cadastroFornecedorPeca == string.Empty || 
+                cadastroFornecedorPeca == "Selecionar" || 
                 cadastroFabricantePeca == string.Empty ||
                 cadastroValorCompra == string.Empty ||
                 cadastroValorVenda == string.Empty)
@@ -114,24 +145,47 @@ namespace SistemaOrdemServico
             }
             else
             {
-             
-                conexao = abreConexao();
 
-                sql = "INSERT INTO cadPeca VALUES ( '"+cadastroNomePeca+"'," +
-                    "'"+idFornecedorPeca +"'," +
-                    "'"+cadastroFabricantePeca+"'," +
-                    ""+Convert.ToDouble( cadastroValorCompra.Replace(",","."))+"," +
-                    ""+Convert.ToDouble(cadastroValorVenda.Replace(",","."))+")";
+                SqlConnection conexao = abreConexao();
+                sql = "SELECT idCad FROM cadClientForn where nomeRazSoc = '" + cboxFornecedorCadastrarPeca.Text + "'";
 
-                SqlCommand comandCadastro = new SqlCommand(sql, conexao);
+                SqlCommand cmd = new SqlCommand(sql, conexao);
                 conexao.Open();
+                int idFornecedorPeca = (int)cmd.ExecuteScalar();
 
-                comandCadastro.ExecuteNonQuery();
 
-                comandCadastro.Dispose();
+                try
+                {
+                    conexao = abreConexao();
 
-                conexao.Close();
+                    sql = "INSERT INTO cadPeca VALUES ( '" + cadastroNomePeca + "'," +
+                        "'" + idFornecedorPeca + "'," +
+                        "'" + cadastroFabricantePeca + "'," +
+                        "" + Convert.ToDouble(cadastroValorCompra.Replace(",", ".")) + "," +
+                        "" + Convert.ToDouble(cadastroValorVenda.Replace(",", ".")) + ")";
 
+                    SqlCommand comandCadastro = new SqlCommand(sql, conexao);
+                    conexao.Open();
+
+                    comandCadastro.ExecuteNonQuery();
+
+                    comandCadastro.Dispose();
+
+                    conexao.Close();
+
+                    MessageBox.Show("Salvo com sucesso");
+
+                    txtNomeCadastrarPeca.Text = string.Empty;
+                    txtCadastroValorCompraPeca.Text = string.Empty;
+                    cboxFornecedorCadastrarPeca.Text = "Selecionar";
+                    txtFabricanteCadastrarPeca.Text = string.Empty;
+                    numericValorVendaCadastrarPeca.Text = string.Empty;
+                }
+
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro ao salvar dados");
+                }
             }
 
 
@@ -171,8 +225,9 @@ namespace SistemaOrdemServico
         //Botao de consulta
         private void btnConsultar_Click(object sender, EventArgs e)
         {
+            dgvPecas.Rows.Clear();
             listagem();
-            //btnConsultar.Enabled = false;
+           
         }
 
 
@@ -206,16 +261,12 @@ namespace SistemaOrdemServico
 
 
 
-
         //Metodo que preenche o combobox ao iniciar o form
         private void CadastroPecas_Shown(object sender, EventArgs e)
         {
-            preencherComboBox();
+            preencherComboBoxCadastrar();
            
         }
-
-
-
 
 
 
@@ -224,37 +275,135 @@ namespace SistemaOrdemServico
         {
             string idConsutarPeca = txtIdEditarPeca.Text;
 
-            if( idConsutarPeca == string.Empty)
+            txtNomeEditarPeca.Text = string.Empty;
+            txtFabricanteEditarPeca.Text = string.Empty;
+            numericValorCompraEditar.Text = string.Empty;
+            txtValorVendaEditarPeca.Text = string.Empty;
+
+
+
+            if (idConsutarPeca == string.Empty)
             {
                 MessageBox.Show("Digite um id");
             }
             else
             {
+                cboxFornecedorEditarPeca.Enabled = true;
 
-                SqlConnection conexao = abreConexao();
+                preencherComboBoxEditar();
 
 
-                sql = "SELECT * FROM cadPeca WHERE codPeca = "+idConsutarPeca+" ";
+                try
+                {
+                    SqlConnection conexao = abreConexao();
 
-                SqlCommand comandoConsultaEdita = new SqlCommand(sql, conexao);
 
-                conexao.Open();
-                SqlDataReader dados = comandoConsultaEdita.ExecuteReader();
+                    sql = "SELECT * FROM cadPeca WHERE codPeca = " + idConsutarPeca + " ";
 
-                dados.Read();
+                    SqlCommand comandoConsultaEdita = new SqlCommand(sql, conexao);
 
-                double valorCompraEditarPeca = Convert.ToDouble( dados[4]);
-                double valorVendaEditarPeca = Convert.ToDouble(dados[5]);
+                    conexao.Open();
+                    SqlDataReader dados = comandoConsultaEdita.ExecuteReader();
 
-                txtNomeEditarPeca.Text = (string)dados[1];
-                txtFabricanteEditarPeca.Text = (string)dados[3];
-                numericValorCompraEditar.Text = valorCompraEditarPeca.ToString();
-                txtValorVendaEditarPeca.Text = valorVendaEditarPeca.ToString();
+                    dados.Read();
 
-                comandoConsultaEdita.Dispose();
+                    double valorCompraEditarPeca = Convert.ToDouble(dados[4]);
+                    double valorVendaEditarPeca = Convert.ToDouble(dados[5]);
+
+                    txtNomeEditarPeca.Text = (string)dados[1];
+                    txtFabricanteEditarPeca.Text = (string)dados[3];
+                    numericValorCompraEditar.Text = valorCompraEditarPeca.ToString();
+                    txtValorVendaEditarPeca.Text = valorVendaEditarPeca.ToString();
+
+
+                    comandoConsultaEdita.Dispose();
+
+                }
+                catch (Exception)
+                {
+                    cboxFornecedorEditarPeca.Enabled = false;
+                    MessageBox.Show("Id não encontrado");
+                }
+
             }
+         
         }
 
 
+
+
+
+        //Area do update da peca
+        private void buttonEditarPeca_Click(object sender, EventArgs e)
+        {
+
+            SqlConnection conexao = abreConexao();
+
+            if ( txtIdEditarPeca.Text == string.Empty ||
+                txtNomeEditarPeca.Text == string.Empty || 
+                cboxFornecedorEditarPeca.Text == "Selecionar" ||
+                txtFabricanteEditarPeca.Text == string.Empty ||
+                numericValorCompraEditar.Text == string.Empty ||
+                txtValorVendaEditarPeca.Text == string.Empty)
+            {
+                MessageBox.Show("Veja se todos os campos estão preenchidos corretamente");
+            }
+            else
+            {
+
+                conexao = abreConexao();
+                sql = "SELECT idCad FROM cadClientForn where nomeRazSoc = '" + cboxFornecedorEditarPeca.Text + "'";
+
+                SqlCommand cmd = new SqlCommand(sql, conexao);
+                conexao.Open();
+                int idFornecedorEditarPeca = (int)cmd.ExecuteScalar();
+
+                //Variaveis
+                string idEdiatarPeca = txtIdEditarPeca.Text;
+                string nomeEditarPeca = txtNomeEditarPeca.Text;
+                string fabricanteEditarPeca = txtFabricanteEditarPeca.Text;
+                string valorCompraEditarPeca = numericValorCompraEditar.Text;
+                string valorVendaEditarPeca = txtValorVendaEditarPeca.Text;
+
+                try
+                {
+                    conexao = abreConexao();
+
+                    sql = "UPDATE cadPeca SET nomePeca = '" + nomeEditarPeca + "', fkFornecedor = " + idFornecedorEditarPeca + ", fabricante = '" + fabricanteEditarPeca + "', vlCompra = " + Convert.ToDouble(valorCompraEditarPeca) + ", vlVenda = " + Convert.ToDouble(valorVendaEditarPeca) + " WHERE codPeca = " + Convert.ToInt32(idEdiatarPeca) + "";
+
+                    SqlCommand comandoEditar = new SqlCommand(sql, conexao);
+                    conexao.Open();
+                    comandoEditar.ExecuteNonQuery();
+
+                    comandoEditar.Dispose();
+                    conexao.Close();
+
+                    MessageBox.Show("Atualizado com sucesso");
+
+
+                    txtIdEditarPeca.Text = string.Empty;
+                    txtNomeEditarPeca.Text = string.Empty;                
+                    txtFabricanteEditarPeca.Text = string.Empty;
+                    numericValorCompraEditar.Text = string.Empty;
+                    txtValorVendaEditarPeca.Text = string.Empty;
+                    txtIdEditarPeca.Enabled = true;
+
+
+                }
+
+                catch(Exception){
+                    MessageBox.Show("Erro ao atualizar");
+                }
+                finally
+                {
+                    conexao.Close();
+
+                    cboxFornecedorEditarPeca.Text = "Selecionar";
+                    cboxFornecedorEditarPeca.Enabled = false;
+                }
+
+            }
+
+        }
     }
 }
