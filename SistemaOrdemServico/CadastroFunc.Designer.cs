@@ -239,6 +239,7 @@
             this.cbSexoFunc.Name = "cbSexoFunc";
             this.cbSexoFunc.Size = new System.Drawing.Size(142, 29);
             this.cbSexoFunc.TabIndex = 48;
+            this.cbSexoFunc.DropDownClosed += new System.EventHandler(this.cbSexoFunc_DropDownClosed);
             // 
             // txtNomeFunc
             // 
@@ -441,6 +442,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CadastroFunc";
             this.Text = "Cadastro de Funcionários";
+            this.Load += new System.EventHandler(this.CadastroFunc_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
