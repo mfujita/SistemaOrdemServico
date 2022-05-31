@@ -16,20 +16,31 @@ namespace SistemaOrdemServico
         private readonly SqlConnection conexaoSql;
         private readonly Dictionary<string, Action> modos;
         private Dictionary<string, string> camposDeEntrada;
+        private readonly List<Control> campos;
+        private static string orcamentoTabela = "cadOrcamento";
 
 
         public Orcamento()
         {
-            conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielCasa"));
-            //conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielFaculdade"));
+            InitializeComponent();
+
+            //conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielCasa"));
+            conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielFaculdade"));
             modos = new Dictionary<string, Action>
             {
                 { "Inserir", Inserir },
                 { "Editar", Editar },
-                { "Deletar", Deletar }
+                { "Excluir", Excluir }
             };
-
-            InitializeComponent();
+            campos = new List<Control>
+            {
+                cbClienteOrcamento,
+                dtpDataEntradaOrcamento,
+                txtDescricaoOrcamento,
+                cbPecasOrcamento,
+                nudValorOrcamento,
+                cbRecebidoOrcamento
+            };
         }
 
         private void Inserir()
@@ -45,18 +56,24 @@ namespace SistemaOrdemServico
                     dadosAEnviar.Add("@" + campo.Key.Split(' ')[0].Replace(":", ""), campo.Value);
                 }
 
-                SqlInsert("cadOrcamento", dadosAEnviar);
+                SqlInsert(orcamentoTabela, dadosAEnviar);
             }
-        }
-
-        private void Deletar()
-        {
-            throw new NotImplementedException();
         }
 
         private void Editar()
         {
-            throw new NotImplementedException();
+            var idSelecionado = btnEnviar.Tag.ToString();
+
+            var camposAtualizados = ObterValoresAtualizados(idSelecionado);
+            var condicoes = new Dictionary<string, string> { { "idOrc", idSelecionado } };
+
+            SqlUpdate(orcamentoTabela, camposAtualizados, condicoes);
+        }
+
+        private void Excluir()
+        {
+            var deleteDicionario = new Dictionary<string, string> { { "idOrc", btnEnviar.Tag.ToString() } }; 
+            SqlDelete(orcamentoTabela, deleteDicionario);
         }
 
         private void CarregarValorCampos()
@@ -115,43 +132,43 @@ namespace SistemaOrdemServico
 
         private List<List<string>> SqlSelect(string comandoString)
         {
-                List<List<string>> registros = new List<List<string>>();
+            List<List<string>> registros = new List<List<string>>();
 
-                SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
+            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
 
-                try
+            try
+            {
+                comandoSql.Connection.Open();
+                SqlDataReader leitor = comandoSql.ExecuteReader();
+
+                while (leitor.Read())
                 {
-                    comandoSql.Connection.Open();
-                    SqlDataReader leitor = comandoSql.ExecuteReader();
+                    List<string> campos = new List<string>();
 
-                    while (leitor.Read())
+                    for (int i = 0; i < leitor.FieldCount; i++)
                     {
-                        List<string> campos = new List<string>();
-
-                        for (int i = 0; i < leitor.FieldCount; i++)
-                        {
-                            campos.Add(leitor[i].GetType() != typeof(DateTime) ? leitor[i].ToString() : ((DateTime)leitor[i]).ToShortDateString());
-                        }
-
-                        registros.Add(campos);
+                        campos.Add(leitor[i].GetType() != typeof(DateTime) ? leitor[i].ToString() : ((DateTime)leitor[i]).ToShortDateString());
                     }
-                }
-                catch (Exception ex)
-                {
-                    MostrarMensagemErro(ex.Message);
-                }
-                finally
-                {
-                    comandoSql.Connection.Close();
-                    comandoSql.Dispose();
-                }
 
-                return registros;
+                    registros.Add(campos);
+                }
             }
+            catch (Exception ex)
+            {
+                MostrarMensagemErro(ex.Message);
+            }
+            finally
+            {
+                comandoSql.Connection.Close();
+                comandoSql.Dispose();
+            }
+
+            return registros;
+        }
 
         private void SqlInsert(string tabela, Dictionary<string, string> campos)
         {
-            string comandoString = $"INSERT INTO {tabela} VALUES({ string.Join(", ", campos.Select(campo => campo.Key) )})";
+            string comandoString = $"INSERT INTO {tabela} VALUES({ string.Join(", ", campos.Select(campo => campo.Key))})";
             SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
             foreach (var campo in campos) { comandoSql.Parameters.AddWithValue(campo.Key, campo.Value); }
 
@@ -172,7 +189,57 @@ namespace SistemaOrdemServico
                 comandoSql.Dispose();
             }
         }
-        
+
+        private void SqlUpdate(string tabela, Dictionary<string, string> camposAtualizados, Dictionary<string, string> condicoes, string operacao = "")
+        {
+            string comandoString = $"UPDATE {tabela}" +
+                $"SET { string.Join(", ", camposAtualizados.Select(campo => $"{ campo.Key } = @{ campo.Value }")) }" +
+                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key} = @{condicao.Key}"))}";
+            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
+            foreach (var campo in camposAtualizados) { comandoSql.Parameters.AddWithValue(campo.Key, campo.Value); }
+
+            try
+            {
+                comandoSql.Connection.Open();
+                comandoSql.ExecuteNonQuery();
+
+                MostrarMensagemSucesso("Registro atualizado com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagemErro(ex.Message);
+            }
+            finally
+            {
+                comandoSql.Connection.Close();
+                comandoSql.Dispose();
+            }
+        }
+
+        private void SqlDelete(string tabela, Dictionary<string, string> condicoes, string operacao = "")
+        {
+            string comandoString = $"DELETE FROM {tabela}" +
+                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key} = '{condicao.Key}'"))}";
+            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
+
+            try
+            {
+                comandoSql.Connection.Open();
+                comandoSql.ExecuteNonQuery();
+
+                MostrarMensagemSucesso("Deletado do banco de dados com sucesso.");
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagemErro(ex.Message);
+            }
+            finally
+            {
+                comandoSql.Connection.Close();
+                comandoSql.Dispose();
+            }
+        }
+
         public void MostrarMensagemErro(string message)
         {
             MessageBox.Show(
@@ -183,7 +250,7 @@ namespace SistemaOrdemServico
                 );
         }
         
-        private void MostrarMensagemSucesso(string message)
+        public void MostrarMensagemSucesso(string message)
         {
             MessageBox.Show(
                 message,
@@ -220,19 +287,71 @@ namespace SistemaOrdemServico
             return true;
         }
 
+        private Dictionary<string, string> ObterValoresAtualizados(string id)
+        {
+            var condicoes = new Dictionary<string, string> { { "idOrc", id } };
+            CarregarValorCampos();
+
+            var valoresAntigos = SqlSelect(orcamentoTabela, condicoes, "AND", "*")[0].Skip(1);
+            var valoresNovos = camposDeEntrada.Values;
+
+            foreach (var _ in valoresAntigos.Zip(valoresNovos, (antigo, novo) => antigo == novo));
+            // fazer um dicionario com os indexes trues do zip contendo a coluna e o novo valor
+            
+            return new Dictionary<string, string>();
+        }
+
+        public List<string> ObterColunasOrcamento()
+        {
+            List<string> colunasBanco = new List<string>();
+            string comandoString = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'cadOrcamento'";
+            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
+
+            try
+            {
+                comandoSql.Connection.Open();
+                var leitor = comandoSql.ExecuteReader();
+
+                while (leitor.Read())
+                {
+                    colunasBanco.Add(leitor[0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagemErro(ex.Message);
+                Close();
+            }
+            finally
+            {
+                comandoSql.Connection.Close();
+                comandoSql.Dispose();
+            }
+
+            return colunasBanco;
+        }
+
         private void Orcamento_Load(object sender, EventArgs e)
         {
             dtpDataEntradaOrcamento.Value = DateTime.Today;
-            var whereCliente = new Dictionary<string, string> { { "categoria", "Cliente" } };
+            CarregarTags();
+            var condicoesCliente = new Dictionary<string, string> { { "categoria", "Cliente" } };
 
             PopularComboBox(cbPecasOrcamento, SqlSelect("cadPeca", "codPeca", "nomePeca", "fabricante"));
             PopularComboBox(cbRecebidoOrcamento, SqlSelect("cadFunc", "idFunc", "nome"));
-            PopularComboBox(cbClienteOrcamento, SqlSelect("cadClientForn", whereCliente, "AND", "idCad", "nomeRazSoc"));
+            PopularComboBox(cbClienteOrcamento, SqlSelect("cadClientForn", condicoesCliente, "AND", "idCad", "nomeRazSoc"));
         }
 
         private void btnInserirOrcamento_Click(object sender, EventArgs e)
         {
             modos[btnEnviar.Text]();
+        }
+
+        private void CarregarTags()
+        {
+            var colunasBanco = ObterColunasOrcamento();
+
+            foreach (var _ in campos.Zip(colunasBanco, (campo, coluna) => { campo.Tag = coluna; return true; }));
         }
 
         private void MudarModo(object sender, EventArgs e)
@@ -243,13 +362,17 @@ namespace SistemaOrdemServico
 
             if (btnsChamarJanela.Contains(btnClicado.Text))
             {
-                using (var selecionarOrcamento = new SelecionarOrcamento())
+                using (var selecionarOrcamento = new SelecionarOrcamento(conexaoSql))
                 {
                     selecionarOrcamento.ShowDialog();
 
                     var valores = selecionarOrcamento.Valores;
-                    var id = valores[0];
-                    InserirValorCampos(valores.Skip(1));
+
+                    if (valores != null)
+                    {
+                        btnEnviar.Tag = valores.First();
+                        InserirValorCampos(valores.Skip(1));
+                    }
                 }
             }
             //Melhorar visualização do modo ativado no design do formulário

@@ -26,7 +26,7 @@ namespace SistemaOrdemServico
 >>>>>>> 83f5d97f36711ee56926e88f98b86393238fec50
             //Application.Run(new CadastroFunc());
             //Application.Run(new CadastroPecas());
-            //Application.Run(new Orcamento());
+            Application.Run(new Orcamento());
             //Application.Run(new SelecionarOrcamento());
         }
     }

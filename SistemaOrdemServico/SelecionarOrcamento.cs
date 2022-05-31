@@ -15,12 +15,12 @@ namespace SistemaOrdemServico
     {
         private readonly SqlConnection conexaoSql;
         private readonly Orcamento orcamento;
-        public List<string> Valores { get; private set; }
+        public IEnumerable<string> Valores { get; private set; }
 
 
-        public SelecionarOrcamento()
+        public SelecionarOrcamento(SqlConnection conexao)
         {
-            conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielCasa"));
+            conexaoSql = conexao;
             orcamento = new Orcamento();
 
             InitializeComponent();
@@ -28,58 +28,24 @@ namespace SistemaOrdemServico
 
         private void CarregarColunas()
         {
-            List<string> colunasBanco = ObterColunasOrcamento();
+            List<string> colunasBanco = orcamento.ObterColunasOrcamento();
             List<string> colunasExibidas = new List<string>()
             {
                 "ID", "Cliente", "Data de entrada", "Descrição", "Peças", "Valor do serviço", "Recebido por"
             };
 
-            foreach (var _ in colunasBanco.Zip(colunasExibidas, dgResultados.Columns.Add));
-        }
-
-        private List<string> ObterColunasOrcamento()
-        {
-            List<string> colunasBanco = new List<string>();
-            string comandoString = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'cadOrcamento'";
-            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
-
-            try
-            {
-                comandoSql.Connection.Open();
-                var leitor = comandoSql.ExecuteReader();
-
-                while (leitor.Read())
-                {
-                    colunasBanco.Add(leitor[0].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-
-                orcamento.MostrarMensagemErro(ex.Message);
-            }
-            finally
-            {
-                comandoSql.Connection.Close();
-                comandoSql.Dispose();
-            }
-
-            return colunasBanco;
-        }
-
-        private void EnviarParaFormulario()
-        {
-            Valores = dgResultados.SelectedCells.Cast<DataGridViewCell>()
-                     .Select(cell => cell.Value.ToString()).ToList();
-            Close();
+            foreach (var _ in colunasBanco.Zip(colunasExibidas, dgResultados.Columns.Add)) ;
         }
 
         private void SelecionarOrcamento_Load(object sender, EventArgs e)
         {
             CarregarColunas();
 
-            var registros = orcamento.SqlSelect("cadOrcamento", "*");
-            registros.ForEach(registro => dgResultados.Rows.Add(registro.ToArray()));
+            if (dgResultados.Columns.Count > 0)
+            {
+                var registros = orcamento.SqlSelect("cadOrcamento", "*");
+                registros.ForEach(registro => dgResultados.Rows.Add(registro.ToArray()));
+            }
         }
 
         private void dgResultados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -98,6 +64,13 @@ namespace SistemaOrdemServico
                 EnviarParaFormulario();
                 e.Handled = true;
             }
+        }
+
+        private void EnviarParaFormulario()
+        {
+            Valores = dgResultados.SelectedCells.Cast<DataGridViewCell>()
+                     .Select(cell => cell.Value.ToString());
+            Close();
         }
 
         private void txtValor_TextChanged(object sender, EventArgs e)
