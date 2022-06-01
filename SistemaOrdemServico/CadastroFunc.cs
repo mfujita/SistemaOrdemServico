@@ -14,13 +14,16 @@ namespace SistemaOrdemServico
 
     public partial class CadastroFunc : Form
     {
-        char sexo;
+        char sexo; // Pega o sexo na tela de cadastro
+        char sexoSend; // Pega o sexo na tela de edicao
+        int idFunc; // Salva o idFunc para uso posterior
 
         public CadastroFunc()
         {
             InitializeComponent();
         }
         
+        //Método para conectar ao banco.
          public SqlConnection AbreConexao()
         {
             //string conexao = @"Server=LAB8-31\SQLEXPRESS;Database=OsFujita;User Id=sa;Password=1234;";
@@ -75,6 +78,10 @@ namespace SistemaOrdemServico
                 }
             }
         }
+        private void btnCancelaCad_Click(object sender, EventArgs e)
+        {
+            ClearControl(this);
+        }
 
         //Verifica os campos que estao vazios 
         public bool Validador() { 
@@ -97,7 +104,7 @@ namespace SistemaOrdemServico
 
             if (!Form1.TemCamposVazios(validaCamposCadClie))
             {
-                getCampos();
+                getData();
                 return true;
             }
             else
@@ -106,14 +113,10 @@ namespace SistemaOrdemServico
             }
         }
 
-        //Pega os campos e salva nas variaveis
-        public void getCampos()
+        //Pega o texto da data e salva em um datetime, tambem verifica se a data é valida
+        public void getData()
         {
-            string nomeFunc = txtNomeFunc.Text;
-            string cpf = txtCPFFunc.Text;
             string strDataNasc = txtDatanascFunc.Text;
-            string sexo = cbSexoFunc.Text;
-
             int dia = Convert.ToInt32(strDataNasc.Substring(0, 2));
             int mes = Convert.ToInt32(strDataNasc.Substring(3, 2));
             int ano = Convert.ToInt32(strDataNasc.Substring(6, 4));
@@ -126,41 +129,25 @@ namespace SistemaOrdemServico
                 MessageBox.Show("Data inválida");
                 return;
             }
-
-            string rua = txtRuaFunc.Text;
-            string bairro = txtBairroFunc.Text;
-            string cidade = txtCidadeFunc.Text;
-            string estado = cbEstadoFunc.Text;
-            string cep = txtCepFunc.Text;
-            string numCasa = txtNumCasaFunc.Text;
-
-            string telefone = txtTelFunc.Text;
-            string celular = txtCelFunc.Text;
-            string email = txtEmailFunc.Text;
-
-        }
-        private void btnEditFunc_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Selecione o funcionário", "Editar funcionário", MessageBoxButtons.OK);
         }
 
         //Preenchimento automatico para testes
-        private void CadastroFunc_Load(object sender, EventArgs e)
-        {
-            txtNomeFunc.Text = "Gustavo";
-            txtCPFFunc.Text = "44444444444";
-            txtDatanascFunc.Text = "15/08/2002";
-            cbSexoFunc.Text = "Masculino";
-            txtRuaFunc.Text = "Juscelino";
-            txtBairroFunc.Text = "Kubicheque";
-            txtCidadeFunc.Text = "Americana";
-            cbEstadoFunc.Text = "SP";
-            txtCepFunc.Text = "14888290";
-            txtNumCasaFunc.Text = "404";
-            txtTelFunc.Text = "34075566";
-            txtCelFunc.Text = "19994197566";
-            txtEmailFunc.Text = "gustavo_allm@outlook.com";
-        }
+        //private void CadastroFunc_Load(object sender, EventArgs e)
+        //{
+        //    txtNomeFunc.Text = "Gustavo";
+        //    txtCPFFunc.Text = "44444444444";
+        //    txtDatanascFunc.Text = "15/08/2002";
+        //    cbSexoFunc.Text = "Masculino";
+        //    txtRuaFunc.Text = "Juscelino";
+        //    txtBairroFunc.Text = "Kubicheque";
+        //    txtCidadeFunc.Text = "Americana";
+        //    cbEstadoFunc.Text = "SP";
+        //    txtCepFunc.Text = "14888290";
+        //    txtNumCasaFunc.Text = "404";
+        //    txtTelFunc.Text = "34075566";
+        //    txtCelFunc.Text = "19994197566";
+        //    txtEmailFunc.Text = "gustavo_allm@outlook.com";
+        //}
         
         //Transforma a string sexo em char pra mandar pro banco
         private void cbSexoFunc_DropDownClosed(object sender, EventArgs e)
@@ -241,5 +228,164 @@ namespace SistemaOrdemServico
                 }
             }
         }
+
+        //Traz os dados do banco pra tela de edição pelo nome do funcionário, primeiro verifica se o nome está em branco
+        //caso nao esteja em branco o datareader preenche as textbox para edição
+        private void btnPesquisarEdit_Click(object sender, EventArgs e)
+        {
+            string nomePesquisa = txtPesquisaEdit.Text;
+
+            if (nomePesquisa == string.Empty)
+            {
+                MessageBox.Show("Digite um nome", "Nome em branco", MessageBoxButtons.OK, MessageBoxIcon.Warning);  
+            }
+            else
+            {
+                try
+                {
+                    SqlConnection conexao = AbreConexao();
+
+
+                    string sql = "SELECT * FROM cadFunc WHERE nome = '" + nomePesquisa + "' ";
+
+                    SqlCommand comandoConsultaEdita = new SqlCommand(sql, conexao);
+
+                    conexao.Open();
+                    SqlDataReader dados = comandoConsultaEdita.ExecuteReader();
+
+                    dados.Read();
+
+                    idFunc = (int)dados[0];
+                    txtCPFuncEdit.Text = (string)dados[1];
+                    txtNomeFuncEdit.Text = (string)dados[2];
+                    string sexoEdit = (string)dados[3]; 
+                    
+                    if(sexoEdit == "M")
+                    {
+                        cbSexoFuncEdit.Text = "Masculino";
+                    }
+                    else
+                    {
+                        cbSexoFuncEdit.Text = "Feminino";
+                    }
+
+                    DateTime dataEdit = (DateTime)dados[4];
+                    txtDtNascFuncEdit.Text = dataEdit.ToString();
+                    txtCepFuncEdit.Text = (string)dados[5];
+                    txtTelFuncEdit.Text = (string)dados[6];
+                    txtCelFuncEdit.Text = (string)dados[7];
+                    txtEmailFuncEdit.Text = (string)dados[8];
+                    cbEstadoFuncEdit.Text = (string)dados[9];
+                    txtCidadeFuncEdit.Text = (string)dados[10];
+                    txtBairroFuncEdit.Text = (string)dados[11];
+                    txtNumCFuncEdit.Text = (string)dados[12];
+                    txtRuaFuncEdit.Text = (string)dados[13];
+
+                    comandoConsultaEdita.Dispose();
+                }
+                catch (Exception)
+                {
+                    txtPesquisaEdit.Text = "";
+                    MessageBox.Show("Nome incorreto ou não existente");
+                    ClearControl(this);
+                    return;
+                }
+
+            }
+        }
+
+        //Envia os dados atualizados na tela de editar funcionário pro banco
+        private void btnEditFunc_Click(object sender, EventArgs e)
+        {
+            SqlConnection conexao = AbreConexao();
+
+            string sql = "UPDATE cadFunc set cpf = '" + txtCPFuncEdit.Text.Replace("-", "") + "', nome = '" +
+                txtNomeFuncEdit.Text + "', sexo = '" +
+                sexoSend + "', dtNasc = '" +
+                txtDtNascFuncEdit.Text.Replace("/", "-") + "', cep = '" +
+                txtCepFuncEdit.Text + "', telefone = '" +
+                txtTelFuncEdit.Text + "', celular = '" +
+                txtCelFuncEdit.Text + "', email = '" +
+                txtEmailFuncEdit.Text + "', estado = '" +
+                cbEstadoFuncEdit.Text + "', cidade = '" +
+                txtCidadeFuncEdit.Text + "', bairro = '" +
+                txtBairroFuncEdit.Text + "', numero = '" +
+                txtNumCFuncEdit.Text + "', rua = '" +
+                txtRuaFuncEdit.Text + "' WHERE idFunc = '" + idFunc + "'";
+
+            SqlCommand comando = new SqlCommand(sql, conexao);
+            comando.Connection.Open();
+            comando.ExecuteNonQuery();
+
+            comando.Dispose();
+            conexao.Close();
+
+            btnEditFunc.BackColor = Color.Gray;
+
+            MessageBox.Show("Cadastro atualizado com sucesso!", "Atualização concluida");
+            ClearControl(this);
+            btnEditFunc.BackColor = Color.LightGray;
+        }
+        
+        //Converte a string da textbox em char pra mandar pro banco
+        private void cbSexoFuncEdit_TextChanged(object sender, EventArgs e)
+        {
+            if (cbSexoFuncEdit.Text == "Masculino")
+            {
+                sexoSend = 'M';
+            }
+            else
+            {
+                sexoSend = 'F';
+            }
+        }
+
+        //Limpa os campos da tela de edicao 
+        private void btnCancelEdit_Click(object sender, EventArgs e)
+        {
+            ClearControl(this);
+        }
+
+        //Deleta um funcionario pelo nome cadastrado, primeiro verifica se nome esta branco, depois confirma se realmete deseja deletar
+        private void btnExcluirFunc_Click(object sender, EventArgs e)
+        {
+            string nomeDelete = txtDelete.Text;
+
+            if (nomeDelete == string.Empty)
+            {
+                MessageBox.Show("Digite um nome", "Nome em branco", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                try
+                {
+                    var yesno = MessageBox.Show("Você realmente quer deletar esse funcionário?", "Confirmar exclusão", MessageBoxButtons.YesNo);
+                    
+                    if (yesno == DialogResult.Yes)
+                    {
+
+                        SqlConnection conexao = AbreConexao();
+                        string sql = "DELETE from cadFunc WHERE nome = '" + nomeDelete + "' ";
+                        
+                        SqlCommand comandoDeleteFunc = new SqlCommand(sql, conexao);
+
+                        conexao.Open();
+                        comandoDeleteFunc.ExecuteNonQuery();
+
+                        comandoDeleteFunc.Dispose();
+                        conexao.Close();
+
+                        MessageBox.Show("Deletado com exito");
+                        ClearControl(this);
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro inesperado");
+                    return;
+                }
+            }
+        }
+        
     }
 }
