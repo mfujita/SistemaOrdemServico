@@ -216,6 +216,8 @@ namespace SistemaOrdemServico
                 conexao.Close();
 
                 MessageBox.Show("Deletado com exito");
+
+                txtIdDeletarPeca.Text = string.Empty;
             }
         }
 
@@ -240,7 +242,8 @@ namespace SistemaOrdemServico
             SqlConnection conexao = abreConexao();
 
 
-            sql = "SELECT * FROM cadPeca";
+            //sql = "SELECT * FROM cadPeca";
+            sql = "select cP.codPeca, cP.nomePeca, cCF.nomeRazSoc, cP.fabricante, cP.vlCompra, cP.vlVenda from cadPeca cP, cadClientForn cCF where cCF.categoria = 'Fornecedor' and cP.fkFornecedor = cCF.idCad";
 
             SqlCommand comandoConsulta = new SqlCommand(sql, conexao);
 
@@ -393,6 +396,8 @@ namespace SistemaOrdemServico
 
                 catch(Exception){
                     MessageBox.Show("Erro ao atualizar");
+            
+                    cboxFornecedorEditarPeca.Enabled = true;
                 }
                 finally
                 {

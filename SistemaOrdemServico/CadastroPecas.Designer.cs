@@ -126,6 +126,7 @@ namespace SistemaOrdemServico
             // numericValorVendaCadastrarPeca
             // 
             this.numericValorVendaCadastrarPeca.Location = new System.Drawing.Point(212, 356);
+            this.numericValorVendaCadastrarPeca.MaxLength = 6;
             this.numericValorVendaCadastrarPeca.Name = "numericValorVendaCadastrarPeca";
             this.numericValorVendaCadastrarPeca.Size = new System.Drawing.Size(234, 20);
             this.numericValorVendaCadastrarPeca.TabIndex = 61;
@@ -133,6 +134,7 @@ namespace SistemaOrdemServico
             // txtCadastroValorCompraPeca
             // 
             this.txtCadastroValorCompraPeca.Location = new System.Drawing.Point(212, 310);
+            this.txtCadastroValorCompraPeca.MaxLength = 6;
             this.txtCadastroValorCompraPeca.Name = "txtCadastroValorCompraPeca";
             this.txtCadastroValorCompraPeca.Size = new System.Drawing.Size(234, 20);
             this.txtCadastroValorCompraPeca.TabIndex = 60;
@@ -269,6 +271,7 @@ namespace SistemaOrdemServico
             // txtValorVendaEditarPeca
             // 
             this.txtValorVendaEditarPeca.Location = new System.Drawing.Point(212, 385);
+            this.txtValorVendaEditarPeca.MaxLength = 6;
             this.txtValorVendaEditarPeca.Name = "txtValorVendaEditarPeca";
             this.txtValorVendaEditarPeca.Size = new System.Drawing.Size(234, 20);
             this.txtValorVendaEditarPeca.TabIndex = 64;
@@ -276,6 +279,7 @@ namespace SistemaOrdemServico
             // numericValorCompraEditar
             // 
             this.numericValorCompraEditar.Location = new System.Drawing.Point(212, 340);
+            this.numericValorCompraEditar.MaxLength = 6;
             this.numericValorCompraEditar.Name = "numericValorCompraEditar";
             this.numericValorCompraEditar.Size = new System.Drawing.Size(234, 20);
             this.numericValorCompraEditar.TabIndex = 63;
@@ -374,11 +378,11 @@ namespace SistemaOrdemServico
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(80, 249);
+            this.label4.Location = new System.Drawing.Point(78, 249);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(93, 18);
+            this.label4.Size = new System.Drawing.Size(99, 18);
             this.label4.TabIndex = 47;
-            this.label4.Text = "Fornecedor:";
+            this.label4.Text = "*Fornecedor:";
             // 
             // label5
             // 
@@ -436,7 +440,7 @@ namespace SistemaOrdemServico
             // 
             // txtIdDeletarPeca
             // 
-            this.txtIdDeletarPeca.Location = new System.Drawing.Point(155, 176);
+            this.txtIdDeletarPeca.Location = new System.Drawing.Point(143, 176);
             this.txtIdDeletarPeca.Name = "txtIdDeletarPeca";
             this.txtIdDeletarPeca.Size = new System.Drawing.Size(81, 20);
             this.txtIdDeletarPeca.TabIndex = 51;
