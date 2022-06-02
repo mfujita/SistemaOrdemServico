@@ -76,6 +76,7 @@ namespace SistemaOrdemServico
             this.fabricanteConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorCompraConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorVendaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelarEdicao = new System.Windows.Forms.Button();
             this.tabControlPecas.SuspendLayout();
             this.tabCadastrarPecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
@@ -245,6 +246,7 @@ namespace SistemaOrdemServico
             // 
             // tabEditarPeca
             // 
+            this.tabEditarPeca.Controls.Add(this.btnCancelarEdicao);
             this.tabEditarPeca.Controls.Add(this.txtValorVendaEditarPeca);
             this.tabEditarPeca.Controls.Add(this.numericValorCompraEditar);
             this.tabEditarPeca.Controls.Add(this.btnConsultaEditaPeca);
@@ -547,6 +549,16 @@ namespace SistemaOrdemServico
             this.valorVendaPeca.HeaderText = "Valor Venda";
             this.valorVendaPeca.Name = "valorVendaPeca";
             // 
+            // btnCancelarEdicao
+            // 
+            this.btnCancelarEdicao.Location = new System.Drawing.Point(245, 444);
+            this.btnCancelarEdicao.Name = "btnCancelarEdicao";
+            this.btnCancelarEdicao.Size = new System.Drawing.Size(141, 33);
+            this.btnCancelarEdicao.TabIndex = 65;
+            this.btnCancelarEdicao.Text = "Cancelar";
+            this.btnCancelarEdicao.UseVisualStyleBackColor = true;
+            this.btnCancelarEdicao.Click += new System.EventHandler(this.btnCancelarEdicao_Click);
+            // 
             // CadastroPecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -624,5 +636,6 @@ namespace SistemaOrdemServico
         private System.Windows.Forms.DataGridViewTextBoxColumn fabricanteConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorCompraConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorVendaPeca;
+        private System.Windows.Forms.Button btnCancelarEdicao;
     }
 }

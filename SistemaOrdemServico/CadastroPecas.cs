@@ -29,7 +29,7 @@ namespace SistemaOrdemServico
          */
         public SqlConnection abreConexao()
         {
-            string conexao = @"Server= DESKTOP-U3P4RMT\SQLEXPRESS;
+            string conexao = @"Server=;
                             Database=OSFujita;
                             User Id=sa;
                             Password=1234;";
@@ -524,6 +524,20 @@ namespace SistemaOrdemServico
             numericValorCompraEditar.Enabled = false;
             buttonEditarPeca.Enabled = false;
             cboxFornecedorEditarPeca.Enabled = false;
+        }
+
+        private void btnCancelarEdicao_Click(object sender, EventArgs e)
+        {
+            txtNomeEditarPeca.Text = "";
+            txtFabricanteEditarPeca.Text = "";
+            txtValorVendaEditarPeca.Text = "";
+            numericValorCompraEditar.Text = "";
+            buttonEditarPeca.Enabled = false;
+            cboxFornecedorEditarPeca.Text = "Selecionar";
+            bloquearCamposEditar();
+
+            txtIdEditarPeca.Text = "";
+            txtIdEditarPeca.Enabled = true;
         }
     }
 }
