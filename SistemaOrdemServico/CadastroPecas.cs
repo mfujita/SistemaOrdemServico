@@ -29,7 +29,7 @@ namespace SistemaOrdemServico
          */
         public SqlConnection abreConexao()
         {
-            string conexao = @"Server=;
+            string conexao = @"Server= DESKTOP-U3P4RMT\SQLEXPRESS;
                             Database=OSFujita;
                             User Id=sa;
                             Password=1234;";
@@ -181,8 +181,8 @@ namespace SistemaOrdemServico
                     sql = "INSERT INTO cadPeca VALUES ( '" + cadastroNomePeca + "'," +
                         "'" + idFornecedorPeca + "'," +
                         "'" + cadastroFabricantePeca + "'," +
-                        "" + Convert.ToDouble(cadastroValorCompra.Replace(",", ".")) + "," +
-                        "" + Convert.ToDouble(cadastroValorVenda.Replace(",", ".")) + ")";
+                        "" + Convert.ToDecimal(cadastroValorCompra.Replace(",", ".")) + "," +
+                        "" + Convert.ToDecimal(cadastroValorVenda.Replace(",", ".")) + ")";
 
                     SqlCommand comandCadastro = new SqlCommand(sql, conexao);
                     conexao.Open();
@@ -200,6 +200,8 @@ namespace SistemaOrdemServico
                     cboxFornecedorCadastrarPeca.Text = "Selecionar";
                     txtFabricanteCadastrarPeca.Text = string.Empty;
                     numericValorVendaCadastrarPeca.Text = string.Empty;
+
+                    dgvPecas.Rows.Clear();
                 }
 
                 catch (Exception)
@@ -243,6 +245,8 @@ namespace SistemaOrdemServico
                 MessageBox.Show("Peça deletada com exito");
 
                 txtIdDeletarPeca.Text = string.Empty;
+
+                dgvPecas.Rows.Clear();
             }
         }
 
@@ -403,8 +407,8 @@ namespace SistemaOrdemServico
                 {
                     bloquearCamposEditar();
                     txtIdEditarPeca.Enabled = true;
-
                     MessageBox.Show("Id não encontrado");
+                    txtIdEditarPeca.Text = "";
 
                 }
 
@@ -478,7 +482,7 @@ namespace SistemaOrdemServico
                     cboxFornecedorEditarPeca.Text = "Selecionar";
                     bloquearCamposEditar();
 
-
+                    dgvPecas.Rows.Clear();
                 }
 
                 catch (Exception)
