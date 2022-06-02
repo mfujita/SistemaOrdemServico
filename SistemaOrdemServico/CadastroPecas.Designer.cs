@@ -134,7 +134,7 @@ namespace SistemaOrdemServico
             // txtCadastroValorCompraPeca
             // 
             this.txtCadastroValorCompraPeca.Location = new System.Drawing.Point(212, 310);
-            this.txtCadastroValorCompraPeca.MaxLength = 6;
+            this.txtCadastroValorCompraPeca.MaxLength = 8;
             this.txtCadastroValorCompraPeca.Name = "txtCadastroValorCompraPeca";
             this.txtCadastroValorCompraPeca.Size = new System.Drawing.Size(234, 20);
             this.txtCadastroValorCompraPeca.TabIndex = 60;
@@ -143,10 +143,11 @@ namespace SistemaOrdemServico
             // 
             this.cboxFornecedorCadastrarPeca.FormattingEnabled = true;
             this.cboxFornecedorCadastrarPeca.Location = new System.Drawing.Point(212, 218);
+            this.cboxFornecedorCadastrarPeca.MaxDropDownItems = 100;
             this.cboxFornecedorCadastrarPeca.Name = "cboxFornecedorCadastrarPeca";
             this.cboxFornecedorCadastrarPeca.Size = new System.Drawing.Size(234, 21);
             this.cboxFornecedorCadastrarPeca.TabIndex = 59;
-            this.cboxFornecedorCadastrarPeca.Text = "Selecionar";
+            this.cboxFornecedorCadastrarPeca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboxFornecedorCadastrarPeca_KeyPress);
             // 
             // btnSalvarPeca
             // 
@@ -279,7 +280,7 @@ namespace SistemaOrdemServico
             // numericValorCompraEditar
             // 
             this.numericValorCompraEditar.Location = new System.Drawing.Point(212, 340);
-            this.numericValorCompraEditar.MaxLength = 6;
+            this.numericValorCompraEditar.MaxLength = 9;
             this.numericValorCompraEditar.Name = "numericValorCompraEditar";
             this.numericValorCompraEditar.Size = new System.Drawing.Size(234, 20);
             this.numericValorCompraEditar.TabIndex = 63;
@@ -301,7 +302,7 @@ namespace SistemaOrdemServico
             this.cboxFornecedorEditarPeca.Name = "cboxFornecedorEditarPeca";
             this.cboxFornecedorEditarPeca.Size = new System.Drawing.Size(234, 21);
             this.cboxFornecedorEditarPeca.TabIndex = 61;
-            this.cboxFornecedorEditarPeca.Text = "Selecionar";
+            this.cboxFornecedorEditarPeca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboxFornecedorEditarPeca_KeyPress);
             // 
             // buttonEditarPeca
             // 
@@ -528,7 +529,7 @@ namespace SistemaOrdemServico
             // 
             // fornecedorConsultaPeca
             // 
-            this.fornecedorConsultaPeca.HeaderText = "ID Fornecedor";
+            this.fornecedorConsultaPeca.HeaderText = "Fornecedor";
             this.fornecedorConsultaPeca.Name = "fornecedorConsultaPeca";
             // 
             // fabricanteConsultaPeca
@@ -612,16 +613,16 @@ namespace SistemaOrdemServico
         private System.Windows.Forms.DataGridView dgvPecas;
         private System.Windows.Forms.ComboBox cboxFornecedorCadastrarPeca;
         private System.Windows.Forms.ComboBox cboxFornecedorEditarPeca;
+        private System.Windows.Forms.Button btnConsultaEditaPeca;
+        private System.Windows.Forms.TextBox numericValorCompraEditar;
+        private System.Windows.Forms.TextBox txtValorVendaEditarPeca;
+        private System.Windows.Forms.TextBox txtCadastroValorCompraPeca;
+        private System.Windows.Forms.TextBox numericValorVendaCadastrarPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn idConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn fornecedorConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn fabricanteConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorCompraConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorVendaPeca;
-        private System.Windows.Forms.Button btnConsultaEditaPeca;
-        private System.Windows.Forms.TextBox numericValorCompraEditar;
-        private System.Windows.Forms.TextBox txtValorVendaEditarPeca;
-        private System.Windows.Forms.TextBox txtCadastroValorCompraPeca;
-        private System.Windows.Forms.TextBox numericValorVendaCadastrarPeca;
     }
 }
