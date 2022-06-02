@@ -33,12 +33,9 @@
             this.btnSalvarFunc = new System.Windows.Forms.Button();
             this.lblContatoFunc = new System.Windows.Forms.Label();
             this.txtEmailFunc = new System.Windows.Forms.TextBox();
-            this.txtCelFunc = new System.Windows.Forms.TextBox();
-            this.txtTelFunc = new System.Windows.Forms.TextBox();
             this.cbEstadoFunc = new System.Windows.Forms.ComboBox();
             this.txtCidadeFunc = new System.Windows.Forms.TextBox();
             this.txtNumCasaFunc = new System.Windows.Forms.TextBox();
-            this.txtCepFunc = new System.Windows.Forms.TextBox();
             this.txtBairroFunc = new System.Windows.Forms.TextBox();
             this.txtRuaFunc = new System.Windows.Forms.TextBox();
             this.txtDatanascFunc = new System.Windows.Forms.MaskedTextBox();
@@ -62,7 +59,15 @@
             this.lblNomeFunc = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbNewCad = new System.Windows.Forms.TabPage();
+            this.txtCelFunc = new System.Windows.Forms.MaskedTextBox();
+            this.txtTelFunc = new System.Windows.Forms.MaskedTextBox();
+            this.txtCepFunc = new System.Windows.Forms.MaskedTextBox();
+            this.btnCancelaCad = new System.Windows.Forms.Button();
             this.tbEdit = new System.Windows.Forms.TabPage();
+            this.txtCelFuncEdit = new System.Windows.Forms.MaskedTextBox();
+            this.txtTelFuncEdit = new System.Windows.Forms.MaskedTextBox();
+            this.txtCepFuncEdit = new System.Windows.Forms.MaskedTextBox();
+            this.btnCancelEdit = new System.Windows.Forms.Button();
             this.btnPesquisarEdit = new System.Windows.Forms.Button();
             this.lblEditarCad = new System.Windows.Forms.Label();
             this.txtPesquisaEdit = new System.Windows.Forms.TextBox();
@@ -75,9 +80,7 @@
             this.lblEnderecoEdit = new System.Windows.Forms.Label();
             this.txtEmailFuncEdit = new System.Windows.Forms.TextBox();
             this.lblRuaFuncEdit = new System.Windows.Forms.Label();
-            this.txtCelFuncEdit = new System.Windows.Forms.TextBox();
             this.lblBairroFuncEdit = new System.Windows.Forms.Label();
-            this.txtTelFuncEdit = new System.Windows.Forms.TextBox();
             this.lblNumCFuncEdit = new System.Windows.Forms.Label();
             this.cbEstadoFuncEdit = new System.Windows.Forms.ComboBox();
             this.lblCepFuncEdit = new System.Windows.Forms.Label();
@@ -85,7 +88,6 @@
             this.lblTelFuncEdit = new System.Windows.Forms.Label();
             this.txtNumCFuncEdit = new System.Windows.Forms.TextBox();
             this.lblCelFuncEdit = new System.Windows.Forms.Label();
-            this.txtCepFuncEdit = new System.Windows.Forms.TextBox();
             this.lblEmailFuncEdit = new System.Windows.Forms.Label();
             this.txtBairroFuncEdit = new System.Windows.Forms.TextBox();
             this.lblCidadFuncEdit = new System.Windows.Forms.Label();
@@ -96,11 +98,9 @@
             this.txtCPFuncEdit = new System.Windows.Forms.MaskedTextBox();
             this.cbSexoFuncEdit = new System.Windows.Forms.ComboBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.txtDelete = new System.Windows.Forms.TextBox();
-            this.lblDeletarTitulo = new System.Windows.Forms.Label();
             this.lblDeletar = new System.Windows.Forms.Label();
-            this.btnCancelEdit = new System.Windows.Forms.Button();
-            this.btnCancelaCad = new System.Windows.Forms.Button();
+            this.lblDeletarTitulo = new System.Windows.Forms.Label();
+            this.txtDelete = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tbNewCad.SuspendLayout();
             this.tbEdit.SuspendLayout();
@@ -160,22 +160,6 @@
             this.txtEmailFunc.Size = new System.Drawing.Size(496, 29);
             this.txtEmailFunc.TabIndex = 59;
             // 
-            // txtCelFunc
-            // 
-            this.txtCelFunc.Location = new System.Drawing.Point(102, 387);
-            this.txtCelFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCelFunc.Name = "txtCelFunc";
-            this.txtCelFunc.Size = new System.Drawing.Size(234, 29);
-            this.txtCelFunc.TabIndex = 58;
-            // 
-            // txtTelFunc
-            // 
-            this.txtTelFunc.Location = new System.Drawing.Point(102, 348);
-            this.txtTelFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTelFunc.Name = "txtTelFunc";
-            this.txtTelFunc.Size = new System.Drawing.Size(234, 29);
-            this.txtTelFunc.TabIndex = 57;
-            // 
             // cbEstadoFunc
             // 
             this.cbEstadoFunc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -231,14 +215,6 @@
             this.txtNumCasaFunc.Size = new System.Drawing.Size(148, 29);
             this.txtNumCasaFunc.TabIndex = 54;
             // 
-            // txtCepFunc
-            // 
-            this.txtCepFunc.Location = new System.Drawing.Point(499, 234);
-            this.txtCepFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCepFunc.Name = "txtCepFunc";
-            this.txtCepFunc.Size = new System.Drawing.Size(250, 29);
-            this.txtCepFunc.TabIndex = 53;
-            // 
             // txtBairroFunc
             // 
             this.txtBairroFunc.Location = new System.Drawing.Point(102, 234);
@@ -268,7 +244,7 @@
             // 
             this.txtCPFFunc.Location = new System.Drawing.Point(102, 111);
             this.txtCPFFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCPFFunc.Mask = "#########-##";
+            this.txtCPFFunc.Mask = "###,###,###-##";
             this.txtCPFFunc.Name = "txtCPFFunc";
             this.txtCPFFunc.Size = new System.Drawing.Size(131, 29);
             this.txtCPFFunc.TabIndex = 49;
@@ -285,7 +261,7 @@
             this.cbSexoFunc.Name = "cbSexoFunc";
             this.cbSexoFunc.Size = new System.Drawing.Size(142, 29);
             this.cbSexoFunc.TabIndex = 48;
-            this.cbSexoFunc.DropDownClosed += new System.EventHandler(this.cbSexoFunc_DropDownClosed);
+            this.cbSexoFunc.SelectionChangeCommitted += new System.EventHandler(this.cbSexoFunc_SelectionChangeCommitted);
             // 
             // txtNomeFunc
             // 
@@ -461,6 +437,9 @@
             // 
             // tbNewCad
             // 
+            this.tbNewCad.Controls.Add(this.txtCelFunc);
+            this.tbNewCad.Controls.Add(this.txtTelFunc);
+            this.tbNewCad.Controls.Add(this.txtCepFunc);
             this.tbNewCad.Controls.Add(this.btnCancelaCad);
             this.tbNewCad.Controls.Add(this.lblNomeFunc);
             this.tbNewCad.Controls.Add(this.lblCadastroFunc);
@@ -472,9 +451,7 @@
             this.tbNewCad.Controls.Add(this.lblEnderecoFunc);
             this.tbNewCad.Controls.Add(this.txtEmailFunc);
             this.tbNewCad.Controls.Add(this.lblRuaFunc);
-            this.tbNewCad.Controls.Add(this.txtCelFunc);
             this.tbNewCad.Controls.Add(this.lblBairroFunc);
-            this.tbNewCad.Controls.Add(this.txtTelFunc);
             this.tbNewCad.Controls.Add(this.lblNumeroFunc);
             this.tbNewCad.Controls.Add(this.cbEstadoFunc);
             this.tbNewCad.Controls.Add(this.lblCepFunc);
@@ -482,7 +459,6 @@
             this.tbNewCad.Controls.Add(this.lblTelefoneFunc);
             this.tbNewCad.Controls.Add(this.txtNumCasaFunc);
             this.tbNewCad.Controls.Add(this.lblCelularFunc);
-            this.tbNewCad.Controls.Add(this.txtCepFunc);
             this.tbNewCad.Controls.Add(this.lblEmailFunc);
             this.tbNewCad.Controls.Add(this.txtBairroFunc);
             this.tbNewCad.Controls.Add(this.lblCidadeFunc);
@@ -500,8 +476,46 @@
             this.tbNewCad.Text = "Novo Funcionário";
             this.tbNewCad.UseVisualStyleBackColor = true;
             // 
+            // txtCelFunc
+            // 
+            this.txtCelFunc.Location = new System.Drawing.Point(102, 384);
+            this.txtCelFunc.Mask = "(##)#####-####";
+            this.txtCelFunc.Name = "txtCelFunc";
+            this.txtCelFunc.Size = new System.Drawing.Size(113, 29);
+            this.txtCelFunc.TabIndex = 100;
+            // 
+            // txtTelFunc
+            // 
+            this.txtTelFunc.Location = new System.Drawing.Point(102, 348);
+            this.txtTelFunc.Mask = "(##)####-####";
+            this.txtTelFunc.Name = "txtTelFunc";
+            this.txtTelFunc.Size = new System.Drawing.Size(113, 29);
+            this.txtTelFunc.TabIndex = 99;
+            // 
+            // txtCepFunc
+            // 
+            this.txtCepFunc.Location = new System.Drawing.Point(499, 232);
+            this.txtCepFunc.Mask = "#####-###";
+            this.txtCepFunc.Name = "txtCepFunc";
+            this.txtCepFunc.Size = new System.Drawing.Size(91, 29);
+            this.txtCepFunc.TabIndex = 98;
+            // 
+            // btnCancelaCad
+            // 
+            this.btnCancelaCad.Location = new System.Drawing.Point(681, 488);
+            this.btnCancelaCad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancelaCad.Name = "btnCancelaCad";
+            this.btnCancelaCad.Size = new System.Drawing.Size(99, 37);
+            this.btnCancelaCad.TabIndex = 97;
+            this.btnCancelaCad.Text = "Cancelar";
+            this.btnCancelaCad.UseVisualStyleBackColor = true;
+            this.btnCancelaCad.Click += new System.EventHandler(this.btnCancelaCad_Click);
+            // 
             // tbEdit
             // 
+            this.tbEdit.Controls.Add(this.txtCelFuncEdit);
+            this.tbEdit.Controls.Add(this.txtTelFuncEdit);
+            this.tbEdit.Controls.Add(this.txtCepFuncEdit);
             this.tbEdit.Controls.Add(this.btnCancelEdit);
             this.tbEdit.Controls.Add(this.btnPesquisarEdit);
             this.tbEdit.Controls.Add(this.lblEditarCad);
@@ -515,9 +529,7 @@
             this.tbEdit.Controls.Add(this.lblEnderecoEdit);
             this.tbEdit.Controls.Add(this.txtEmailFuncEdit);
             this.tbEdit.Controls.Add(this.lblRuaFuncEdit);
-            this.tbEdit.Controls.Add(this.txtCelFuncEdit);
             this.tbEdit.Controls.Add(this.lblBairroFuncEdit);
-            this.tbEdit.Controls.Add(this.txtTelFuncEdit);
             this.tbEdit.Controls.Add(this.lblNumCFuncEdit);
             this.tbEdit.Controls.Add(this.cbEstadoFuncEdit);
             this.tbEdit.Controls.Add(this.lblCepFuncEdit);
@@ -525,7 +537,6 @@
             this.tbEdit.Controls.Add(this.lblTelFuncEdit);
             this.tbEdit.Controls.Add(this.txtNumCFuncEdit);
             this.tbEdit.Controls.Add(this.lblCelFuncEdit);
-            this.tbEdit.Controls.Add(this.txtCepFuncEdit);
             this.tbEdit.Controls.Add(this.lblEmailFuncEdit);
             this.tbEdit.Controls.Add(this.txtBairroFuncEdit);
             this.tbEdit.Controls.Add(this.lblCidadFuncEdit);
@@ -543,6 +554,41 @@
             this.tbEdit.TabIndex = 1;
             this.tbEdit.Text = "Editar ";
             this.tbEdit.UseVisualStyleBackColor = true;
+            // 
+            // txtCelFuncEdit
+            // 
+            this.txtCelFuncEdit.Location = new System.Drawing.Point(110, 422);
+            this.txtCelFuncEdit.Mask = "(##)#####-####";
+            this.txtCelFuncEdit.Name = "txtCelFuncEdit";
+            this.txtCelFuncEdit.Size = new System.Drawing.Size(125, 29);
+            this.txtCelFuncEdit.TabIndex = 101;
+            // 
+            // txtTelFuncEdit
+            // 
+            this.txtTelFuncEdit.Location = new System.Drawing.Point(110, 383);
+            this.txtTelFuncEdit.Mask = "(##)####-####";
+            this.txtTelFuncEdit.Name = "txtTelFuncEdit";
+            this.txtTelFuncEdit.Size = new System.Drawing.Size(125, 29);
+            this.txtTelFuncEdit.TabIndex = 100;
+            // 
+            // txtCepFuncEdit
+            // 
+            this.txtCepFuncEdit.Location = new System.Drawing.Point(507, 265);
+            this.txtCepFuncEdit.Mask = "#####-###";
+            this.txtCepFuncEdit.Name = "txtCepFuncEdit";
+            this.txtCepFuncEdit.Size = new System.Drawing.Size(91, 29);
+            this.txtCepFuncEdit.TabIndex = 97;
+            // 
+            // btnCancelEdit
+            // 
+            this.btnCancelEdit.Location = new System.Drawing.Point(689, 521);
+            this.btnCancelEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancelEdit.Name = "btnCancelEdit";
+            this.btnCancelEdit.Size = new System.Drawing.Size(99, 37);
+            this.btnCancelEdit.TabIndex = 96;
+            this.btnCancelEdit.Text = "Cancelar";
+            this.btnCancelEdit.UseVisualStyleBackColor = true;
+            this.btnCancelEdit.Click += new System.EventHandler(this.btnCancelEdit_Click);
             // 
             // btnPesquisarEdit
             // 
@@ -661,14 +707,6 @@
             this.lblRuaFuncEdit.TabIndex = 69;
             this.lblRuaFuncEdit.Text = "Rua:";
             // 
-            // txtCelFuncEdit
-            // 
-            this.txtCelFuncEdit.Location = new System.Drawing.Point(110, 422);
-            this.txtCelFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCelFuncEdit.Name = "txtCelFuncEdit";
-            this.txtCelFuncEdit.Size = new System.Drawing.Size(234, 29);
-            this.txtCelFuncEdit.TabIndex = 89;
-            // 
             // lblBairroFuncEdit
             // 
             this.lblBairroFuncEdit.AutoSize = true;
@@ -678,14 +716,6 @@
             this.lblBairroFuncEdit.Size = new System.Drawing.Size(55, 21);
             this.lblBairroFuncEdit.TabIndex = 70;
             this.lblBairroFuncEdit.Text = "Bairro:";
-            // 
-            // txtTelFuncEdit
-            // 
-            this.txtTelFuncEdit.Location = new System.Drawing.Point(110, 383);
-            this.txtTelFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTelFuncEdit.Name = "txtTelFuncEdit";
-            this.txtTelFuncEdit.Size = new System.Drawing.Size(234, 29);
-            this.txtTelFuncEdit.TabIndex = 88;
             // 
             // lblNumCFuncEdit
             // 
@@ -782,14 +812,6 @@
             this.lblCelFuncEdit.TabIndex = 74;
             this.lblCelFuncEdit.Text = "Celular:";
             // 
-            // txtCepFuncEdit
-            // 
-            this.txtCepFuncEdit.Location = new System.Drawing.Point(507, 267);
-            this.txtCepFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCepFuncEdit.Name = "txtCepFuncEdit";
-            this.txtCepFuncEdit.Size = new System.Drawing.Size(250, 29);
-            this.txtCepFuncEdit.TabIndex = 84;
-            // 
             // lblEmailFuncEdit
             // 
             this.lblEmailFuncEdit.AutoSize = true;
@@ -857,7 +879,7 @@
             // 
             this.txtCPFuncEdit.Location = new System.Drawing.Point(110, 152);
             this.txtCPFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCPFuncEdit.Mask = "#########-##";
+            this.txtCPFuncEdit.Mask = "###,###,###-##";
             this.txtCPFuncEdit.Name = "txtCPFuncEdit";
             this.txtCPFuncEdit.Size = new System.Drawing.Size(131, 29);
             this.txtCPFuncEdit.TabIndex = 80;
@@ -874,7 +896,7 @@
             this.cbSexoFuncEdit.Name = "cbSexoFuncEdit";
             this.cbSexoFuncEdit.Size = new System.Drawing.Size(142, 29);
             this.cbSexoFuncEdit.TabIndex = 79;
-            this.cbSexoFuncEdit.TextChanged += new System.EventHandler(this.cbSexoFuncEdit_TextChanged);
+            this.cbSexoFuncEdit.SelectionChangeCommitted += new System.EventHandler(this.cbSexoFuncEdit_SelectionChangeCommitted);
             // 
             // tabPage3
             // 
@@ -890,12 +912,14 @@
             this.tabPage3.Text = "Deletar ";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // txtDelete
+            // lblDeletar
             // 
-            this.txtDelete.Location = new System.Drawing.Point(35, 113);
-            this.txtDelete.Name = "txtDelete";
-            this.txtDelete.Size = new System.Drawing.Size(308, 29);
-            this.txtDelete.TabIndex = 64;
+            this.lblDeletar.AutoSize = true;
+            this.lblDeletar.Location = new System.Drawing.Point(31, 80);
+            this.lblDeletar.Name = "lblDeletar";
+            this.lblDeletar.Size = new System.Drawing.Size(285, 21);
+            this.lblDeletar.TabIndex = 96;
+            this.lblDeletar.Text = "Digite o nome completo do funcionário:";
             // 
             // lblDeletarTitulo
             // 
@@ -908,36 +932,12 @@
             this.lblDeletarTitulo.TabIndex = 95;
             this.lblDeletarTitulo.Text = "Deletar funcionário";
             // 
-            // lblDeletar
+            // txtDelete
             // 
-            this.lblDeletar.AutoSize = true;
-            this.lblDeletar.Location = new System.Drawing.Point(31, 80);
-            this.lblDeletar.Name = "lblDeletar";
-            this.lblDeletar.Size = new System.Drawing.Size(285, 21);
-            this.lblDeletar.TabIndex = 96;
-            this.lblDeletar.Text = "Digite o nome completo do funcionário:";
-            // 
-            // btnCancelEdit
-            // 
-            this.btnCancelEdit.Location = new System.Drawing.Point(689, 521);
-            this.btnCancelEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCancelEdit.Name = "btnCancelEdit";
-            this.btnCancelEdit.Size = new System.Drawing.Size(99, 37);
-            this.btnCancelEdit.TabIndex = 96;
-            this.btnCancelEdit.Text = "Cancelar";
-            this.btnCancelEdit.UseVisualStyleBackColor = true;
-            this.btnCancelEdit.Click += new System.EventHandler(this.btnCancelEdit_Click);
-            // 
-            // btnCancelaCad
-            // 
-            this.btnCancelaCad.Location = new System.Drawing.Point(681, 488);
-            this.btnCancelaCad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnCancelaCad.Name = "btnCancelaCad";
-            this.btnCancelaCad.Size = new System.Drawing.Size(99, 37);
-            this.btnCancelaCad.TabIndex = 97;
-            this.btnCancelaCad.Text = "Cancelar";
-            this.btnCancelaCad.UseVisualStyleBackColor = true;
-            this.btnCancelaCad.Click += new System.EventHandler(this.btnCancelaCad_Click);
+            this.txtDelete.Location = new System.Drawing.Point(35, 113);
+            this.txtDelete.Name = "txtDelete";
+            this.txtDelete.Size = new System.Drawing.Size(308, 29);
+            this.txtDelete.TabIndex = 64;
             // 
             // CadastroFunc
             // 
@@ -949,7 +949,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CadastroFunc";
             this.Text = "Cadastro de Funcionários";
-            //this.Load += new System.EventHandler(this.CadastroFunc_Load);
             this.tabControl1.ResumeLayout(false);
             this.tbNewCad.ResumeLayout(false);
             this.tbNewCad.PerformLayout();
@@ -968,12 +967,9 @@
         private System.Windows.Forms.Button btnSalvarFunc;
         private System.Windows.Forms.Label lblContatoFunc;
         private System.Windows.Forms.TextBox txtEmailFunc;
-        private System.Windows.Forms.TextBox txtCelFunc;
-        private System.Windows.Forms.TextBox txtTelFunc;
         private System.Windows.Forms.ComboBox cbEstadoFunc;
         private System.Windows.Forms.TextBox txtCidadeFunc;
         private System.Windows.Forms.TextBox txtNumCasaFunc;
-        private System.Windows.Forms.TextBox txtCepFunc;
         private System.Windows.Forms.TextBox txtBairroFunc;
         private System.Windows.Forms.TextBox txtRuaFunc;
         private System.Windows.Forms.MaskedTextBox txtDatanascFunc;
@@ -1007,9 +1003,7 @@
         private System.Windows.Forms.Label lblEnderecoEdit;
         private System.Windows.Forms.TextBox txtEmailFuncEdit;
         private System.Windows.Forms.Label lblRuaFuncEdit;
-        private System.Windows.Forms.TextBox txtCelFuncEdit;
         private System.Windows.Forms.Label lblBairroFuncEdit;
-        private System.Windows.Forms.TextBox txtTelFuncEdit;
         private System.Windows.Forms.Label lblNumCFuncEdit;
         private System.Windows.Forms.ComboBox cbEstadoFuncEdit;
         private System.Windows.Forms.Label lblCepFuncEdit;
@@ -1017,7 +1011,6 @@
         private System.Windows.Forms.Label lblTelFuncEdit;
         private System.Windows.Forms.TextBox txtNumCFuncEdit;
         private System.Windows.Forms.Label lblCelFuncEdit;
-        private System.Windows.Forms.TextBox txtCepFuncEdit;
         private System.Windows.Forms.Label lblEmailFuncEdit;
         private System.Windows.Forms.TextBox txtBairroFuncEdit;
         private System.Windows.Forms.Label lblCidadFuncEdit;
@@ -1036,5 +1029,11 @@
         private System.Windows.Forms.Label lblDeletar;
         private System.Windows.Forms.Button btnCancelEdit;
         private System.Windows.Forms.Button btnCancelaCad;
+        private System.Windows.Forms.MaskedTextBox txtCepFuncEdit;
+        private System.Windows.Forms.MaskedTextBox txtCepFunc;
+        private System.Windows.Forms.MaskedTextBox txtCelFunc;
+        private System.Windows.Forms.MaskedTextBox txtTelFunc;
+        private System.Windows.Forms.MaskedTextBox txtCelFuncEdit;
+        private System.Windows.Forms.MaskedTextBox txtTelFuncEdit;
     }
 }

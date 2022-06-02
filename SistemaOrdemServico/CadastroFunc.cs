@@ -45,13 +45,13 @@ namespace SistemaOrdemServico
                 {
                     SqlConnection conexao = AbreConexao();
 
-                    string sql = "INSERT INTO cadFunc VALUES ('" + txtCPFFunc.Text.Replace("-","") + "','" +
+                    string sql = "INSERT INTO cadFunc VALUES ('" + txtCPFFunc.Text.Replace("-","").Replace(".","") + "','" +
                         txtNomeFunc.Text + "', '" +
                         sexo + "', '" +
                         txtDatanascFunc.Text.Replace("/", "-") + "', '" +
-                        txtCepFunc.Text + "', '" +
-                        txtTelFunc.Text + "', '" +
-                        txtCelFunc.Text + "', '" +
+                        txtCepFunc.Text.Replace("-", "") + "', '" +
+                        txtTelFunc.Text.Replace("(", "").Replace(")", "").Replace("-", "") + "', '" +
+                        txtCelFunc.Text.Replace("(", "").Replace(")", "").Replace("-", "") + "', '" +
                         txtEmailFunc.Text + "', '" +
                         cbEstadoFunc.Text + "', '" +
                         txtCidadeFunc.Text + "', '" +
@@ -88,17 +88,17 @@ namespace SistemaOrdemServico
             Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
             {
                 {lblNomeFunc.Text     , txtNomeFunc.Text},
-                {lblCpfFunc.Text      , txtCPFFunc.Text == "         -" ? string.Empty : txtCPFFunc.Text},
+                {lblCpfFunc.Text      , txtCPFFunc.Text == "   .   .   -" ? string.Empty : txtCPFFunc.Text},
                 {lblDatanascFunc.Text , txtDatanascFunc.Text == "  /  /" ? string.Empty : txtDatanascFunc.Text},
                 {lblSexoFunc.Text     , cbSexoFunc.Text},
                 {lblRuaFunc.Text      , txtRuaFunc.Text},
                 {lblBairroFunc.Text   , txtBairroFunc.Text},
                 {lblCidadeFunc.Text   , txtCidadeFunc.Text},
                 {lblEstadoFunc.Text   , cbEstadoFunc.Text},
-                {lblCepFunc.Text      , txtCepFunc.Text},
+                {lblCepFunc.Text      , txtCepFunc.Text == "     -" ? string.Empty : txtCepFunc.Text},
                 {lblNumeroFunc.Text   , txtNumCasaFunc.Text},
-                {lblTelefoneFunc.Text , txtTelFunc.Text},
-                {lblCelularFunc.Text  , txtCelFunc.Text},
+                //{lblTelefoneFunc.Text , txtTelFunc.Text == "(  )    -" ? string.Empty : txtTelFunc.Text},
+                {lblCelularFunc.Text  , txtCelFunc.Text == "(  )     -" ? string.Empty : txtCelFunc.Text},
                 {lblEmailFunc.Text    , txtEmailFunc.Text},
             };
 
@@ -148,9 +148,9 @@ namespace SistemaOrdemServico
         //    txtCelFunc.Text = "19994197566";
         //    txtEmailFunc.Text = "gustavo_allm@outlook.com";
         //}
-        
-        //Transforma a string sexo em char pra mandar pro banco
-        private void cbSexoFunc_DropDownClosed(object sender, EventArgs e)
+
+        //Transforma a string sexo em char pra mandar pro banco       
+        private void cbSexoFunc_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (cbSexoFunc.Text == "Masculino")
             {
@@ -297,38 +297,45 @@ namespace SistemaOrdemServico
         //Envia os dados atualizados na tela de editar funcionário pro banco
         private void btnEditFunc_Click(object sender, EventArgs e)
         {
-            SqlConnection conexao = AbreConexao();
+            if (ValidadorEdit() == true)
+            {
+                SqlConnection conexao = AbreConexao();
 
-            string sql = "UPDATE cadFunc set cpf = '" + txtCPFuncEdit.Text.Replace("-", "") + "', nome = '" +
-                txtNomeFuncEdit.Text + "', sexo = '" +
-                sexoSend + "', dtNasc = '" +
-                txtDtNascFuncEdit.Text.Replace("/", "-") + "', cep = '" +
-                txtCepFuncEdit.Text + "', telefone = '" +
-                txtTelFuncEdit.Text + "', celular = '" +
-                txtCelFuncEdit.Text + "', email = '" +
-                txtEmailFuncEdit.Text + "', estado = '" +
-                cbEstadoFuncEdit.Text + "', cidade = '" +
-                txtCidadeFuncEdit.Text + "', bairro = '" +
-                txtBairroFuncEdit.Text + "', numero = '" +
-                txtNumCFuncEdit.Text + "', rua = '" +
-                txtRuaFuncEdit.Text + "' WHERE idFunc = '" + idFunc + "'";
+                string sql = "UPDATE cadFunc set cpf = '" + txtCPFuncEdit.Text.Replace("-", "").Replace(".", "") + "', nome = '" +
+                    txtNomeFuncEdit.Text + "', sexo = '" +
+                    sexoSend + "', dtNasc = '" +
+                    txtDtNascFuncEdit.Text.Replace("/", "-") + "', cep = '" +
+                    txtCepFuncEdit.Text.Replace("-", "") + "', telefone = '" +
+                    txtTelFuncEdit.Text.Replace("(", "").Replace(")", "").Replace("-", "") + "', celular = '" +
+                    txtCelFuncEdit.Text.Replace("(", "").Replace(")", "").Replace("-", "") + "', email = '" +
+                    txtEmailFuncEdit.Text + "', estado = '" +
+                    cbEstadoFuncEdit.Text + "', cidade = '" +
+                    txtCidadeFuncEdit.Text + "', bairro = '" +
+                    txtBairroFuncEdit.Text + "', numero = '" +
+                    txtNumCFuncEdit.Text + "', rua = '" +
+                    txtRuaFuncEdit.Text + "' WHERE idFunc = '" + idFunc + "'";
 
-            SqlCommand comando = new SqlCommand(sql, conexao);
-            comando.Connection.Open();
-            comando.ExecuteNonQuery();
+                SqlCommand comando = new SqlCommand(sql, conexao);
+                comando.Connection.Open();
+                comando.ExecuteNonQuery();
 
-            comando.Dispose();
-            conexao.Close();
+                comando.Dispose();
+                conexao.Close();
 
-            btnEditFunc.BackColor = Color.Gray;
+                btnEditFunc.BackColor = Color.Gray;
 
-            MessageBox.Show("Cadastro atualizado com sucesso!", "Atualização concluida");
-            ClearControl(this);
-            btnEditFunc.BackColor = Color.LightGray;
+                MessageBox.Show("Cadastro atualizado com sucesso!", "Atualização concluida");
+                ClearControl(this);
+                btnEditFunc.BackColor = Color.LightGray;
+            }
+            else
+            {
+                return;
+            }
         }
-        
+
         //Converte a string da textbox em char pra mandar pro banco
-        private void cbSexoFuncEdit_TextChanged(object sender, EventArgs e)
+        private void cbSexoFuncEdit_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (cbSexoFuncEdit.Text == "Masculino")
             {
@@ -337,6 +344,35 @@ namespace SistemaOrdemServico
             else
             {
                 sexoSend = 'F';
+            }
+        }
+
+        public bool ValidadorEdit()
+        {
+            Dictionary<string, string> validaCamposCadClie = new Dictionary<string, string>
+            {
+                {lblNomeFuncEdit.Text     , txtNomeFuncEdit.Text},
+                {lblCPFuncEdit.Text       , txtCPFuncEdit.Text == "   .   .   -" ? string.Empty : txtCPFFunc.Text},
+                {lblDtNascFuncEdit.Text   , txtDtNascFuncEdit.Text == "  /  /" ? string.Empty : txtDatanascFunc.Text},
+                {lblSexoFuncEdit.Text     , cbSexoFuncEdit.Text},
+                {lblRuaFuncEdit.Text      , txtRuaFuncEdit.Text},
+                {lblBairroFuncEdit.Text   , txtBairroFuncEdit.Text},
+                {lblCidadFuncEdit.Text    , txtCidadeFuncEdit.Text},
+                {lblEstadoFuncEdit.Text   , cbEstadoFuncEdit.Text},
+                {lblCepFuncEdit.Text      , txtCepFuncEdit.Text == "     -" ? string.Empty : txtCepFuncEdit.Text},
+                {lblNumCFuncEdit.Text     , txtNumCFuncEdit.Text},
+                //{lblTelFuncEdit.Text      , txtTelFuncEdit.Text == "(  )    -" ? string.Empty : txtTelFunc.Text},
+                {lblCelFuncEdit.Text      , txtCelFuncEdit.Text == "(  )     -" ? string.Empty : txtTelFunc.Text},
+                {lblEmailFuncEdit.Text    , txtEmailFuncEdit.Text},
+            };
+
+            if (!Form1.TemCamposVazios(validaCamposCadClie))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -375,7 +411,7 @@ namespace SistemaOrdemServico
                         comandoDeleteFunc.Dispose();
                         conexao.Close();
 
-                        MessageBox.Show("Deletado com exito");
+                        MessageBox.Show("Deletado com sucesso!");
                         ClearControl(this);
                     }
                 }
@@ -386,6 +422,6 @@ namespace SistemaOrdemServico
                 }
             }
         }
-        
+
     }
 }
