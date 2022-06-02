@@ -113,7 +113,7 @@ namespace SistemaOrdemServico
             if (formatado.Length >10)
             {
                 this.txtCpfCnpj.Mask = "00,000,000/0000-00";//cnpj
-                //this.txtCpfCnpj.TextMaskFormat = { };
+                this.txtCpfCnpj.TextMaskFormat = { };
                 Console.WriteLine(txtCpfCnpj.TextLength);
                 Console.WriteLine(formatado);
             }
