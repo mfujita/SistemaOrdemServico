@@ -423,7 +423,9 @@ namespace SistemaOrdemServico
                     (campo as NumericUpDown).Value = 0;
                 }
             }
+
             btnEnviar.Tag = string.Empty;
+            valoresSelecionados = null;
         }
 
         private void MudarModo(object sender, EventArgs e)
