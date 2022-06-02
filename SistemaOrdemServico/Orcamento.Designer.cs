@@ -47,6 +47,7 @@
             this.pbOrcamento = new System.Windows.Forms.PictureBox();
             this.btnModoInserir = new System.Windows.Forms.Button();
             this.btnModoExcluir = new System.Windows.Forms.Button();
+            this.btnLimpar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).BeginInit();
             this.SuspendLayout();
@@ -63,9 +64,9 @@
             // 
             // btnEnviar
             // 
-            this.btnEnviar.Location = new System.Drawing.Point(345, 500);
+            this.btnEnviar.Location = new System.Drawing.Point(292, 500);
             this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(75, 33);
+            this.btnEnviar.Size = new System.Drawing.Size(128, 33);
             this.btnEnviar.TabIndex = 38;
             this.btnEnviar.Text = "Inserir";
             this.btnEnviar.UseVisualStyleBackColor = true;
@@ -240,12 +241,23 @@
             this.btnModoExcluir.UseVisualStyleBackColor = true;
             this.btnModoExcluir.Click += new System.EventHandler(this.MudarModo);
             // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Location = new System.Drawing.Point(148, 500);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(128, 33);
+            this.btnLimpar.TabIndex = 46;
+            this.btnLimpar.Text = "Limpar Campos";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
             // Orcamento
             // 
             this.AcceptButton = this.btnEnviar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(473, 545);
+            this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.btnModoExcluir);
             this.Controls.Add(this.btnModoInserir);
             this.Controls.Add(this.btnModoEditar);
@@ -266,6 +278,7 @@
             this.Controls.Add(this.lblDataEntradaOrcamento);
             this.Controls.Add(this.lblClienteOrcamento);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Orcamento";
             this.Text = "Orçamento";
@@ -298,5 +311,6 @@
         private System.Windows.Forms.Button btnModoEditar;
         private System.Windows.Forms.Button btnModoInserir;
         private System.Windows.Forms.Button btnModoExcluir;
+        private System.Windows.Forms.Button btnLimpar;
     }
 }

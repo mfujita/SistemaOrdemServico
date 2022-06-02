@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,19 +15,20 @@ namespace SistemaOrdemServico
     public partial class Orcamento : Form
     {
         private readonly SqlConnection conexaoSql;
-        private readonly Dictionary<string, Action> modos;
+        private readonly Dictionary<string, Func<bool>> modos;
         private Dictionary<string, string> camposDeEntrada;
         private readonly List<Control> campos;
         private static string orcamentoTabela = "cadOrcamento";
+        private IEnumerable<string> valoresSelecionados;
 
 
         public Orcamento()
         {
             InitializeComponent();
 
-            //conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielCasa"));
-            conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielFaculdade"));
-            modos = new Dictionary<string, Action>
+            conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielCasa"));
+            //conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielFaculdade"));
+            modos = new Dictionary<string, Func<bool>>
             {
                 { "Inserir", Inserir },
                 { "Editar", Editar },
@@ -43,7 +45,7 @@ namespace SistemaOrdemServico
             };
         }
 
-        private void Inserir()
+        private bool Inserir()
         {
             CarregarValorCampos();
 
@@ -57,23 +59,44 @@ namespace SistemaOrdemServico
                 }
 
                 SqlInsert(orcamentoTabela, dadosAEnviar);
+
+                return true;
             }
+
+            return false;
         }
 
-        private void Editar()
+        private bool Editar()
         {
-            var idSelecionado = btnEnviar.Tag.ToString();
+            CarregarValorCampos();
 
-            var camposAtualizados = ObterValoresAtualizados(idSelecionado);
-            var condicoes = new Dictionary<string, string> { { "idOrc", idSelecionado } };
+            if (!Form1.TemCamposVazios(camposDeEntrada) && ValidaComboBoxes())
+            {
+                var camposAtualizados = ObterValoresAtualizados();
 
-            SqlUpdate(orcamentoTabela, camposAtualizados, condicoes);
+                if (camposAtualizados.Count > 0)
+                {
+                    var condicoes = new Dictionary<string, string> { { "idOrc", btnEnviar.Tag.ToString() } };
+
+                    SqlUpdate(orcamentoTabela, camposAtualizados, condicoes);
+
+                    return true;
+                }
+                else
+                {
+                    MostrarMensagemErro("Nenhum valor modificado.");
+                }
+            }
+
+            return false;
         }
 
-        private void Excluir()
+        private bool Excluir()
         {
             var deleteDicionario = new Dictionary<string, string> { { "idOrc", btnEnviar.Tag.ToString() } }; 
             SqlDelete(orcamentoTabela, deleteDicionario);
+
+            return true;
         }
 
         private void CarregarValorCampos()
@@ -106,12 +129,12 @@ namespace SistemaOrdemServico
         private void PopularComboBox(ComboBox comboBox, List<List<string>> itens)
         {
             var itensDicionario = itens.ToDictionary(
-                keySelector: cliente => cliente[0],
-                elementSelector: cliente => string.Join(" - ", cliente.Skip(1))
+                keySelector: item => item[0],
+                elementSelector: item => string.Join(" - ", item.Skip(1))
                 );
 
-            comboBox.DisplayMember = "Value";
             comboBox.ValueMember = "Key";
+            comboBox.DisplayMember = "Value";
             comboBox.DataSource = new BindingSource(itensDicionario, null);
             comboBox.SelectedIndex = -1;
         }
@@ -125,7 +148,7 @@ namespace SistemaOrdemServico
         public List<List<string>> SqlSelect(string tabela, Dictionary<string, string> condicoes, string operacao, params string[] colunas)
         {
             string comandoString = $"SELECT {string.Join(", ", colunas)} from {tabela}" +
-                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key}='{condicao.Value}'"))}";
+                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key} = '{condicao.Value}'"))}";
 
             return SqlSelect(comandoString);
         }
@@ -193,8 +216,9 @@ namespace SistemaOrdemServico
         private void SqlUpdate(string tabela, Dictionary<string, string> camposAtualizados, Dictionary<string, string> condicoes, string operacao = "")
         {
             string comandoString = $"UPDATE {tabela}" +
-                $"SET { string.Join(", ", camposAtualizados.Select(campo => $"{ campo.Key } = @{ campo.Value }")) }" +
-                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key} = @{condicao.Key}"))}";
+                $" SET { string.Join(", ", camposAtualizados.Select(campo => $"{ campo.Key } = @{ campo.Key }")) }" +
+                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key} = '{condicao.Value}'"))}";
+
             SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
             foreach (var campo in camposAtualizados) { comandoSql.Parameters.AddWithValue(campo.Key, campo.Value); }
 
@@ -219,7 +243,7 @@ namespace SistemaOrdemServico
         private void SqlDelete(string tabela, Dictionary<string, string> condicoes, string operacao = "")
         {
             string comandoString = $"DELETE FROM {tabela}" +
-                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key} = '{condicao.Key}'"))}";
+                $" WHERE {string.Join($" {operacao} ", condicoes.Select(condicao => $"{condicao.Key} = '{condicao.Value}'"))}";
             SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
 
             try
@@ -287,24 +311,44 @@ namespace SistemaOrdemServico
             return true;
         }
 
-        private Dictionary<string, string> ObterValoresAtualizados(string id)
+        private Dictionary<string, string> ObterValoresAtualizados()
         {
-            var condicoes = new Dictionary<string, string> { { "idOrc", id } };
-            CarregarValorCampos();
+            var atualizacoes = new Dictionary<string, string>();
+            var colunasBanco = ObterColunas(orcamentoTabela).Skip(1).ToArray();
+            var valoresAntigos = valoresSelecionados.ToArray();
+            var valoresNovos = camposDeEntrada.Values.ToArray();
 
-            var valoresAntigos = SqlSelect(orcamentoTabela, condicoes, "AND", "*")[0].Skip(1);
-            var valoresNovos = camposDeEntrada.Values;
+            for (int i = 0; i < colunasBanco.Length; i++)
+            {
+                valoresAntigos[i] = AjustaValores(valoresAntigos[i]);
 
-            foreach (var _ in valoresAntigos.Zip(valoresNovos, (antigo, novo) => antigo == novo));
-            // fazer um dicionario com os indexes trues do zip contendo a coluna e o novo valor
+                if (valoresAntigos[i] != valoresNovos[i])
+                {
+                    atualizacoes.Add(colunasBanco[i], valoresNovos[i]);
+                }
+            }
             
-            return new Dictionary<string, string>();
+            return atualizacoes;
         }
 
-        public List<string> ObterColunasOrcamento()
+        public string AjustaValores(string valor)
+        {
+            if (DateTime.TryParseExact(valor, CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern,
+                                       null, DateTimeStyles.None, out var data))
+            {
+                valor = data.ToString("yyyy-MM-dd");
+            }
+            if (valor.Contains(",") && float.TryParse(valor, out var _))
+            {
+                valor = valor.Replace(",", ".");
+            }
+
+            return valor;
+        }
+        public List<string> ObterColunas(string tabela)
         {
             List<string> colunasBanco = new List<string>();
-            string comandoString = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'cadOrcamento'";
+            string comandoString = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}'";
             SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
 
             try
@@ -344,38 +388,79 @@ namespace SistemaOrdemServico
 
         private void btnInserirOrcamento_Click(object sender, EventArgs e)
         {
-            modos[btnEnviar.Text]();
+            if (modos[btnEnviar.Text]())
+            {
+                LimparCampos();
+            }
         }
 
         private void CarregarTags()
         {
-            var colunasBanco = ObterColunasOrcamento();
+            var colunasBanco = ObterColunas(orcamentoTabela);
 
             foreach (var _ in campos.Zip(colunasBanco, (campo, coluna) => { campo.Tag = coluna; return true; }));
+        }
+
+        private void LimparCampos()
+        {
+            foreach (var campo in campos)
+            {
+                if (campo is ComboBox)
+                {
+                    (campo as ComboBox).SelectedIndex = -1;
+                    campo.Text = string.Empty;
+                }
+                else if (campo is DateTimePicker)
+                {
+                    (campo as DateTimePicker).Value = DateTime.Today;
+                }
+                else if (campo is TextBox)
+                {
+                    campo.Text = string.Empty;
+                }
+                else if (campo is NumericUpDown)
+                {
+                    (campo as NumericUpDown).Value = 0;
+                }
+            }
+            btnEnviar.Tag = string.Empty;
         }
 
         private void MudarModo(object sender, EventArgs e)
         {
             Button btnClicado = (Button)sender;
             btnEnviar.Text = btnClicado.Text;
-            string[] btnsChamarJanela = { "Editar", "Excluir" };
+            LimparCampos();
 
+            string[] btnsChamarJanela = { "Editar", "Excluir" };
             if (btnsChamarJanela.Contains(btnClicado.Text))
             {
-                using (var selecionarOrcamento = new SelecionarOrcamento(conexaoSql))
+                btnLimpar.Visible = false;
+
+                using (var selecionarOrcamento = new SelecionarOrcamento())
                 {
                     selecionarOrcamento.ShowDialog();
 
-                    var valores = selecionarOrcamento.Valores;
+                    valoresSelecionados = selecionarOrcamento.ValoresSelecionados;
 
-                    if (valores != null)
+                    if (valoresSelecionados != null)
                     {
-                        btnEnviar.Tag = valores.First();
-                        InserirValorCampos(valores.Skip(1));
+                        btnEnviar.Tag = valoresSelecionados.First();
+                        valoresSelecionados = valoresSelecionados.Skip(1);
+                        InserirValorCampos(valoresSelecionados);
                     }
                 }
             }
+            else
+            {
+                btnLimpar.Visible = true;
+            }
             //Melhorar visualização do modo ativado no design do formulário
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
         }
     }
 }

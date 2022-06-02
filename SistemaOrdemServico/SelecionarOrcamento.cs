@@ -13,39 +13,43 @@ namespace SistemaOrdemServico
 {
     public partial class SelecionarOrcamento : Form
     {
-        private readonly SqlConnection conexaoSql;
         private readonly Orcamento orcamento;
-        public IEnumerable<string> Valores { get; private set; }
+        private Dictionary<string, string> clientes;
+        private Dictionary<string, string> pecas;
+        private Dictionary<string, string> funcionarios;
+        private Dictionary<string, List<string>> orcamentosValue;
+        public IEnumerable<string> ValoresSelecionados { get; private set; }
 
 
-        public SelecionarOrcamento(SqlConnection conexao)
+        public SelecionarOrcamento()
         {
-            conexaoSql = conexao;
+            InitializeComponent();
+
             orcamento = new Orcamento();
 
-            InitializeComponent();
-        }
-
-        private void CarregarColunas()
-        {
-            List<string> colunasBanco = orcamento.ObterColunasOrcamento();
-            List<string> colunasExibidas = new List<string>()
-            {
-                "ID", "Cliente", "Data de entrada", "Descrição", "Peças", "Valor do serviço", "Recebido por"
-            };
-
-            foreach (var _ in colunasBanco.Zip(colunasExibidas, dgResultados.Columns.Add)) ;
+            var condicoesCliente = new Dictionary<string, string> { { "categoria", "Cliente" } };
+            clientes = CriarDicionario(orcamento.SqlSelect("cadClientForn", condicoesCliente, "AND", "idCad", "nomeRazSoc"));
+            pecas = CriarDicionario(orcamento.SqlSelect("cadPeca", "codPeca", "nomePeca", "fabricante"));
+            funcionarios = CriarDicionario(orcamento.SqlSelect("cadFunc", "idFunc", "nome"));
         }
 
         private void SelecionarOrcamento_Load(object sender, EventArgs e)
         {
-            CarregarColunas();
+            var registros = orcamento.SqlSelect("cadOrcamento", "*");
 
-            if (dgResultados.Columns.Count > 0)
+            orcamentosValue = registros.ToDictionary(
+                keySelector: item => item.First(),
+                elementSelector: item => new List<string>(item)
+                );
+
+            foreach (var registro in registros)
             {
-                var registros = orcamento.SqlSelect("cadOrcamento", "*");
-                registros.ForEach(registro => dgResultados.Rows.Add(registro.ToArray()));
+                registro[1] = clientes[registro[1]];
+                registro[4] = pecas[registro[4]];
+                registro[6] = funcionarios[registro[6]]; 
             }
+
+            registros.ForEach(registro => dgResultados.Rows.Add(registro.ToArray()));
         }
 
         private void dgResultados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -66,10 +70,16 @@ namespace SistemaOrdemServico
             }
         }
 
+        private Dictionary<string, string> CriarDicionario(List<List<string>> dados)
+        {
+            return dados.ToDictionary(
+                keySelector: item => item[0],
+                elementSelector: item => string.Join(" - ", item.Skip(1))
+                );
+        }
         private void EnviarParaFormulario()
         {
-            Valores = dgResultados.SelectedCells.Cast<DataGridViewCell>()
-                     .Select(cell => cell.Value.ToString());
+            ValoresSelecionados = orcamentosValue[dgResultados.SelectedCells[0].Value.ToString()];
             Close();
         }
 
