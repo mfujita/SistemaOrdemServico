@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,10 +15,11 @@ namespace SistemaOrdemServico
     public partial class SelecionarOrcamento : Form
     {
         private readonly Orcamento orcamento;
-        private Dictionary<string, string> clientes;
-        private Dictionary<string, string> pecas;
-        private Dictionary<string, string> funcionarios;
+        private readonly Dictionary<string, string> clientes;
+        private readonly Dictionary<string, string> pecas;
+        private readonly Dictionary<string, string> funcionarios;
         private Dictionary<string, List<string>> orcamentosValue;
+        private List<List<string>> registros;
         public IEnumerable<string> ValoresSelecionados { get; private set; }
 
 
@@ -35,21 +37,12 @@ namespace SistemaOrdemServico
 
         private void SelecionarOrcamento_Load(object sender, EventArgs e)
         {
-            var registros = orcamento.SqlSelect("cadOrcamento", "*");
+            CarregarColunas();
 
-            orcamentosValue = registros.ToDictionary(
-                keySelector: item => item.First(),
-                elementSelector: item => new List<string>(item)
-                );
+            var colunas = dgResultados.Columns.Cast<DataGridViewColumn>().Select(coluna => coluna.HeaderText);
+            orcamento.PopularComboBox(cbCampo, colunas.ToList());
 
-            foreach (var registro in registros)
-            {
-                registro[1] = clientes[registro[1]];
-                registro[4] = pecas[registro[4]];
-                registro[6] = funcionarios[registro[6]]; 
-            }
-
-            registros.ForEach(registro => dgResultados.Rows.Add(registro.ToArray()));
+            dgResultados.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9);
         }
 
         private void dgResultados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -58,7 +51,6 @@ namespace SistemaOrdemServico
             {
                 EnviarParaFormulario();
             }
-
         }
 
         private void dgResultados_KeyDown(object sender, KeyEventArgs e)
@@ -67,6 +59,48 @@ namespace SistemaOrdemServico
             {
                 EnviarParaFormulario();
                 e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Tab)
+            {
+                var proximaLinha = dgResultados.SelectedRows[0].Index + 1;
+                if (dgResultados.RowCount > proximaLinha)
+                {
+                    dgResultados.Rows[proximaLinha].Selected = true;
+                }
+                e.Handled = true;
+            }
+        }
+
+        private void dgResultados_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            dgResultados.Cursor = Cursors.Hand;
+        }
+
+        private void dgResultados_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            dgResultados.Cursor = Cursors.Default;
+        }
+
+        private void txtValor_TextChanged(object sender, EventArgs e)
+        {
+            dgResultados.Rows.Clear();
+
+            var compareInfo = CultureInfo.InvariantCulture.CompareInfo;
+            var compareOptions = CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase;
+
+            var registrosFiltrados = registros.Where(registro => compareInfo.IndexOf(
+                registro[cbCampo.SelectedIndex], txtValor.Text, compareOptions) != -1
+                );
+
+            PopularDataGrid(registrosFiltrados);
+        }
+
+        private void cbCampo_DropDownClosed(object sender, EventArgs e)
+        {
+            if ((sender as ComboBox).SelectedIndex != -1)
+            {
+                txtValor.Enabled = true;
+                txtValor.Text = string.Empty;
             }
         }
 
@@ -77,15 +111,42 @@ namespace SistemaOrdemServico
                 elementSelector: item => string.Join(" - ", item.Skip(1))
                 );
         }
+
+        private void CarregarColunas()
+        {
+            registros = orcamento.SqlSelect("cadOrcamento", "*");
+
+            orcamentosValue = registros.ToDictionary(
+                keySelector: item => item[0],
+                elementSelector: item => new List<string>(item)
+                );
+
+            foreach (var registro in registros)
+            {
+                registro[1] = clientes[registro[1]];
+                registro[4] = pecas[registro[4]];
+                registro[6] = funcionarios[registro[6]];
+            }
+
+            PopularDataGrid(registros);
+        }
+
+        private void PopularDataGrid(IEnumerable<List<string>> linhas)
+        {
+            foreach (var linha in linhas)
+            {
+                dgResultados.Rows.Add(linha.ToArray());
+            }
+            if (dgResultados.Rows.Count > 0)
+            {
+                dgResultados.Rows[0].Selected = false;
+            }
+        }
+
         private void EnviarParaFormulario()
         {
             ValoresSelecionados = orcamentosValue[dgResultados.SelectedCells[0].Value.ToString()];
             Close();
-        }
-
-        private void txtValor_TextChanged(object sender, EventArgs e)
-        {
-            //Procurar nos elementos dentro do datagrid usando o campo especificado pelo combo box
         }
     }
 }

@@ -45,6 +45,83 @@ namespace SistemaOrdemServico
             };
         }
 
+        private void Orcamento_Load(object sender, EventArgs e)
+        {
+            dtpDataEntradaOrcamento.Value = DateTime.Today;
+            var condicoesCliente = new Dictionary<string, string> { { "categoria", "Cliente" } };
+
+            PopularComboBox(cbPecasOrcamento, SqlSelect("cadPeca", "codPeca", "nomePeca", "fabricante"));
+            PopularComboBox(cbRecebidoOrcamento, SqlSelect("cadFunc", "idFunc", "nome"));
+            PopularComboBox(cbClienteOrcamento, SqlSelect("cadClientForn", condicoesCliente, "AND", "idCad", "nomeRazSoc"));
+        }
+
+        private void MudarModo(object sender, EventArgs e)
+        {
+            var modoTexto = new Dictionary<string, string>
+            {
+                { "Inserir", "inserção" },
+                { "Editar", "edição" },
+                { "Excluir", "exclusão" }
+            };
+
+            var btnClicado = (sender as Button);
+            campos.ForEach(campo => campo.Enabled = btnClicado.Text != "Excluir");
+            btnLimpar.Visible = btnClicado.Text == "Inserir";
+            btnEnviar.Text = btnClicado.Text;
+            lblModo.Text = $"Modo de {modoTexto[btnClicado.Text]}";
+            LimparCampos();
+
+            string[] btnsChamarJanela = { "Editar", "Excluir" };
+            if (btnsChamarJanela.Contains(btnClicado.Text))
+            {
+                using (var selecionarOrcamento = new SelecionarOrcamento())
+                {
+                    selecionarOrcamento.ShowDialog();
+
+                    valoresSelecionados = selecionarOrcamento.ValoresSelecionados;
+
+                    if (valoresSelecionados != null)
+                    {
+                        btnEnviar.Tag = valoresSelecionados.First();
+                        valoresSelecionados = valoresSelecionados.Skip(1);
+                        InserirValorCampos(valoresSelecionados);
+                    }
+                }
+            }
+        }
+
+        private void btnInserirOrcamento_Click(object sender, EventArgs e)
+        {
+            if (modos[btnEnviar.Text]())
+            {
+                LimparCampos();
+            }
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            LimparCampos();
+        }
+
+        private void PopularComboBox(ComboBox comboBox, List<List<string>> itens)
+        {
+            var itensDicionario = itens.ToDictionary(
+                keySelector: item => item[0],
+                elementSelector: item => string.Join(" - ", item.Skip(1))
+                );
+
+            comboBox.ValueMember = "Key";
+            comboBox.DisplayMember = "Value";
+            comboBox.DataSource = new BindingSource(itensDicionario, null);
+            comboBox.SelectedIndex = -1;
+        }
+
+        public void PopularComboBox(ComboBox comboBox, List<string> itens)
+        {
+            comboBox.DataSource = itens;
+            comboBox.SelectedIndex = -1;
+        }
+
         private bool Inserir()
         {
             CarregarValorCampos();
@@ -126,17 +203,143 @@ namespace SistemaOrdemServico
             foreach (var _ in campos.Zip(valores, (campo, valor) => { campo(valor); return true; }) );
         }
 
-        private void PopularComboBox(ComboBox comboBox, List<List<string>> itens)
+        private bool ValidaComboBoxes()
         {
-            var itensDicionario = itens.ToDictionary(
-                keySelector: item => item[0],
-                elementSelector: item => string.Join(" - ", item.Skip(1))
-                );
+            var comboBoxes = new Dictionary<string, ComboBox>
+            {
+                { lblClienteOrcamento.Text, cbClienteOrcamento },
+                { lblPecasOrcamento.Text, cbPecasOrcamento },
+                { lblRecebidoOrcamento.Text, cbRecebidoOrcamento }
+            };
 
-            comboBox.ValueMember = "Key";
-            comboBox.DisplayMember = "Value";
-            comboBox.DataSource = new BindingSource(itensDicionario, null);
-            comboBox.SelectedIndex = -1;
+            foreach (var comboBox in comboBoxes)
+            {
+                if (comboBox.Value.SelectedIndex != -1)
+                {
+                    var itemSelecionado = (KeyValuePair<string, string>)comboBox.Value.SelectedItem;
+
+                    camposDeEntrada[comboBox.Key] = itemSelecionado.Key;
+                }
+                else
+                {
+                    MostrarMensagemErro($"Selecione um valor valido no campo \"{comboBox.Key.Replace(":", "")}\"");
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private Dictionary<string, string> ObterValoresAtualizados()
+        {
+            var atualizacoes = new Dictionary<string, string>();
+            var colunasBanco = ObterColunas(orcamentoTabela).Skip(1).ToArray();
+            var valoresAntigos = valoresSelecionados.ToArray();
+            var valoresNovos = camposDeEntrada.Values.ToArray();
+
+            for (int i = 0; i < colunasBanco.Length; i++)
+            {
+                valoresAntigos[i] = AjustaValores(valoresAntigos[i]);
+
+                if (valoresAntigos[i] != valoresNovos[i])
+                {
+                    atualizacoes.Add(colunasBanco[i], valoresNovos[i]);
+                }
+            }
+
+            return atualizacoes;
+        }
+
+        public string AjustaValores(string valor)
+        {
+            if (DateTime.TryParseExact(valor, CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern,
+                                       null, DateTimeStyles.None, out var data))
+            {
+                valor = data.ToString("yyyy-MM-dd");
+            }
+            if (valor.Contains(",") && float.TryParse(valor, out var _))
+            {
+                valor = valor.Replace(",", ".");
+            }
+
+            return valor;
+        }
+
+        private void LimparCampos()
+        {
+            foreach (var campo in campos)
+            {
+                if (campo is ComboBox)
+                {
+                    (campo as ComboBox).SelectedIndex = -1;
+                    campo.Text = string.Empty;
+                }
+                else if (campo is DateTimePicker)
+                {
+                    (campo as DateTimePicker).Value = DateTime.Today;
+                }
+                else if (campo is TextBox)
+                {
+                    campo.Text = string.Empty;
+                }
+                else if (campo is NumericUpDown)
+                {
+                    (campo as NumericUpDown).Value = 0;
+                }
+            }
+
+            btnEnviar.Tag = string.Empty;
+            valoresSelecionados = null;
+        }
+
+        public void MostrarMensagemSucesso(string message)
+        {
+            MessageBox.Show(
+                message,
+                "Sucesso",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+                );
+        }
+
+        public void MostrarMensagemErro(string message)
+        {
+            MessageBox.Show(
+                message,
+                "Erro",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error
+                );
+        }
+
+        public List<string> ObterColunas(string tabela)
+        {
+            List<string> colunasBanco = new List<string>();
+            string comandoString = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}'";
+            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
+
+            try
+            {
+                comandoSql.Connection.Open();
+                var leitor = comandoSql.ExecuteReader();
+
+                while (leitor.Read())
+                {
+                    colunasBanco.Add(leitor[0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MostrarMensagemErro(ex.Message);
+                Close();
+            }
+            finally
+            {
+                comandoSql.Connection.Close();
+                comandoSql.Dispose();
+            }
+
+            return colunasBanco;
         }
 
         public List<List<string>> SqlSelect(string tabela, params string[] colunas)
@@ -262,207 +465,6 @@ namespace SistemaOrdemServico
                 comandoSql.Connection.Close();
                 comandoSql.Dispose();
             }
-        }
-
-        public void MostrarMensagemErro(string message)
-        {
-            MessageBox.Show(
-                message,
-                "Erro",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error
-                );
-        }
-        
-        public void MostrarMensagemSucesso(string message)
-        {
-            MessageBox.Show(
-                message,
-                "Sucesso",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-                );
-        }
-
-        private bool ValidaComboBoxes()
-        {
-            var comboBoxes = new Dictionary<string, ComboBox>
-            {
-                { lblClienteOrcamento.Text, cbClienteOrcamento },
-                { lblPecasOrcamento.Text, cbPecasOrcamento },
-                { lblRecebidoOrcamento.Text, cbRecebidoOrcamento }
-            };
-
-            foreach (var comboBox in comboBoxes)
-            {
-                if (comboBox.Value.SelectedIndex != -1)
-                {
-                    var itemSelecionado = (KeyValuePair<string, string>)comboBox.Value.SelectedItem;
-
-                    camposDeEntrada[comboBox.Key] = itemSelecionado.Key;
-                }
-                else
-                {
-                    MostrarMensagemErro($"Selecione um valor valido no campo \"{comboBox.Key.Replace(":", "")}\"");
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private Dictionary<string, string> ObterValoresAtualizados()
-        {
-            var atualizacoes = new Dictionary<string, string>();
-            var colunasBanco = ObterColunas(orcamentoTabela).Skip(1).ToArray();
-            var valoresAntigos = valoresSelecionados.ToArray();
-            var valoresNovos = camposDeEntrada.Values.ToArray();
-
-            for (int i = 0; i < colunasBanco.Length; i++)
-            {
-                valoresAntigos[i] = AjustaValores(valoresAntigos[i]);
-
-                if (valoresAntigos[i] != valoresNovos[i])
-                {
-                    atualizacoes.Add(colunasBanco[i], valoresNovos[i]);
-                }
-            }
-            
-            return atualizacoes;
-        }
-
-        public string AjustaValores(string valor)
-        {
-            if (DateTime.TryParseExact(valor, CultureInfo.CurrentCulture.DateTimeFormat.ShortDatePattern,
-                                       null, DateTimeStyles.None, out var data))
-            {
-                valor = data.ToString("yyyy-MM-dd");
-            }
-            if (valor.Contains(",") && float.TryParse(valor, out var _))
-            {
-                valor = valor.Replace(",", ".");
-            }
-
-            return valor;
-        }
-        public List<string> ObterColunas(string tabela)
-        {
-            List<string> colunasBanco = new List<string>();
-            string comandoString = $"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{tabela}'";
-            SqlCommand comandoSql = new SqlCommand(comandoString, conexaoSql);
-
-            try
-            {
-                comandoSql.Connection.Open();
-                var leitor = comandoSql.ExecuteReader();
-
-                while (leitor.Read())
-                {
-                    colunasBanco.Add(leitor[0].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MostrarMensagemErro(ex.Message);
-                Close();
-            }
-            finally
-            {
-                comandoSql.Connection.Close();
-                comandoSql.Dispose();
-            }
-
-            return colunasBanco;
-        }
-
-        private void Orcamento_Load(object sender, EventArgs e)
-        {
-            dtpDataEntradaOrcamento.Value = DateTime.Today;
-            CarregarTags();
-            var condicoesCliente = new Dictionary<string, string> { { "categoria", "Cliente" } };
-
-            PopularComboBox(cbPecasOrcamento, SqlSelect("cadPeca", "codPeca", "nomePeca", "fabricante"));
-            PopularComboBox(cbRecebidoOrcamento, SqlSelect("cadFunc", "idFunc", "nome"));
-            PopularComboBox(cbClienteOrcamento, SqlSelect("cadClientForn", condicoesCliente, "AND", "idCad", "nomeRazSoc"));
-        }
-
-        private void btnInserirOrcamento_Click(object sender, EventArgs e)
-        {
-            if (modos[btnEnviar.Text]())
-            {
-                LimparCampos();
-            }
-        }
-
-        private void CarregarTags()
-        {
-            var colunasBanco = ObterColunas(orcamentoTabela);
-
-            foreach (var _ in campos.Zip(colunasBanco, (campo, coluna) => { campo.Tag = coluna; return true; }));
-        }
-
-        private void LimparCampos()
-        {
-            foreach (var campo in campos)
-            {
-                if (campo is ComboBox)
-                {
-                    (campo as ComboBox).SelectedIndex = -1;
-                    campo.Text = string.Empty;
-                }
-                else if (campo is DateTimePicker)
-                {
-                    (campo as DateTimePicker).Value = DateTime.Today;
-                }
-                else if (campo is TextBox)
-                {
-                    campo.Text = string.Empty;
-                }
-                else if (campo is NumericUpDown)
-                {
-                    (campo as NumericUpDown).Value = 0;
-                }
-            }
-
-            btnEnviar.Tag = string.Empty;
-            valoresSelecionados = null;
-        }
-
-        private void MudarModo(object sender, EventArgs e)
-        {
-            Button btnClicado = (Button)sender;
-            btnEnviar.Text = btnClicado.Text;
-            LimparCampos();
-
-            string[] btnsChamarJanela = { "Editar", "Excluir" };
-            if (btnsChamarJanela.Contains(btnClicado.Text))
-            {
-                btnLimpar.Visible = false;
-
-                using (var selecionarOrcamento = new SelecionarOrcamento())
-                {
-                    selecionarOrcamento.ShowDialog();
-
-                    valoresSelecionados = selecionarOrcamento.ValoresSelecionados;
-
-                    if (valoresSelecionados != null)
-                    {
-                        btnEnviar.Tag = valoresSelecionados.First();
-                        valoresSelecionados = valoresSelecionados.Skip(1);
-                        InserirValorCampos(valoresSelecionados);
-                    }
-                }
-            }
-            else
-            {
-                btnLimpar.Visible = true;
-            }
-            //Melhorar visualização do modo ativado no design do formulário
-        }
-
-        private void btnLimpar_Click(object sender, EventArgs e)
-        {
-            LimparCampos();
         }
     }
 }
