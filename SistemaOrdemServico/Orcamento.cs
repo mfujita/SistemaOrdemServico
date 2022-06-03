@@ -147,7 +147,7 @@ namespace SistemaOrdemServico
         {
             CarregarValorCampos();
 
-            if (!Form1.TemCamposVazios(camposDeEntrada) && ValidaComboBoxes())
+            if (!Form1.TemCamposVazios(camposDeEntrada) && ValidaComboBoxes() && valoresSelecionados != null)
             {
                 var camposAtualizados = ObterValoresAtualizados();
 
@@ -164,14 +164,26 @@ namespace SistemaOrdemServico
                     MostrarMensagemErro("Nenhum valor modificado.");
                 }
             }
+            else
+            {
+                MostrarMensagemErro("Nenhum registro selecionado, clique no botão editar novamente e selecione um registro.");
+                LimparCampos();
+            }
 
             return false;
         }
 
         private bool Excluir()
         {
-            var deleteDicionario = new Dictionary<string, string> { { "idOrc", btnEnviar.Tag.ToString() } }; 
-            SqlDelete(orcamentoTabela, deleteDicionario);
+            if (btnEnviar.Tag.ToString() != string.Empty)
+            {
+                var deleteDicionario = new Dictionary<string, string> { { "idOrc", btnEnviar.Tag.ToString() } };
+                SqlDelete(orcamentoTabela, deleteDicionario);
+            }
+            else
+            {
+                MostrarMensagemErro("Nenhum registro selecionado, clique no botão excluir novamente e selecione um registro.");
+            }
 
             return true;
         }
