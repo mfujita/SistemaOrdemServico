@@ -23,13 +23,12 @@ namespace SistemaOrdemServico
 
 
 
-
         /*
             Conexao com banco de dados
          */
         public SqlConnection abreConexao()
         {
-            string conexao = @"Server= DESKTOP-U3P4RMT\SQLEXPRESS;
+            string conexao = @"Server= GODOY\SQLEXPRESS;
                             Database=OSFujita;
                             User Id=sa;
                             Password=1234;";
@@ -38,64 +37,9 @@ namespace SistemaOrdemServico
 
 
 
-
-
-
-
-
-        /*
-            Prencher Combobox Cadastro de peças
-         */
-        private void preencherComboBoxCadastrar()
+        private void PreencherCboxGeneric(ComboBox cbox)
         {
-            SqlConnection conexao = abreConexao();
 
-            try
-            {
-                conexao.Open();
-
-                sql = "SELECT * FROM cadClientForn WHERE categoria = 'Empresa'";
-
-                SqlCommand comando = new SqlCommand(sql, conexao);
-
-                SqlDataReader dados = comando.ExecuteReader();
-
-                DataTable dt = new DataTable();
-
-                dt.Load(dados);
-
-
-                //Combobox Cadastrar Peca
-                cboxFornecedorCadastrarPeca.DisplayMember = "nomeRazSoc";
-
-                cboxFornecedorCadastrarPeca.ValueMember = "codPeca";
-
-                cboxFornecedorCadastrarPeca.DataSource = dt;
-
-                cboxFornecedorCadastrarPeca.Text = "Selecionar";
-
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Erro");
-            }
-            finally
-            {
-                conexao.Close();
-            }
-
-        }
-
-
-
-
-
-
-        /*
-            Preencher Combobox de Editar  Peca
-         */
-        private void preencherComboBoxEditar()
-        {
             SqlConnection conexao = abreConexao();
 
             try
@@ -114,13 +58,13 @@ namespace SistemaOrdemServico
 
 
                 //Combobox Editar peca
-                cboxFornecedorEditarPeca.DisplayMember = "nomeRazSoc";
+                cbox.DisplayMember = "nomeRazSoc";
 
-                cboxFornecedorEditarPeca.ValueMember = "codPeca";
+                cbox.ValueMember = "codPeca";
 
-                cboxFornecedorEditarPeca.DataSource = dt;
+                cbox.DataSource = dt;
 
-                cboxFornecedorEditarPeca.Text = "Selecionar";
+                cbox.Text = "Selecionar";
 
             }
             catch (Exception)
@@ -135,6 +79,33 @@ namespace SistemaOrdemServico
         }
 
 
+
+
+
+
+
+
+        /*
+            Prencher Combobox Cadastro de peças
+         */
+        private void preencherComboBoxCadastrar()
+        {
+            PreencherCboxGeneric(cboxFornecedorCadastrarPeca);
+
+        }
+
+
+
+
+
+        /*
+            Preencher Combobox de Editar  Peca
+         */
+        private void preencherComboBoxEditar()
+        {
+            PreencherCboxGeneric(cboxFornecedorEditarPeca);
+
+        }
 
 
 
@@ -274,25 +245,12 @@ namespace SistemaOrdemServico
          */
         private void listagem()
         {
-            SqlConnection conexao = abreConexao();
-
-
             //sql = "SELECT * FROM cadPeca";
-            sql = "select cP.codPeca, cP.nomePeca, cCF.nomeRazSoc, cP.fabricante, cP.vlCompra, cP.vlVenda from cadPeca cP, cadClientForn cCF where cCF.categoria = 'Empresa' and cP.fkFornecedor = cCF.idCad";
+            sql = @"SELECT cP.codPeca, cP.nomePeca, cCF.nomeRazSoc, cP.fabricante, cP.vlCompra, cP.vlVenda FROM cadPeca cP, cadClientForn cCF 
+            WHERE cCF.categoria = 'Empresa' AND cP.fkFornecedor = cCF.idCad";
 
-            SqlCommand comandoConsulta = new SqlCommand(sql, conexao);
 
-            conexao.Open();
-            SqlDataReader dados = comandoConsulta.ExecuteReader();
-
-            comandoConsulta.Dispose();
-
-            while (dados.Read())
-            {
-                dgvPecas.Rows.Add($"#{dados[0]}", dados[1], dados[2], dados[3], dados[4], dados[5]);
-            }
-
-            conexao.Close();
+            ListagemGeneric(sql);
 
         }
 
@@ -324,9 +282,10 @@ namespace SistemaOrdemServico
          */
         private void btnConsultaEditaPeca_Click(object sender, EventArgs e)
         {
-
+            //Variavel que pega o id
             string idConsutarPeca = txtIdEditarPeca.Text;
 
+            //Limpar Campos
             txtNomeEditarPeca.Text = string.Empty;
             txtFabricanteEditarPeca.Text = string.Empty;
             numericValorCompraEditar.Text = string.Empty;
@@ -339,6 +298,7 @@ namespace SistemaOrdemServico
             }
             else
             {
+                //Ativando Campos para Editar
                 cboxFornecedorEditarPeca.Enabled = true;
                 txtNomeEditarPeca.Enabled = true;
                 txtFabricanteEditarPeca.Enabled = true;
@@ -353,7 +313,7 @@ namespace SistemaOrdemServico
                 {
                     txtIdEditarPeca.Enabled = false;
 
-                    //Preenchendo o s input text da area de editar Peça
+                    //Preenchendo os input text da area de editar Peça
                     SqlConnection conexao = abreConexao();
 
                     sql = "SELECT * FROM cadPeca WHERE codPeca = " + idConsutarPeca + " ";
@@ -364,7 +324,6 @@ namespace SistemaOrdemServico
                     SqlDataReader dados = comandoConsultaEdita.ExecuteReader();
 
                     dados.Read();
-
 
 
                     double valorCompraEditarPeca = Convert.ToDouble(dados[4]);
@@ -385,7 +344,8 @@ namespace SistemaOrdemServico
 
                     //Selecionando qual fornecedor pertence a peça no Combobox
 
-                    string sqlCBoxEditaPeca = "SELECT nomeRazSoc  FROM cadClientForn, cadPeca where idCad = fkFornecedor AND codPeca = " + idConsutarPeca + "";
+                    string sqlCBoxEditaPeca = @"SELECT nomeRazSoc  FROM cadClientForn, cadPeca 
+                                                WHERE idCad = fkFornecedor AND codPeca = " + idConsutarPeca + "";
 
                     SqlCommand comandoEmpresaCBox = new SqlCommand(sqlCBoxEditaPeca, conexao);
 
@@ -423,7 +383,7 @@ namespace SistemaOrdemServico
 
 
         /*
-            Metodo para atualizar um cadastro de peça
+            Metodo Update cadastro de peça
          */
         private void buttonEditarPeca_Click(object sender, EventArgs e)
         {
@@ -441,7 +401,7 @@ namespace SistemaOrdemServico
             }
             else
             {
-
+                //Metodo que atribui o id ao nome da empresa no combobox
                 conexao = abreConexao();
                 sql = "SELECT idCad FROM cadClientForn where nomeRazSoc = '" + cboxFornecedorEditarPeca.Text + "'";
 
@@ -460,7 +420,15 @@ namespace SistemaOrdemServico
                 {
                     conexao = abreConexao();
 
-                    sql = "UPDATE cadPeca SET nomePeca = '" + nomeEditarPeca + "', fkFornecedor = " + idFornecedorEditarPeca + ", fabricante = '" + fabricanteEditarPeca + "', vlCompra = " + Convert.ToDouble(valorCompraEditarPeca) + ", vlVenda = " + Convert.ToDouble(valorVendaEditarPeca) + " WHERE codPeca = " + Convert.ToInt32(idEdiatarPeca) + "";
+                    sql = @"UPDATE cadPeca SET nomePeca = '" 
+                            + nomeEditarPeca + "', fkFornecedor = " 
+                            + idFornecedorEditarPeca + ", fabricante = '" 
+                            + fabricanteEditarPeca + "', vlCompra = " 
+                            + Convert.ToDouble(valorCompraEditarPeca) + ", " +
+                            "vlVenda = " + Convert.ToDouble(valorVendaEditarPeca) 
+                            + " WHERE codPeca = " + Convert.ToInt32(idEdiatarPeca) + "";
+
+
 
                     SqlCommand comandoEditar = new SqlCommand(sql, conexao);
                     conexao.Open();
@@ -504,8 +472,6 @@ namespace SistemaOrdemServico
 
 
 
-
-
         /*
             Bloqueando escrita no Cobobox  
          */
@@ -543,5 +509,54 @@ namespace SistemaOrdemServico
             txtIdEditarPeca.Text = "";
             txtIdEditarPeca.Enabled = true;
         }
-    }
+
+
+
+
+        //Consultar pelo nome da peça o datagrid
+        private void peaquisaConsulta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string nomePeca = peaquisaConsulta.Text;
+
+            dgvPecas.Rows.Clear();
+
+
+            //sql = "SELECT * FROM cadPeca";
+            sql = "select cP.codPeca, cP.nomePeca, cCF.nomeRazSoc, cP.fabricante, cP.vlCompra, cP.vlVenda from cadPeca cP, cadClientForn cCF where cCF.categoria = 'Empresa' and cP.fkFornecedor = cCF.idCad AND nomePeca like '" + nomePeca + "%'";
+
+            ListagemGeneric(sql);
+
+        }
+
+
+
+
+
+        private void ListagemGeneric(string sql)
+        {
+            string _sql = sql;
+
+            SqlConnection conexao = abreConexao();
+
+            SqlCommand comandoConsulta = new SqlCommand(sql, conexao);
+
+            conexao.Open();
+            SqlDataReader dados = comandoConsulta.ExecuteReader();
+
+            comandoConsulta.Dispose();
+
+            while (dados.Read())
+            {
+                dgvPecas.Rows.Add($"#{dados[0]}", dados[1], dados[2], dados[3], dados[4], dados[5]);
+            }
+
+            conexao.Close();
+
+
+        }
+    } 
 }
+
+
+
+

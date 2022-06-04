@@ -45,6 +45,7 @@ namespace SistemaOrdemServico
             this.lblCadastroPeca = new System.Windows.Forms.Label();
             this.pbPeca = new System.Windows.Forms.PictureBox();
             this.tabEditarPeca = new System.Windows.Forms.TabPage();
+            this.btnCancelarEdicao = new System.Windows.Forms.Button();
             this.txtValorVendaEditarPeca = new System.Windows.Forms.TextBox();
             this.numericValorCompraEditar = new System.Windows.Forms.TextBox();
             this.btnConsultaEditaPeca = new System.Windows.Forms.Button();
@@ -76,7 +77,8 @@ namespace SistemaOrdemServico
             this.fabricanteConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorCompraConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorVendaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCancelarEdicao = new System.Windows.Forms.Button();
+            this.peaquisaConsulta = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.tabControlPecas.SuspendLayout();
             this.tabCadastrarPecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
@@ -98,7 +100,7 @@ namespace SistemaOrdemServico
             this.tabControlPecas.Location = new System.Drawing.Point(0, 0);
             this.tabControlPecas.Name = "tabControlPecas";
             this.tabControlPecas.SelectedIndex = 0;
-            this.tabControlPecas.Size = new System.Drawing.Size(979, 541);
+            this.tabControlPecas.Size = new System.Drawing.Size(1086, 636);
             this.tabControlPecas.TabIndex = 0;
             // 
             // tabCadastrarPecas
@@ -266,10 +268,20 @@ namespace SistemaOrdemServico
             this.tabEditarPeca.Location = new System.Drawing.Point(4, 22);
             this.tabEditarPeca.Name = "tabEditarPeca";
             this.tabEditarPeca.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEditarPeca.Size = new System.Drawing.Size(971, 515);
+            this.tabEditarPeca.Size = new System.Drawing.Size(1078, 610);
             this.tabEditarPeca.TabIndex = 1;
             this.tabEditarPeca.Text = "                              Editar                              ";
             this.tabEditarPeca.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelarEdicao
+            // 
+            this.btnCancelarEdicao.Location = new System.Drawing.Point(245, 444);
+            this.btnCancelarEdicao.Name = "btnCancelarEdicao";
+            this.btnCancelarEdicao.Size = new System.Drawing.Size(141, 33);
+            this.btnCancelarEdicao.TabIndex = 65;
+            this.btnCancelarEdicao.Text = "Cancelar";
+            this.btnCancelarEdicao.UseVisualStyleBackColor = true;
+            this.btnCancelarEdicao.Click += new System.EventHandler(this.btnCancelarEdicao_Click);
             // 
             // txtValorVendaEditarPeca
             // 
@@ -383,9 +395,9 @@ namespace SistemaOrdemServico
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(78, 249);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 18);
+            this.label4.Size = new System.Drawing.Size(93, 18);
             this.label4.TabIndex = 47;
-            this.label4.Text = "*Fornecedor:";
+            this.label4.Text = "Fornecedor:";
             // 
             // label5
             // 
@@ -480,11 +492,13 @@ namespace SistemaOrdemServico
             // 
             // tabConsultaPeca
             // 
+            this.tabConsultaPeca.Controls.Add(this.label8);
+            this.tabConsultaPeca.Controls.Add(this.peaquisaConsulta);
             this.tabConsultaPeca.Controls.Add(this.btnConsultar);
             this.tabConsultaPeca.Controls.Add(this.dgvPecas);
             this.tabConsultaPeca.Location = new System.Drawing.Point(4, 22);
             this.tabConsultaPeca.Name = "tabConsultaPeca";
-            this.tabConsultaPeca.Size = new System.Drawing.Size(971, 515);
+            this.tabConsultaPeca.Size = new System.Drawing.Size(1078, 610);
             this.tabConsultaPeca.TabIndex = 3;
             this.tabConsultaPeca.Text = "                              Consultar                              ";
             this.tabConsultaPeca.UseVisualStyleBackColor = true;
@@ -492,7 +506,7 @@ namespace SistemaOrdemServico
             // btnConsultar
             // 
             this.btnConsultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnConsultar.Location = new System.Drawing.Point(19, 474);
+            this.btnConsultar.Location = new System.Drawing.Point(19, 19);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(141, 33);
             this.btnConsultar.TabIndex = 59;
@@ -514,9 +528,9 @@ namespace SistemaOrdemServico
             this.fabricanteConsultaPeca,
             this.valorCompraConsultaPeca,
             this.valorVendaPeca});
-            this.dgvPecas.Location = new System.Drawing.Point(19, 14);
+            this.dgvPecas.Location = new System.Drawing.Point(19, 74);
             this.dgvPecas.Name = "dgvPecas";
-            this.dgvPecas.Size = new System.Drawing.Size(931, 442);
+            this.dgvPecas.Size = new System.Drawing.Size(1038, 515);
             this.dgvPecas.TabIndex = 0;
             // 
             // idConsultaPeca
@@ -549,22 +563,30 @@ namespace SistemaOrdemServico
             this.valorVendaPeca.HeaderText = "Valor Venda";
             this.valorVendaPeca.Name = "valorVendaPeca";
             // 
-            // btnCancelarEdicao
+            // peaquisaConsulta
             // 
-            this.btnCancelarEdicao.Location = new System.Drawing.Point(245, 444);
-            this.btnCancelarEdicao.Name = "btnCancelarEdicao";
-            this.btnCancelarEdicao.Size = new System.Drawing.Size(141, 33);
-            this.btnCancelarEdicao.TabIndex = 65;
-            this.btnCancelarEdicao.Text = "Cancelar";
-            this.btnCancelarEdicao.UseVisualStyleBackColor = true;
-            this.btnCancelarEdicao.Click += new System.EventHandler(this.btnCancelarEdicao_Click);
+            this.peaquisaConsulta.Location = new System.Drawing.Point(275, 26);
+            this.peaquisaConsulta.Name = "peaquisaConsulta";
+            this.peaquisaConsulta.Size = new System.Drawing.Size(234, 20);
+            this.peaquisaConsulta.TabIndex = 60;
+            this.peaquisaConsulta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.peaquisaConsulta_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(215, 26);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 18);
+            this.label8.TabIndex = 61;
+            this.label8.Text = "Nome:";
             // 
             // CadastroPecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(979, 541);
+            this.ClientSize = new System.Drawing.Size(1086, 636);
             this.Controls.Add(this.tabControlPecas);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CadastroPecas";
@@ -582,6 +604,7 @@ namespace SistemaOrdemServico
             this.tabDeletarPeca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabConsultaPeca.ResumeLayout(false);
+            this.tabConsultaPeca.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPecas)).EndInit();
             this.ResumeLayout(false);
 
@@ -637,5 +660,7 @@ namespace SistemaOrdemServico
         private System.Windows.Forms.DataGridViewTextBoxColumn valorCompraConsultaPeca;
         private System.Windows.Forms.DataGridViewTextBoxColumn valorVendaPeca;
         private System.Windows.Forms.Button btnCancelarEdicao;
+        private System.Windows.Forms.TextBox peaquisaConsulta;
+        private System.Windows.Forms.Label label8;
     }
 }
