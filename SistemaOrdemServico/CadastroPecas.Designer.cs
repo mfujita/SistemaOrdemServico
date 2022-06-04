@@ -29,6 +29,8 @@ namespace SistemaOrdemServico
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlPecas = new System.Windows.Forms.TabControl();
             this.tabCadastrarPecas = new System.Windows.Forms.TabPage();
             this.numericValorVendaCadastrarPeca = new System.Windows.Forms.TextBox();
@@ -69,6 +71,8 @@ namespace SistemaOrdemServico
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabConsultaPeca = new System.Windows.Forms.TabPage();
+            this.label8 = new System.Windows.Forms.Label();
+            this.peaquisaConsulta = new System.Windows.Forms.TextBox();
             this.btnConsultar = new System.Windows.Forms.Button();
             this.dgvPecas = new System.Windows.Forms.DataGridView();
             this.idConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -77,8 +81,6 @@ namespace SistemaOrdemServico
             this.fabricanteConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorCompraConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorVendaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.peaquisaConsulta = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.tabControlPecas.SuspendLayout();
             this.tabCadastrarPecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
@@ -121,7 +123,7 @@ namespace SistemaOrdemServico
             this.tabCadastrarPecas.Location = new System.Drawing.Point(4, 22);
             this.tabCadastrarPecas.Name = "tabCadastrarPecas";
             this.tabCadastrarPecas.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCadastrarPecas.Size = new System.Drawing.Size(971, 515);
+            this.tabCadastrarPecas.Size = new System.Drawing.Size(1078, 610);
             this.tabCadastrarPecas.TabIndex = 0;
             this.tabCadastrarPecas.Text = "                              Cadastrar                              ";
             this.tabCadastrarPecas.UseVisualStyleBackColor = true;
@@ -154,12 +156,16 @@ namespace SistemaOrdemServico
             // 
             // btnSalvarPeca
             // 
+            this.btnSalvarPeca.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSalvarPeca.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnSalvarPeca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalvarPeca.ForeColor = System.Drawing.Color.White;
             this.btnSalvarPeca.Location = new System.Drawing.Point(83, 419);
             this.btnSalvarPeca.Name = "btnSalvarPeca";
             this.btnSalvarPeca.Size = new System.Drawing.Size(141, 33);
             this.btnSalvarPeca.TabIndex = 56;
             this.btnSalvarPeca.Text = "Gravar";
-            this.btnSalvarPeca.UseVisualStyleBackColor = true;
+            this.btnSalvarPeca.UseVisualStyleBackColor = false;
             this.btnSalvarPeca.Click += new System.EventHandler(this.btnSalvarPeca_Click);
             // 
             // txtFabricanteCadastrarPeca
@@ -275,12 +281,14 @@ namespace SistemaOrdemServico
             // 
             // btnCancelarEdicao
             // 
+            this.btnCancelarEdicao.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelarEdicao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelarEdicao.Location = new System.Drawing.Point(245, 444);
             this.btnCancelarEdicao.Name = "btnCancelarEdicao";
             this.btnCancelarEdicao.Size = new System.Drawing.Size(141, 33);
             this.btnCancelarEdicao.TabIndex = 65;
             this.btnCancelarEdicao.Text = "Cancelar";
-            this.btnCancelarEdicao.UseVisualStyleBackColor = true;
+            this.btnCancelarEdicao.UseVisualStyleBackColor = false;
             this.btnCancelarEdicao.Click += new System.EventHandler(this.btnCancelarEdicao_Click);
             // 
             // txtValorVendaEditarPeca
@@ -301,12 +309,16 @@ namespace SistemaOrdemServico
             // 
             // btnConsultaEditaPeca
             // 
+            this.btnConsultaEditaPeca.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnConsultaEditaPeca.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.btnConsultaEditaPeca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultaEditaPeca.ForeColor = System.Drawing.Color.White;
             this.btnConsultaEditaPeca.Location = new System.Drawing.Point(305, 156);
             this.btnConsultaEditaPeca.Name = "btnConsultaEditaPeca";
             this.btnConsultaEditaPeca.Size = new System.Drawing.Size(141, 33);
             this.btnConsultaEditaPeca.TabIndex = 62;
             this.btnConsultaEditaPeca.Text = "Pesquisar";
-            this.btnConsultaEditaPeca.UseVisualStyleBackColor = true;
+            this.btnConsultaEditaPeca.UseVisualStyleBackColor = false;
             this.btnConsultaEditaPeca.Click += new System.EventHandler(this.btnConsultaEditaPeca_Click);
             // 
             // cboxFornecedorEditarPeca
@@ -320,12 +332,16 @@ namespace SistemaOrdemServico
             // 
             // buttonEditarPeca
             // 
+            this.buttonEditarPeca.BackColor = System.Drawing.Color.DodgerBlue;
+            this.buttonEditarPeca.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.buttonEditarPeca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonEditarPeca.ForeColor = System.Drawing.Color.White;
             this.buttonEditarPeca.Location = new System.Drawing.Point(83, 444);
             this.buttonEditarPeca.Name = "buttonEditarPeca";
             this.buttonEditarPeca.Size = new System.Drawing.Size(141, 33);
             this.buttonEditarPeca.TabIndex = 58;
             this.buttonEditarPeca.Text = "Editar";
-            this.buttonEditarPeca.UseVisualStyleBackColor = true;
+            this.buttonEditarPeca.UseVisualStyleBackColor = false;
             this.buttonEditarPeca.Click += new System.EventHandler(this.buttonEditarPeca_Click);
             // 
             // txtIdEditarPeca
@@ -438,19 +454,23 @@ namespace SistemaOrdemServico
             this.tabDeletarPeca.Controls.Add(this.pictureBox2);
             this.tabDeletarPeca.Location = new System.Drawing.Point(4, 22);
             this.tabDeletarPeca.Name = "tabDeletarPeca";
-            this.tabDeletarPeca.Size = new System.Drawing.Size(971, 515);
+            this.tabDeletarPeca.Size = new System.Drawing.Size(1078, 610);
             this.tabDeletarPeca.TabIndex = 2;
             this.tabDeletarPeca.Text = "                              Deletar                              ";
             this.tabDeletarPeca.UseVisualStyleBackColor = true;
             // 
             // buttonDeletarPeca
             // 
+            this.buttonDeletarPeca.BackColor = System.Drawing.Color.Tomato;
+            this.buttonDeletarPeca.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.buttonDeletarPeca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDeletarPeca.ForeColor = System.Drawing.Color.White;
             this.buttonDeletarPeca.Location = new System.Drawing.Point(83, 229);
             this.buttonDeletarPeca.Name = "buttonDeletarPeca";
             this.buttonDeletarPeca.Size = new System.Drawing.Size(141, 33);
             this.buttonDeletarPeca.TabIndex = 57;
             this.buttonDeletarPeca.Text = "Excluir";
-            this.buttonDeletarPeca.UseVisualStyleBackColor = true;
+            this.buttonDeletarPeca.UseVisualStyleBackColor = false;
             this.buttonDeletarPeca.Click += new System.EventHandler(this.buttonDeletarPeca_Click);
             // 
             // txtIdDeletarPeca
@@ -503,15 +523,36 @@ namespace SistemaOrdemServico
             this.tabConsultaPeca.Text = "                              Consultar                              ";
             this.tabConsultaPeca.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(215, 26);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(54, 18);
+            this.label8.TabIndex = 61;
+            this.label8.Text = "Nome:";
+            // 
+            // peaquisaConsulta
+            // 
+            this.peaquisaConsulta.Location = new System.Drawing.Point(275, 26);
+            this.peaquisaConsulta.Name = "peaquisaConsulta";
+            this.peaquisaConsulta.Size = new System.Drawing.Size(234, 20);
+            this.peaquisaConsulta.TabIndex = 60;
+            this.peaquisaConsulta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.peaquisaConsulta_KeyPress);
+            // 
             // btnConsultar
             // 
-            this.btnConsultar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnConsultar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnConsultar.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnConsultar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConsultar.ForeColor = System.Drawing.Color.White;
             this.btnConsultar.Location = new System.Drawing.Point(19, 19);
             this.btnConsultar.Name = "btnConsultar";
             this.btnConsultar.Size = new System.Drawing.Size(141, 33);
             this.btnConsultar.TabIndex = 59;
             this.btnConsultar.Text = "Consultar";
-            this.btnConsultar.UseVisualStyleBackColor = true;
+            this.btnConsultar.UseVisualStyleBackColor = false;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
             // dgvPecas
@@ -520,7 +561,18 @@ namespace SistemaOrdemServico
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPecas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPecas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPecas.BackgroundColor = System.Drawing.Color.White;
+            this.dgvPecas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dgvPecas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPecas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPecas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvPecas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idConsultaPeca,
             this.nomeConsultaPeca,
@@ -528,8 +580,23 @@ namespace SistemaOrdemServico
             this.fabricanteConsultaPeca,
             this.valorCompraConsultaPeca,
             this.valorVendaPeca});
+            this.dgvPecas.EnableHeadersVisualStyles = false;
             this.dgvPecas.Location = new System.Drawing.Point(19, 74);
             this.dgvPecas.Name = "dgvPecas";
+            this.dgvPecas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPecas.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvPecas.RowHeadersVisible = false;
+            this.dgvPecas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvPecas.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            this.dgvPecas.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvPecas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPecas.Size = new System.Drawing.Size(1038, 515);
             this.dgvPecas.TabIndex = 0;
             // 
@@ -562,24 +629,6 @@ namespace SistemaOrdemServico
             // 
             this.valorVendaPeca.HeaderText = "Valor Venda";
             this.valorVendaPeca.Name = "valorVendaPeca";
-            // 
-            // peaquisaConsulta
-            // 
-            this.peaquisaConsulta.Location = new System.Drawing.Point(275, 26);
-            this.peaquisaConsulta.Name = "peaquisaConsulta";
-            this.peaquisaConsulta.Size = new System.Drawing.Size(234, 20);
-            this.peaquisaConsulta.TabIndex = 60;
-            this.peaquisaConsulta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.peaquisaConsulta_KeyPress);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(215, 26);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 18);
-            this.label8.TabIndex = 61;
-            this.label8.Text = "Nome:";
             // 
             // CadastroPecas
             // 
