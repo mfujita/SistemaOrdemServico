@@ -26,8 +26,7 @@ namespace SistemaOrdemServico
         {
             InitializeComponent();
 
-            conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielCasa"));
-            //conexaoSql = new SqlConnection(Form1.GetStringConecao("GustavoDanielFaculdade"));
+            conexaoSql = new SqlConnection(Form1.GetStringConexao());
             modos = new Dictionary<string, Func<bool>>
             {
                 { "Inserir", Inserir },
@@ -147,27 +146,30 @@ namespace SistemaOrdemServico
         {
             CarregarValorCampos();
 
-            if (!Form1.TemCamposVazios(camposDeEntrada) && ValidaComboBoxes() && valoresSelecionados != null)
+            if (btnEnviar.Tag.ToString() != string.Empty)
             {
-                var camposAtualizados = ObterValoresAtualizados();
-
-                if (camposAtualizados.Count > 0)
+                if (!Form1.TemCamposVazios(camposDeEntrada) && ValidaComboBoxes())
                 {
-                    var condicoes = new Dictionary<string, string> { { "idOrc", btnEnviar.Tag.ToString() } };
+                    var camposAtualizados = ObterValoresAtualizados();
 
-                    SqlUpdate(orcamentoTabela, camposAtualizados, condicoes);
+                    if (camposAtualizados.Count > 0)
+                    {
+                        var condicoes = new Dictionary<string, string> { { "idOrc", btnEnviar.Tag.ToString() } };
 
-                    return true;
-                }
-                else
-                {
-                    MostrarMensagemErro("Nenhum valor modificado.");
+                        SqlUpdate(orcamentoTabela, camposAtualizados, condicoes);
+
+                        return true;
+                    }
+                    else
+                    {
+                        MostrarMensagemErro("Nenhum valor modificado.");
+                    }
                 }
             }
             else
             {
                 MostrarMensagemErro("Nenhum registro selecionado, clique no botão editar novamente e selecione um registro.");
-                LimparCampos();
+                return true;
             }
 
             return false;

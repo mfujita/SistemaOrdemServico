@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,9 +42,31 @@ namespace SistemaOrdemServico
             }
         }
 
-        public static string GetStringConecao(string nome)
+        public static string GetStringConexao()
         {
-            return ConfigurationManager.ConnectionStrings[nome].ToString();
+            var strConPath = Path.Combine(Directory.GetCurrentDirectory(), "stringConexao.txt");
+
+            if (File.Exists(strConPath))
+            {
+                using (var sr = new StreamReader(strConPath))
+                {
+                    return sr.ReadLine();
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Crie um arquivo com o nome \"stringConexao.txt\" no diretório do executável, " +
+                    "escreva a string de conexão ao banco de dados no arquivo e " +
+                    "rode o programa novamente.",
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                    );
+
+                Environment.Exit(0);
+                return string.Empty;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

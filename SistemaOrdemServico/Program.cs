@@ -22,7 +22,7 @@ namespace SistemaOrdemServico
             //Application.Run(new cadPessoa());
             //Application.Run(new CadastroFunc());
             //Application.Run(new CadastroPecas());
-            //Application.Run(new Orcamento());
+            Application.Run(new Orcamento());
             //Application.Run(new SelecionarOrcamento());
         }
     }
