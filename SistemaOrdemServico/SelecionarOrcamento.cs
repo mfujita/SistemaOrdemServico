@@ -1,38 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaOrdemServico
 {
     public partial class SelecionarOrcamento : Form
     {
-        private readonly Orcamento orcamento;
+        public IEnumerable<string> ValoresSelecionados { get; private set; }
+
+        private readonly BancoDadosOrcamento bancoDados;
         private readonly Dictionary<string, string> clientes;
         private readonly Dictionary<string, string> pecas;
         private readonly Dictionary<string, string> funcionarios;
         private Dictionary<string, List<string>> orcamentosValue;
         private List<List<string>> registros;
-        public IEnumerable<string> ValoresSelecionados { get; private set; }
 
 
         public SelecionarOrcamento()
         {
             InitializeComponent();
 
-            orcamento = new Orcamento();
+            bancoDados = new BancoDadosOrcamento();
 
             var condicoesCliente = new Dictionary<string, string> { { "categoria", "Cliente" } };
-            clientes = CriarDicionario(orcamento.SqlSelect("cadClientForn", condicoesCliente, "AND", "idCad", "nomeRazSoc"));
-            pecas = CriarDicionario(orcamento.SqlSelect("cadPeca", "codPeca", "nomePeca", "fabricante"));
-            funcionarios = CriarDicionario(orcamento.SqlSelect("cadFunc", "idFunc", "nome"));
+            clientes = CriarDicionario(bancoDados.Select("cadClientForn", condicoesCliente, "AND", "idCad", "nomeRazSoc"));
+            pecas = CriarDicionario(bancoDados.Select("cadPeca", "codPeca", "nomePeca", "fabricante"));
+            funcionarios = CriarDicionario(bancoDados.Select("cadFunc", "idFunc", "nome"));
         }
 
         private void SelecionarOrcamento_Load(object sender, EventArgs e)
@@ -40,7 +37,7 @@ namespace SistemaOrdemServico
             CarregarColunas();
 
             var colunas = dgResultados.Columns.Cast<DataGridViewColumn>().Select(coluna => coluna.HeaderText);
-            orcamento.PopularComboBox(cbCampo, colunas.ToList());
+            PopularComboBox(cbCampo, colunas.ToList());
 
             dgResultados.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9);
         }
@@ -112,9 +109,15 @@ namespace SistemaOrdemServico
                 );
         }
 
+        public void PopularComboBox(ComboBox comboBox, List<string> itens)
+        {
+            comboBox.DataSource = itens;
+            comboBox.SelectedIndex = -1;
+        }
+
         private void CarregarColunas()
         {
-            registros = orcamento.SqlSelect("cadOrcamento", "*");
+            registros = bancoDados.Select("cadOrcamento", "*");
 
             orcamentosValue = registros.ToDictionary(
                 keySelector: item => item[0],
