@@ -481,7 +481,7 @@
             this.txtCelFunc.Location = new System.Drawing.Point(102, 384);
             this.txtCelFunc.Mask = "(##)#####-####";
             this.txtCelFunc.Name = "txtCelFunc";
-            this.txtCelFunc.Size = new System.Drawing.Size(113, 29);
+            this.txtCelFunc.Size = new System.Drawing.Size(131, 29);
             this.txtCelFunc.TabIndex = 100;
             // 
             // txtTelFunc
@@ -489,7 +489,7 @@
             this.txtTelFunc.Location = new System.Drawing.Point(102, 348);
             this.txtTelFunc.Mask = "(##)####-####";
             this.txtTelFunc.Name = "txtTelFunc";
-            this.txtTelFunc.Size = new System.Drawing.Size(113, 29);
+            this.txtTelFunc.Size = new System.Drawing.Size(131, 29);
             this.txtTelFunc.TabIndex = 99;
             // 
             // txtCepFunc
@@ -896,7 +896,7 @@
             this.cbSexoFuncEdit.Name = "cbSexoFuncEdit";
             this.cbSexoFuncEdit.Size = new System.Drawing.Size(142, 29);
             this.cbSexoFuncEdit.TabIndex = 79;
-            this.cbSexoFuncEdit.SelectionChangeCommitted += new System.EventHandler(this.cbSexoFuncEdit_SelectionChangeCommitted);
+            this.cbSexoFuncEdit.TextChanged += new System.EventHandler(this.cbSexoFuncEdit_TextChanged);
             // 
             // tabPage3
             // 

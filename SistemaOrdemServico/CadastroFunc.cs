@@ -27,7 +27,7 @@ namespace SistemaOrdemServico
          public SqlConnection AbreConexao()
         {
             //string conexao = @"Server=LAB8-31\SQLEXPRESS;Database=OsFujita;User Id=sa;Password=1234;";
-            string conexao = @"Data source=DESKTOP-FR4CCG0;Initial Catalog=OsFujita;Integrated Security=True;";
+            string conexao = @"Data source=DESKTOP-IFSKL0I;Initial Catalog=OsFujita;Integrated Security=True;";
                 return new SqlConnection(conexao);
 
         }
@@ -335,15 +335,17 @@ namespace SistemaOrdemServico
         }
 
         //Converte a string da textbox em char pra mandar pro banco
-        private void cbSexoFuncEdit_SelectionChangeCommitted(object sender, EventArgs e)
+        private void cbSexoFuncEdit_TextChanged(object sender, EventArgs e)
         {
-            if (cbSexoFuncEdit.Text == "Masculino")
             {
-                sexoSend = 'M';
-            }
-            else
-            {
-                sexoSend = 'F';
+                if (cbSexoFuncEdit.Text == "Masculino")
+                {
+                    sexoSend = 'M';
+                }
+                else
+                {
+                    sexoSend = 'F';
+                }
             }
         }
 
