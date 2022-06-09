@@ -1,51 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SistemaOrdemServico
 {
     public partial class SelecionarOrcamento : Form
     {
-        private readonly SqlConnection conexaoSql;
-        private readonly Orcamento orcamento;
-        public IEnumerable<string> Valores { get; private set; }
+        public IEnumerable<string> ValoresSelecionados { get; private set; }
+
+        private readonly BancoDadosOrcamento bancoDados;
+        private readonly Dictionary<string, string> clientes;
+        private readonly Dictionary<string, string> pecas;
+        private readonly Dictionary<string, string> funcionarios;
+        private Dictionary<string, List<string>> orcamentosValue;
+        private List<List<string>> registros;
 
 
-        public SelecionarOrcamento(SqlConnection conexao)
+        public SelecionarOrcamento()
         {
-            conexaoSql = conexao;
-            orcamento = new Orcamento();
-
             InitializeComponent();
-        }
 
-        private void CarregarColunas()
-        {
-            List<string> colunasBanco = orcamento.ObterColunasOrcamento();
-            List<string> colunasExibidas = new List<string>()
-            {
-                "ID", "Cliente", "Data de entrada", "Descrição", "Peças", "Valor do serviço", "Recebido por"
-            };
+            bancoDados = new BancoDadosOrcamento();
 
-            foreach (var _ in colunasBanco.Zip(colunasExibidas, dgResultados.Columns.Add)) ;
+            var condicoesCliente = new Dictionary<string, string> { { "categoria", "Cliente" } };
+            clientes = CriarDicionario(bancoDados.Select("cadClientForn", condicoesCliente, "AND", "idCad", "nomeRazSoc"));
+            pecas = CriarDicionario(bancoDados.Select("cadPeca", "codPeca", "nomePeca", "fabricante"));
+            funcionarios = CriarDicionario(bancoDados.Select("cadFunc", "idFunc", "nome"));
         }
 
         private void SelecionarOrcamento_Load(object sender, EventArgs e)
         {
             CarregarColunas();
 
-            if (dgResultados.Columns.Count > 0)
-            {
-                var registros = orcamento.SqlSelect("cadOrcamento", "*");
-                registros.ForEach(registro => dgResultados.Rows.Add(registro.ToArray()));
-            }
+            var colunas = dgResultados.Columns.Cast<DataGridViewColumn>().Select(coluna => coluna.HeaderText);
+            PopularComboBox(cbCampo, colunas.ToList());
+
+            dgResultados.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9);
         }
 
         private void dgResultados_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -54,7 +48,6 @@ namespace SistemaOrdemServico
             {
                 EnviarParaFormulario();
             }
-
         }
 
         private void dgResultados_KeyDown(object sender, KeyEventArgs e)
@@ -64,18 +57,99 @@ namespace SistemaOrdemServico
                 EnviarParaFormulario();
                 e.Handled = true;
             }
+            else if (e.KeyCode == Keys.Tab)
+            {
+                var proximaLinha = dgResultados.SelectedRows[0].Index + 1;
+                if (dgResultados.RowCount > proximaLinha)
+                {
+                    dgResultados.Rows[proximaLinha].Selected = true;
+                }
+                e.Handled = true;
+            }
         }
 
-        private void EnviarParaFormulario()
+        private void dgResultados_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
-            Valores = dgResultados.SelectedCells.Cast<DataGridViewCell>()
-                     .Select(cell => cell.Value.ToString());
-            Close();
+            dgResultados.Cursor = Cursors.Hand;
+        }
+
+        private void dgResultados_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            dgResultados.Cursor = Cursors.Default;
         }
 
         private void txtValor_TextChanged(object sender, EventArgs e)
         {
-            //Procurar nos elementos dentro do datagrid usando o campo especificado pelo combo box
+            dgResultados.Rows.Clear();
+
+            var compareInfo = CultureInfo.InvariantCulture.CompareInfo;
+            var compareOptions = CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase;
+
+            var registrosFiltrados = registros.Where(registro => compareInfo.IndexOf(
+                registro[cbCampo.SelectedIndex], txtValor.Text, compareOptions) != -1
+                );
+
+            PopularDataGrid(registrosFiltrados);
+        }
+
+        private void cbCampo_DropDownClosed(object sender, EventArgs e)
+        {
+            if ((sender as ComboBox).SelectedIndex != -1)
+            {
+                txtValor.Enabled = true;
+                txtValor.Text = string.Empty;
+            }
+        }
+
+        private Dictionary<string, string> CriarDicionario(List<List<string>> dados)
+        {
+            return dados.ToDictionary(
+                keySelector: item => item[0],
+                elementSelector: item => string.Join(" - ", item.Skip(1))
+                );
+        }
+
+        public void PopularComboBox(ComboBox comboBox, List<string> itens)
+        {
+            comboBox.DataSource = itens;
+            comboBox.SelectedIndex = -1;
+        }
+
+        private void CarregarColunas()
+        {
+            registros = bancoDados.Select("cadOrcamento", "*");
+
+            orcamentosValue = registros.ToDictionary(
+                keySelector: item => item[0],
+                elementSelector: item => new List<string>(item)
+                );
+
+            foreach (var registro in registros)
+            {
+                registro[1] = clientes[registro[1]];
+                registro[4] = pecas[registro[4]];
+                registro[6] = funcionarios[registro[6]];
+            }
+
+            PopularDataGrid(registros);
+        }
+
+        private void PopularDataGrid(IEnumerable<List<string>> linhas)
+        {
+            foreach (var linha in linhas)
+            {
+                dgResultados.Rows.Add(linha.ToArray());
+            }
+            if (dgResultados.Rows.Count > 0)
+            {
+                dgResultados.Rows[0].Selected = false;
+            }
+        }
+
+        private void EnviarParaFormulario()
+        {
+            ValoresSelecionados = orcamentosValue[dgResultados.SelectedCells[0].Value.ToString()];
+            Close();
         }
     }
 }

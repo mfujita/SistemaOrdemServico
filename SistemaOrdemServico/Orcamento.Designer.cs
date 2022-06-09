@@ -47,15 +47,19 @@
             this.pbOrcamento = new System.Windows.Forms.PictureBox();
             this.btnModoInserir = new System.Windows.Forms.Button();
             this.btnModoExcluir = new System.Windows.Forms.Button();
+            this.btnLimpar = new System.Windows.Forms.Button();
+            this.gpbModos = new System.Windows.Forms.GroupBox();
+            this.lblModo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).BeginInit();
+            this.gpbModos.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblCadastroOrcamento
             // 
             this.lblCadastroOrcamento.AutoSize = true;
             this.lblCadastroOrcamento.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCadastroOrcamento.Location = new System.Drawing.Point(155, 41);
+            this.lblCadastroOrcamento.Location = new System.Drawing.Point(155, 9);
             this.lblCadastroOrcamento.Name = "lblCadastroOrcamento";
             this.lblCadastroOrcamento.Size = new System.Drawing.Size(260, 24);
             this.lblCadastroOrcamento.TabIndex = 41;
@@ -63,9 +67,9 @@
             // 
             // btnEnviar
             // 
-            this.btnEnviar.Location = new System.Drawing.Point(345, 500);
+            this.btnEnviar.Location = new System.Drawing.Point(291, 525);
             this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(75, 33);
+            this.btnEnviar.Size = new System.Drawing.Size(130, 33);
             this.btnEnviar.TabIndex = 38;
             this.btnEnviar.Text = "Inserir";
             this.btnEnviar.UseVisualStyleBackColor = true;
@@ -76,16 +80,16 @@
             this.cbRecebidoOrcamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbRecebidoOrcamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbRecebidoOrcamento.FormattingEnabled = true;
-            this.cbRecebidoOrcamento.Location = new System.Drawing.Point(148, 449);
+            this.cbRecebidoOrcamento.Location = new System.Drawing.Point(151, 474);
             this.cbRecebidoOrcamento.MaxLength = 60;
             this.cbRecebidoOrcamento.Name = "cbRecebidoOrcamento";
-            this.cbRecebidoOrcamento.Size = new System.Drawing.Size(272, 29);
+            this.cbRecebidoOrcamento.Size = new System.Drawing.Size(270, 29);
             this.cbRecebidoOrcamento.TabIndex = 37;
             // 
             // lblMoedaOrcamento
             // 
             this.lblMoedaOrcamento.AutoSize = true;
-            this.lblMoedaOrcamento.Location = new System.Drawing.Point(147, 404);
+            this.lblMoedaOrcamento.Location = new System.Drawing.Point(147, 429);
             this.lblMoedaOrcamento.Name = "lblMoedaOrcamento";
             this.lblMoedaOrcamento.Size = new System.Drawing.Size(29, 21);
             this.lblMoedaOrcamento.TabIndex = 36;
@@ -94,14 +98,14 @@
             // nudValorOrcamento
             // 
             this.nudValorOrcamento.DecimalPlaces = 2;
-            this.nudValorOrcamento.Location = new System.Drawing.Point(182, 402);
+            this.nudValorOrcamento.Location = new System.Drawing.Point(181, 427);
             this.nudValorOrcamento.Maximum = new decimal(new int[] {
             99999999,
             0,
             0,
             131072});
             this.nudValorOrcamento.Name = "nudValorOrcamento";
-            this.nudValorOrcamento.Size = new System.Drawing.Size(238, 29);
+            this.nudValorOrcamento.Size = new System.Drawing.Size(240, 29);
             this.nudValorOrcamento.TabIndex = 35;
             this.nudValorOrcamento.ThousandsSeparator = true;
             // 
@@ -110,28 +114,28 @@
             this.cbPecasOrcamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbPecasOrcamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbPecasOrcamento.FormattingEnabled = true;
-            this.cbPecasOrcamento.Location = new System.Drawing.Point(151, 355);
+            this.cbPecasOrcamento.Location = new System.Drawing.Point(151, 380);
             this.cbPecasOrcamento.MaxLength = 60;
             this.cbPecasOrcamento.Name = "cbPecasOrcamento";
-            this.cbPecasOrcamento.Size = new System.Drawing.Size(269, 29);
+            this.cbPecasOrcamento.Size = new System.Drawing.Size(270, 29);
             this.cbPecasOrcamento.TabIndex = 34;
             // 
             // txtDescricaoOrcamento
             // 
             this.txtDescricaoOrcamento.AllowDrop = true;
-            this.txtDescricaoOrcamento.Location = new System.Drawing.Point(151, 222);
+            this.txtDescricaoOrcamento.Location = new System.Drawing.Point(151, 247);
             this.txtDescricaoOrcamento.Multiline = true;
             this.txtDescricaoOrcamento.Name = "txtDescricaoOrcamento";
             this.txtDescricaoOrcamento.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtDescricaoOrcamento.Size = new System.Drawing.Size(269, 115);
+            this.txtDescricaoOrcamento.Size = new System.Drawing.Size(270, 115);
             this.txtDescricaoOrcamento.TabIndex = 33;
             // 
             // dtpDataEntradaOrcamento
             // 
             this.dtpDataEntradaOrcamento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataEntradaOrcamento.Location = new System.Drawing.Point(151, 175);
+            this.dtpDataEntradaOrcamento.Location = new System.Drawing.Point(151, 200);
             this.dtpDataEntradaOrcamento.Name = "dtpDataEntradaOrcamento";
-            this.dtpDataEntradaOrcamento.Size = new System.Drawing.Size(269, 29);
+            this.dtpDataEntradaOrcamento.Size = new System.Drawing.Size(270, 29);
             this.dtpDataEntradaOrcamento.TabIndex = 32;
             this.dtpDataEntradaOrcamento.Value = new System.DateTime(2022, 5, 1, 0, 0, 0, 0);
             // 
@@ -140,16 +144,16 @@
             this.cbClienteOrcamento.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbClienteOrcamento.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbClienteOrcamento.FormattingEnabled = true;
-            this.cbClienteOrcamento.Location = new System.Drawing.Point(151, 128);
+            this.cbClienteOrcamento.Location = new System.Drawing.Point(151, 153);
             this.cbClienteOrcamento.MaxLength = 60;
             this.cbClienteOrcamento.Name = "cbClienteOrcamento";
-            this.cbClienteOrcamento.Size = new System.Drawing.Size(269, 29);
+            this.cbClienteOrcamento.Size = new System.Drawing.Size(270, 29);
             this.cbClienteOrcamento.TabIndex = 31;
             // 
             // lblPecasOrcamento
             // 
             this.lblPecasOrcamento.AutoSize = true;
-            this.lblPecasOrcamento.Location = new System.Drawing.Point(47, 359);
+            this.lblPecasOrcamento.Location = new System.Drawing.Point(47, 384);
             this.lblPecasOrcamento.Name = "lblPecasOrcamento";
             this.lblPecasOrcamento.Size = new System.Drawing.Size(51, 21);
             this.lblPecasOrcamento.TabIndex = 30;
@@ -158,7 +162,7 @@
             // lblRecebidoOrcamento
             // 
             this.lblRecebidoOrcamento.AutoSize = true;
-            this.lblRecebidoOrcamento.Location = new System.Drawing.Point(21, 453);
+            this.lblRecebidoOrcamento.Location = new System.Drawing.Point(21, 478);
             this.lblRecebidoOrcamento.Name = "lblRecebidoOrcamento";
             this.lblRecebidoOrcamento.Size = new System.Drawing.Size(105, 21);
             this.lblRecebidoOrcamento.TabIndex = 29;
@@ -167,7 +171,7 @@
             // lblValorOrcamento
             // 
             this.lblValorOrcamento.AutoSize = true;
-            this.lblValorOrcamento.Location = new System.Drawing.Point(10, 406);
+            this.lblValorOrcamento.Location = new System.Drawing.Point(10, 431);
             this.lblValorOrcamento.Name = "lblValorOrcamento";
             this.lblValorOrcamento.Size = new System.Drawing.Size(124, 21);
             this.lblValorOrcamento.TabIndex = 28;
@@ -176,7 +180,7 @@
             // lblDescricaoOrcamento
             // 
             this.lblDescricaoOrcamento.AutoSize = true;
-            this.lblDescricaoOrcamento.Location = new System.Drawing.Point(38, 269);
+            this.lblDescricaoOrcamento.Location = new System.Drawing.Point(38, 294);
             this.lblDescricaoOrcamento.Name = "lblDescricaoOrcamento";
             this.lblDescricaoOrcamento.Size = new System.Drawing.Size(80, 21);
             this.lblDescricaoOrcamento.TabIndex = 27;
@@ -185,7 +189,7 @@
             // lblDataEntradaOrcamento
             // 
             this.lblDataEntradaOrcamento.AutoSize = true;
-            this.lblDataEntradaOrcamento.Location = new System.Drawing.Point(12, 179);
+            this.lblDataEntradaOrcamento.Location = new System.Drawing.Point(12, 204);
             this.lblDataEntradaOrcamento.Name = "lblDataEntradaOrcamento";
             this.lblDataEntradaOrcamento.Size = new System.Drawing.Size(123, 21);
             this.lblDataEntradaOrcamento.TabIndex = 26;
@@ -194,7 +198,7 @@
             // lblClienteOrcamento
             // 
             this.lblClienteOrcamento.AutoSize = true;
-            this.lblClienteOrcamento.Location = new System.Drawing.Point(38, 132);
+            this.lblClienteOrcamento.Location = new System.Drawing.Point(38, 157);
             this.lblClienteOrcamento.Name = "lblClienteOrcamento";
             this.lblClienteOrcamento.Size = new System.Drawing.Size(61, 21);
             this.lblClienteOrcamento.TabIndex = 25;
@@ -202,9 +206,9 @@
             // 
             // btnModoEditar
             // 
-            this.btnModoEditar.Location = new System.Drawing.Point(282, 68);
+            this.btnModoEditar.Location = new System.Drawing.Point(94, 28);
             this.btnModoEditar.Name = "btnModoEditar";
-            this.btnModoEditar.Size = new System.Drawing.Size(66, 54);
+            this.btnModoEditar.Size = new System.Drawing.Size(82, 54);
             this.btnModoEditar.TabIndex = 43;
             this.btnModoEditar.Text = "Editar";
             this.btnModoEditar.UseVisualStyleBackColor = true;
@@ -213,18 +217,18 @@
             // pbOrcamento
             // 
             this.pbOrcamento.Image = global::SistemaOrdemServico.Properties.Resources.Orcamento;
-            this.pbOrcamento.Location = new System.Drawing.Point(26, 11);
+            this.pbOrcamento.Location = new System.Drawing.Point(13, 8);
             this.pbOrcamento.Name = "pbOrcamento";
-            this.pbOrcamento.Size = new System.Drawing.Size(84, 84);
+            this.pbOrcamento.Size = new System.Drawing.Size(110, 110);
             this.pbOrcamento.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbOrcamento.TabIndex = 42;
             this.pbOrcamento.TabStop = false;
             // 
             // btnModoInserir
             // 
-            this.btnModoInserir.Location = new System.Drawing.Point(210, 68);
+            this.btnModoInserir.Location = new System.Drawing.Point(6, 28);
             this.btnModoInserir.Name = "btnModoInserir";
-            this.btnModoInserir.Size = new System.Drawing.Size(66, 54);
+            this.btnModoInserir.Size = new System.Drawing.Size(82, 54);
             this.btnModoInserir.TabIndex = 44;
             this.btnModoInserir.Text = "Inserir";
             this.btnModoInserir.UseVisualStyleBackColor = true;
@@ -232,23 +236,55 @@
             // 
             // btnModoExcluir
             // 
-            this.btnModoExcluir.Location = new System.Drawing.Point(354, 68);
+            this.btnModoExcluir.Location = new System.Drawing.Point(182, 28);
             this.btnModoExcluir.Name = "btnModoExcluir";
-            this.btnModoExcluir.Size = new System.Drawing.Size(66, 54);
+            this.btnModoExcluir.Size = new System.Drawing.Size(82, 54);
             this.btnModoExcluir.TabIndex = 45;
             this.btnModoExcluir.Text = "Excluir";
             this.btnModoExcluir.UseVisualStyleBackColor = true;
             this.btnModoExcluir.Click += new System.EventHandler(this.MudarModo);
+            // 
+            // btnLimpar
+            // 
+            this.btnLimpar.Location = new System.Drawing.Point(151, 525);
+            this.btnLimpar.Name = "btnLimpar";
+            this.btnLimpar.Size = new System.Drawing.Size(130, 33);
+            this.btnLimpar.TabIndex = 46;
+            this.btnLimpar.Text = "Limpar Campos";
+            this.btnLimpar.UseVisualStyleBackColor = true;
+            this.btnLimpar.Click += new System.EventHandler(this.btnLimpar_Click);
+            // 
+            // gpbModos
+            // 
+            this.gpbModos.Controls.Add(this.btnModoInserir);
+            this.gpbModos.Controls.Add(this.btnModoEditar);
+            this.gpbModos.Controls.Add(this.btnModoExcluir);
+            this.gpbModos.Location = new System.Drawing.Point(151, 36);
+            this.gpbModos.Name = "gpbModos";
+            this.gpbModos.Size = new System.Drawing.Size(270, 86);
+            this.gpbModos.TabIndex = 47;
+            this.gpbModos.TabStop = false;
+            this.gpbModos.Text = "Modos";
+            // 
+            // lblModo
+            // 
+            this.lblModo.AutoSize = true;
+            this.lblModo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblModo.Location = new System.Drawing.Point(199, 125);
+            this.lblModo.Name = "lblModo";
+            this.lblModo.Size = new System.Drawing.Size(172, 25);
+            this.lblModo.TabIndex = 48;
+            this.lblModo.Text = "Modo de inserção";
             // 
             // Orcamento
             // 
             this.AcceptButton = this.btnEnviar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 545);
-            this.Controls.Add(this.btnModoExcluir);
-            this.Controls.Add(this.btnModoInserir);
-            this.Controls.Add(this.btnModoEditar);
+            this.ClientSize = new System.Drawing.Size(445, 572);
+            this.Controls.Add(this.lblModo);
+            this.Controls.Add(this.gpbModos);
+            this.Controls.Add(this.btnLimpar);
             this.Controls.Add(this.pbOrcamento);
             this.Controls.Add(this.lblCadastroOrcamento);
             this.Controls.Add(this.btnEnviar);
@@ -266,12 +302,15 @@
             this.Controls.Add(this.lblDataEntradaOrcamento);
             this.Controls.Add(this.lblClienteOrcamento);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MaximizeBox = false;
             this.Name = "Orcamento";
             this.Text = "Orçamento";
             this.Load += new System.EventHandler(this.Orcamento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).EndInit();
+            this.gpbModos.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,5 +337,8 @@
         private System.Windows.Forms.Button btnModoEditar;
         private System.Windows.Forms.Button btnModoInserir;
         private System.Windows.Forms.Button btnModoExcluir;
+        private System.Windows.Forms.Button btnLimpar;
+        private System.Windows.Forms.GroupBox gpbModos;
+        private System.Windows.Forms.Label lblModo;
     }
 }
