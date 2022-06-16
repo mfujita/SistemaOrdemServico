@@ -97,55 +97,64 @@
             this.txtNomeFuncEdit = new System.Windows.Forms.TextBox();
             this.txtCPFuncEdit = new System.Windows.Forms.MaskedTextBox();
             this.cbSexoFuncEdit = new System.Windows.Forms.ComboBox();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabDelete = new System.Windows.Forms.TabPage();
             this.lblDeletar = new System.Windows.Forms.Label();
             this.lblDeletarTitulo = new System.Windows.Forms.Label();
             this.txtDelete = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tbNewCad.SuspendLayout();
             this.tbEdit.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.tabDelete.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnExcluirFunc
             // 
-            this.btnExcluirFunc.Location = new System.Drawing.Point(366, 113);
+            this.btnExcluirFunc.BackColor = System.Drawing.Color.Transparent;
+            this.btnExcluirFunc.Location = new System.Drawing.Point(388, 116);
             this.btnExcluirFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnExcluirFunc.Name = "btnExcluirFunc";
-            this.btnExcluirFunc.Size = new System.Drawing.Size(92, 29);
+            this.btnExcluirFunc.Size = new System.Drawing.Size(92, 35);
             this.btnExcluirFunc.TabIndex = 63;
             this.btnExcluirFunc.Text = "Excluir";
-            this.btnExcluirFunc.UseVisualStyleBackColor = true;
+            this.btnExcluirFunc.UseVisualStyleBackColor = false;
             this.btnExcluirFunc.Click += new System.EventHandler(this.btnExcluirFunc_Click);
+            this.btnExcluirFunc.MouseEnter += new System.EventHandler(this.btnExcluirFunc_MouseEnter);
+            this.btnExcluirFunc.MouseLeave += new System.EventHandler(this.btnExcluirFunc_MouseLeave);
             // 
             // btnEditFunc
             // 
-            this.btnEditFunc.Location = new System.Drawing.Point(582, 521);
+            this.btnEditFunc.BackColor = System.Drawing.Color.Transparent;
+            this.btnEditFunc.Location = new System.Drawing.Point(611, 539);
             this.btnEditFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditFunc.Name = "btnEditFunc";
             this.btnEditFunc.Size = new System.Drawing.Size(99, 37);
             this.btnEditFunc.TabIndex = 62;
             this.btnEditFunc.Text = "Atualizar";
-            this.btnEditFunc.UseVisualStyleBackColor = true;
+            this.btnEditFunc.UseVisualStyleBackColor = false;
             this.btnEditFunc.Click += new System.EventHandler(this.btnEditFunc_Click);
+            this.btnEditFunc.MouseEnter += new System.EventHandler(this.btnEditFunc_MouseEnter);
+            this.btnEditFunc.MouseLeave += new System.EventHandler(this.btnEditFunc_MouseLeave);
             // 
             // btnSalvarFunc
             // 
-            this.btnSalvarFunc.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btnSalvarFunc.Location = new System.Drawing.Point(570, 488);
+            this.btnSalvarFunc.BackColor = System.Drawing.Color.Transparent;
+            this.btnSalvarFunc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSalvarFunc.Location = new System.Drawing.Point(607, 539);
             this.btnSalvarFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalvarFunc.Name = "btnSalvarFunc";
             this.btnSalvarFunc.Size = new System.Drawing.Size(103, 37);
             this.btnSalvarFunc.TabIndex = 61;
             this.btnSalvarFunc.Text = "Salvar";
-            this.btnSalvarFunc.UseVisualStyleBackColor = true;
+            this.btnSalvarFunc.UseVisualStyleBackColor = false;
             this.btnSalvarFunc.Click += new System.EventHandler(this.btnSalvarFunc_Click);
+            this.btnSalvarFunc.MouseEnter += new System.EventHandler(this.btnSalvarFunc_MouseEnter);
+            this.btnSalvarFunc.MouseLeave += new System.EventHandler(this.btnSalvarFunc_MouseLeave);
             // 
             // lblContatoFunc
             // 
             this.lblContatoFunc.AutoSize = true;
-            this.lblContatoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblContatoFunc.Location = new System.Drawing.Point(22, 319);
+            this.lblContatoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblContatoFunc.Location = new System.Drawing.Point(59, 326);
             this.lblContatoFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContatoFunc.Name = "lblContatoFunc";
             this.lblContatoFunc.Size = new System.Drawing.Size(90, 24);
@@ -154,7 +163,7 @@
             // 
             // txtEmailFunc
             // 
-            this.txtEmailFunc.Location = new System.Drawing.Point(102, 426);
+            this.txtEmailFunc.Location = new System.Drawing.Point(139, 433);
             this.txtEmailFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEmailFunc.Name = "txtEmailFunc";
             this.txtEmailFunc.Size = new System.Drawing.Size(496, 29);
@@ -192,7 +201,7 @@
             "SP",
             "SE",
             "TO"});
-            this.cbEstadoFunc.Location = new System.Drawing.Point(499, 273);
+            this.cbEstadoFunc.Location = new System.Drawing.Point(536, 280);
             this.cbEstadoFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbEstadoFunc.Name = "cbEstadoFunc";
             this.cbEstadoFunc.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -201,7 +210,7 @@
             // 
             // txtCidadeFunc
             // 
-            this.txtCidadeFunc.Location = new System.Drawing.Point(102, 273);
+            this.txtCidadeFunc.Location = new System.Drawing.Point(139, 280);
             this.txtCidadeFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCidadeFunc.Name = "txtCidadeFunc";
             this.txtCidadeFunc.Size = new System.Drawing.Size(312, 29);
@@ -209,7 +218,7 @@
             // 
             // txtNumCasaFunc
             // 
-            this.txtNumCasaFunc.Location = new System.Drawing.Point(632, 195);
+            this.txtNumCasaFunc.Location = new System.Drawing.Point(669, 202);
             this.txtNumCasaFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNumCasaFunc.Name = "txtNumCasaFunc";
             this.txtNumCasaFunc.Size = new System.Drawing.Size(148, 29);
@@ -217,7 +226,7 @@
             // 
             // txtBairroFunc
             // 
-            this.txtBairroFunc.Location = new System.Drawing.Point(102, 234);
+            this.txtBairroFunc.Location = new System.Drawing.Point(139, 241);
             this.txtBairroFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBairroFunc.Name = "txtBairroFunc";
             this.txtBairroFunc.Size = new System.Drawing.Size(312, 29);
@@ -225,7 +234,7 @@
             // 
             // txtRuaFunc
             // 
-            this.txtRuaFunc.Location = new System.Drawing.Point(102, 195);
+            this.txtRuaFunc.Location = new System.Drawing.Point(139, 202);
             this.txtRuaFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRuaFunc.Name = "txtRuaFunc";
             this.txtRuaFunc.Size = new System.Drawing.Size(438, 29);
@@ -233,7 +242,7 @@
             // 
             // txtDatanascFunc
             // 
-            this.txtDatanascFunc.Location = new System.Drawing.Point(407, 111);
+            this.txtDatanascFunc.Location = new System.Drawing.Point(444, 118);
             this.txtDatanascFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDatanascFunc.Mask = "##/##/####";
             this.txtDatanascFunc.Name = "txtDatanascFunc";
@@ -242,7 +251,7 @@
             // 
             // txtCPFFunc
             // 
-            this.txtCPFFunc.Location = new System.Drawing.Point(102, 111);
+            this.txtCPFFunc.Location = new System.Drawing.Point(139, 118);
             this.txtCPFFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCPFFunc.Mask = "###,###,###-##";
             this.txtCPFFunc.Name = "txtCPFFunc";
@@ -256,7 +265,7 @@
             this.cbSexoFunc.Items.AddRange(new object[] {
             "Masculino",
             "Feminino"});
-            this.cbSexoFunc.Location = new System.Drawing.Point(638, 111);
+            this.cbSexoFunc.Location = new System.Drawing.Point(675, 118);
             this.cbSexoFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbSexoFunc.Name = "cbSexoFunc";
             this.cbSexoFunc.Size = new System.Drawing.Size(142, 29);
@@ -265,7 +274,7 @@
             // 
             // txtNomeFunc
             // 
-            this.txtNomeFunc.Location = new System.Drawing.Point(167, 72);
+            this.txtNomeFunc.Location = new System.Drawing.Point(204, 79);
             this.txtNomeFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNomeFunc.Name = "txtNomeFunc";
             this.txtNomeFunc.Size = new System.Drawing.Size(613, 29);
@@ -274,7 +283,7 @@
             // lblEstadoFunc
             // 
             this.lblEstadoFunc.AutoSize = true;
-            this.lblEstadoFunc.Location = new System.Drawing.Point(432, 276);
+            this.lblEstadoFunc.Location = new System.Drawing.Point(469, 283);
             this.lblEstadoFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEstadoFunc.Name = "lblEstadoFunc";
             this.lblEstadoFunc.Size = new System.Drawing.Size(59, 21);
@@ -284,7 +293,7 @@
             // lblCidadeFunc
             // 
             this.lblCidadeFunc.AutoSize = true;
-            this.lblCidadeFunc.Location = new System.Drawing.Point(22, 276);
+            this.lblCidadeFunc.Location = new System.Drawing.Point(59, 283);
             this.lblCidadeFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCidadeFunc.Name = "lblCidadeFunc";
             this.lblCidadeFunc.Size = new System.Drawing.Size(61, 21);
@@ -294,7 +303,7 @@
             // lblEmailFunc
             // 
             this.lblEmailFunc.AutoSize = true;
-            this.lblEmailFunc.Location = new System.Drawing.Point(22, 429);
+            this.lblEmailFunc.Location = new System.Drawing.Point(59, 436);
             this.lblEmailFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmailFunc.Name = "lblEmailFunc";
             this.lblEmailFunc.Size = new System.Drawing.Size(57, 21);
@@ -304,7 +313,7 @@
             // lblCelularFunc
             // 
             this.lblCelularFunc.AutoSize = true;
-            this.lblCelularFunc.Location = new System.Drawing.Point(22, 387);
+            this.lblCelularFunc.Location = new System.Drawing.Point(59, 394);
             this.lblCelularFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCelularFunc.Name = "lblCelularFunc";
             this.lblCelularFunc.Size = new System.Drawing.Size(62, 21);
@@ -314,7 +323,7 @@
             // lblTelefoneFunc
             // 
             this.lblTelefoneFunc.AutoSize = true;
-            this.lblTelefoneFunc.Location = new System.Drawing.Point(22, 351);
+            this.lblTelefoneFunc.Location = new System.Drawing.Point(59, 358);
             this.lblTelefoneFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefoneFunc.Name = "lblTelefoneFunc";
             this.lblTelefoneFunc.Size = new System.Drawing.Size(70, 21);
@@ -324,7 +333,7 @@
             // lblCepFunc
             // 
             this.lblCepFunc.AutoSize = true;
-            this.lblCepFunc.Location = new System.Drawing.Point(432, 237);
+            this.lblCepFunc.Location = new System.Drawing.Point(469, 244);
             this.lblCepFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCepFunc.Name = "lblCepFunc";
             this.lblCepFunc.Size = new System.Drawing.Size(40, 21);
@@ -334,7 +343,7 @@
             // lblNumeroFunc
             // 
             this.lblNumeroFunc.AutoSize = true;
-            this.lblNumeroFunc.Location = new System.Drawing.Point(558, 198);
+            this.lblNumeroFunc.Location = new System.Drawing.Point(595, 205);
             this.lblNumeroFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumeroFunc.Name = "lblNumeroFunc";
             this.lblNumeroFunc.Size = new System.Drawing.Size(71, 21);
@@ -344,7 +353,7 @@
             // lblBairroFunc
             // 
             this.lblBairroFunc.AutoSize = true;
-            this.lblBairroFunc.Location = new System.Drawing.Point(22, 237);
+            this.lblBairroFunc.Location = new System.Drawing.Point(59, 244);
             this.lblBairroFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBairroFunc.Name = "lblBairroFunc";
             this.lblBairroFunc.Size = new System.Drawing.Size(55, 21);
@@ -354,7 +363,7 @@
             // lblRuaFunc
             // 
             this.lblRuaFunc.AutoSize = true;
-            this.lblRuaFunc.Location = new System.Drawing.Point(22, 198);
+            this.lblRuaFunc.Location = new System.Drawing.Point(59, 205);
             this.lblRuaFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRuaFunc.Name = "lblRuaFunc";
             this.lblRuaFunc.Size = new System.Drawing.Size(40, 21);
@@ -364,8 +373,8 @@
             // lblEnderecoFunc
             // 
             this.lblEnderecoFunc.AutoSize = true;
-            this.lblEnderecoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblEnderecoFunc.Location = new System.Drawing.Point(22, 155);
+            this.lblEnderecoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblEnderecoFunc.Location = new System.Drawing.Point(59, 162);
             this.lblEnderecoFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEnderecoFunc.Name = "lblEnderecoFunc";
             this.lblEnderecoFunc.Size = new System.Drawing.Size(107, 24);
@@ -375,8 +384,8 @@
             // lblCadastroFunc
             // 
             this.lblCadastroFunc.AutoSize = true;
-            this.lblCadastroFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblCadastroFunc.Location = new System.Drawing.Point(22, 30);
+            this.lblCadastroFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblCadastroFunc.Location = new System.Drawing.Point(59, 37);
             this.lblCadastroFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCadastroFunc.Name = "lblCadastroFunc";
             this.lblCadastroFunc.Size = new System.Drawing.Size(287, 24);
@@ -386,7 +395,7 @@
             // lblDatanascFunc
             // 
             this.lblDatanascFunc.AutoSize = true;
-            this.lblDatanascFunc.Location = new System.Drawing.Point(249, 114);
+            this.lblDatanascFunc.Location = new System.Drawing.Point(286, 121);
             this.lblDatanascFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDatanascFunc.Name = "lblDatanascFunc";
             this.lblDatanascFunc.Size = new System.Drawing.Size(150, 21);
@@ -396,7 +405,7 @@
             // lblSexoFunc
             // 
             this.lblSexoFunc.AutoSize = true;
-            this.lblSexoFunc.Location = new System.Drawing.Point(583, 114);
+            this.lblSexoFunc.Location = new System.Drawing.Point(620, 121);
             this.lblSexoFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSexoFunc.Name = "lblSexoFunc";
             this.lblSexoFunc.Size = new System.Drawing.Size(46, 21);
@@ -406,7 +415,7 @@
             // lblCpfFunc
             // 
             this.lblCpfFunc.AutoSize = true;
-            this.lblCpfFunc.Location = new System.Drawing.Point(22, 115);
+            this.lblCpfFunc.Location = new System.Drawing.Point(59, 122);
             this.lblCpfFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCpfFunc.Name = "lblCpfFunc";
             this.lblCpfFunc.Size = new System.Drawing.Size(40, 21);
@@ -416,7 +425,7 @@
             // lblNomeFunc
             // 
             this.lblNomeFunc.AutoSize = true;
-            this.lblNomeFunc.Location = new System.Drawing.Point(22, 75);
+            this.lblNomeFunc.Location = new System.Drawing.Point(59, 82);
             this.lblNomeFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeFunc.Name = "lblNomeFunc";
             this.lblNomeFunc.Size = new System.Drawing.Size(125, 21);
@@ -427,12 +436,12 @@
             // 
             this.tabControl1.Controls.Add(this.tbNewCad);
             this.tabControl1.Controls.Add(this.tbEdit);
-            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabDelete);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1255, 733);
+            this.tabControl1.Size = new System.Drawing.Size(840, 618);
             this.tabControl1.TabIndex = 64;
             // 
             // tbNewCad
@@ -471,14 +480,15 @@
             this.tbNewCad.Location = new System.Drawing.Point(4, 30);
             this.tbNewCad.Name = "tbNewCad";
             this.tbNewCad.Padding = new System.Windows.Forms.Padding(3);
-            this.tbNewCad.Size = new System.Drawing.Size(1247, 699);
+            this.tbNewCad.Size = new System.Drawing.Size(832, 584);
             this.tbNewCad.TabIndex = 0;
             this.tbNewCad.Text = "Novo Funcionário";
             this.tbNewCad.UseVisualStyleBackColor = true;
+            this.tbNewCad.DoubleClick += new System.EventHandler(this.tbNewCad_DoubleClick);
             // 
             // txtCelFunc
             // 
-            this.txtCelFunc.Location = new System.Drawing.Point(102, 384);
+            this.txtCelFunc.Location = new System.Drawing.Point(139, 391);
             this.txtCelFunc.Mask = "(##)#####-####";
             this.txtCelFunc.Name = "txtCelFunc";
             this.txtCelFunc.Size = new System.Drawing.Size(131, 29);
@@ -486,7 +496,7 @@
             // 
             // txtTelFunc
             // 
-            this.txtTelFunc.Location = new System.Drawing.Point(102, 348);
+            this.txtTelFunc.Location = new System.Drawing.Point(139, 355);
             this.txtTelFunc.Mask = "(##)####-####";
             this.txtTelFunc.Name = "txtTelFunc";
             this.txtTelFunc.Size = new System.Drawing.Size(131, 29);
@@ -494,7 +504,7 @@
             // 
             // txtCepFunc
             // 
-            this.txtCepFunc.Location = new System.Drawing.Point(499, 232);
+            this.txtCepFunc.Location = new System.Drawing.Point(536, 239);
             this.txtCepFunc.Mask = "#####-###";
             this.txtCepFunc.Name = "txtCepFunc";
             this.txtCepFunc.Size = new System.Drawing.Size(91, 29);
@@ -502,14 +512,17 @@
             // 
             // btnCancelaCad
             // 
-            this.btnCancelaCad.Location = new System.Drawing.Point(681, 488);
+            this.btnCancelaCad.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelaCad.Location = new System.Drawing.Point(718, 539);
             this.btnCancelaCad.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelaCad.Name = "btnCancelaCad";
             this.btnCancelaCad.Size = new System.Drawing.Size(99, 37);
             this.btnCancelaCad.TabIndex = 97;
             this.btnCancelaCad.Text = "Cancelar";
-            this.btnCancelaCad.UseVisualStyleBackColor = true;
+            this.btnCancelaCad.UseVisualStyleBackColor = false;
             this.btnCancelaCad.Click += new System.EventHandler(this.btnCancelaCad_Click);
+            this.btnCancelaCad.MouseEnter += new System.EventHandler(this.btnCancelaCad_MouseEnter);
+            this.btnCancelaCad.MouseLeave += new System.EventHandler(this.btnCancelaCad_MouseLeave);
             // 
             // tbEdit
             // 
@@ -550,14 +563,14 @@
             this.tbEdit.Location = new System.Drawing.Point(4, 30);
             this.tbEdit.Name = "tbEdit";
             this.tbEdit.Padding = new System.Windows.Forms.Padding(3);
-            this.tbEdit.Size = new System.Drawing.Size(1247, 699);
+            this.tbEdit.Size = new System.Drawing.Size(832, 584);
             this.tbEdit.TabIndex = 1;
             this.tbEdit.Text = "Editar ";
             this.tbEdit.UseVisualStyleBackColor = true;
             // 
             // txtCelFuncEdit
             // 
-            this.txtCelFuncEdit.Location = new System.Drawing.Point(110, 422);
+            this.txtCelFuncEdit.Location = new System.Drawing.Point(139, 436);
             this.txtCelFuncEdit.Mask = "(##)#####-####";
             this.txtCelFuncEdit.Name = "txtCelFuncEdit";
             this.txtCelFuncEdit.Size = new System.Drawing.Size(125, 29);
@@ -565,7 +578,7 @@
             // 
             // txtTelFuncEdit
             // 
-            this.txtTelFuncEdit.Location = new System.Drawing.Point(110, 383);
+            this.txtTelFuncEdit.Location = new System.Drawing.Point(139, 397);
             this.txtTelFuncEdit.Mask = "(##)####-####";
             this.txtTelFuncEdit.Name = "txtTelFuncEdit";
             this.txtTelFuncEdit.Size = new System.Drawing.Size(125, 29);
@@ -573,7 +586,7 @@
             // 
             // txtCepFuncEdit
             // 
-            this.txtCepFuncEdit.Location = new System.Drawing.Point(507, 265);
+            this.txtCepFuncEdit.Location = new System.Drawing.Point(536, 279);
             this.txtCepFuncEdit.Mask = "#####-###";
             this.txtCepFuncEdit.Name = "txtCepFuncEdit";
             this.txtCepFuncEdit.Size = new System.Drawing.Size(91, 29);
@@ -581,30 +594,35 @@
             // 
             // btnCancelEdit
             // 
-            this.btnCancelEdit.Location = new System.Drawing.Point(689, 521);
+            this.btnCancelEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancelEdit.Location = new System.Drawing.Point(718, 539);
             this.btnCancelEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelEdit.Name = "btnCancelEdit";
             this.btnCancelEdit.Size = new System.Drawing.Size(99, 37);
             this.btnCancelEdit.TabIndex = 96;
             this.btnCancelEdit.Text = "Cancelar";
-            this.btnCancelEdit.UseVisualStyleBackColor = true;
+            this.btnCancelEdit.UseVisualStyleBackColor = false;
             this.btnCancelEdit.Click += new System.EventHandler(this.btnCancelEdit_Click);
+            this.btnCancelEdit.MouseEnter += new System.EventHandler(this.btnCancelEdit_MouseEnter);
+            this.btnCancelEdit.MouseLeave += new System.EventHandler(this.btnCancelEdit_MouseLeave);
             // 
             // btnPesquisarEdit
             // 
-            this.btnPesquisarEdit.Location = new System.Drawing.Point(658, 69);
+            this.btnPesquisarEdit.Location = new System.Drawing.Point(687, 80);
             this.btnPesquisarEdit.Name = "btnPesquisarEdit";
-            this.btnPesquisarEdit.Size = new System.Drawing.Size(130, 29);
+            this.btnPesquisarEdit.Size = new System.Drawing.Size(130, 35);
             this.btnPesquisarEdit.TabIndex = 95;
             this.btnPesquisarEdit.Text = "Pesquisar";
             this.btnPesquisarEdit.UseVisualStyleBackColor = true;
             this.btnPesquisarEdit.Click += new System.EventHandler(this.btnPesquisarEdit_Click);
+            this.btnPesquisarEdit.MouseEnter += new System.EventHandler(this.btnPesquisarEdit_MouseEnter);
+            this.btnPesquisarEdit.MouseLeave += new System.EventHandler(this.btnPesquisarEdit_MouseLeave);
             // 
             // lblEditarCad
             // 
             this.lblEditarCad.AutoSize = true;
-            this.lblEditarCad.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblEditarCad.Location = new System.Drawing.Point(30, 23);
+            this.lblEditarCad.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblEditarCad.Location = new System.Drawing.Point(59, 37);
             this.lblEditarCad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEditarCad.Name = "lblEditarCad";
             this.lblEditarCad.Size = new System.Drawing.Size(316, 24);
@@ -613,7 +631,7 @@
             // 
             // txtPesquisaEdit
             // 
-            this.txtPesquisaEdit.Location = new System.Drawing.Point(238, 69);
+            this.txtPesquisaEdit.Location = new System.Drawing.Point(267, 83);
             this.txtPesquisaEdit.Name = "txtPesquisaEdit";
             this.txtPesquisaEdit.Size = new System.Drawing.Size(399, 29);
             this.txtPesquisaEdit.TabIndex = 93;
@@ -621,7 +639,7 @@
             // lblPesquisarEdit
             // 
             this.lblPesquisarEdit.AutoSize = true;
-            this.lblPesquisarEdit.Location = new System.Drawing.Point(30, 72);
+            this.lblPesquisarEdit.Location = new System.Drawing.Point(59, 86);
             this.lblPesquisarEdit.Name = "lblPesquisarEdit";
             this.lblPesquisarEdit.Size = new System.Drawing.Size(205, 21);
             this.lblPesquisarEdit.TabIndex = 92;
@@ -630,7 +648,7 @@
             // lblNomeFuncEdit
             // 
             this.lblNomeFuncEdit.AutoSize = true;
-            this.lblNomeFuncEdit.Location = new System.Drawing.Point(30, 116);
+            this.lblNomeFuncEdit.Location = new System.Drawing.Point(59, 130);
             this.lblNomeFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNomeFuncEdit.Name = "lblNomeFuncEdit";
             this.lblNomeFuncEdit.Size = new System.Drawing.Size(125, 21);
@@ -640,7 +658,7 @@
             // lblCPFuncEdit
             // 
             this.lblCPFuncEdit.AutoSize = true;
-            this.lblCPFuncEdit.Location = new System.Drawing.Point(30, 150);
+            this.lblCPFuncEdit.Location = new System.Drawing.Point(59, 164);
             this.lblCPFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCPFuncEdit.Name = "lblCPFuncEdit";
             this.lblCPFuncEdit.Size = new System.Drawing.Size(40, 21);
@@ -650,7 +668,7 @@
             // lblSexoFuncEdit
             // 
             this.lblSexoFuncEdit.AutoSize = true;
-            this.lblSexoFuncEdit.Location = new System.Drawing.Point(591, 155);
+            this.lblSexoFuncEdit.Location = new System.Drawing.Point(620, 169);
             this.lblSexoFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSexoFuncEdit.Name = "lblSexoFuncEdit";
             this.lblSexoFuncEdit.Size = new System.Drawing.Size(46, 21);
@@ -660,7 +678,7 @@
             // lblDtNascFuncEdit
             // 
             this.lblDtNascFuncEdit.AutoSize = true;
-            this.lblDtNascFuncEdit.Location = new System.Drawing.Point(257, 155);
+            this.lblDtNascFuncEdit.Location = new System.Drawing.Point(286, 169);
             this.lblDtNascFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDtNascFuncEdit.Name = "lblDtNascFuncEdit";
             this.lblDtNascFuncEdit.Size = new System.Drawing.Size(150, 21);
@@ -670,8 +688,8 @@
             // lblContatoEdit
             // 
             this.lblContatoEdit.AutoSize = true;
-            this.lblContatoEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblContatoEdit.Location = new System.Drawing.Point(30, 350);
+            this.lblContatoEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblContatoEdit.Location = new System.Drawing.Point(59, 364);
             this.lblContatoEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContatoEdit.Name = "lblContatoEdit";
             this.lblContatoEdit.Size = new System.Drawing.Size(90, 24);
@@ -681,8 +699,8 @@
             // lblEnderecoEdit
             // 
             this.lblEnderecoEdit.AutoSize = true;
-            this.lblEnderecoEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblEnderecoEdit.Location = new System.Drawing.Point(30, 191);
+            this.lblEnderecoEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblEnderecoEdit.Location = new System.Drawing.Point(59, 205);
             this.lblEnderecoEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEnderecoEdit.Name = "lblEnderecoEdit";
             this.lblEnderecoEdit.Size = new System.Drawing.Size(107, 24);
@@ -691,7 +709,7 @@
             // 
             // txtEmailFuncEdit
             // 
-            this.txtEmailFuncEdit.Location = new System.Drawing.Point(110, 461);
+            this.txtEmailFuncEdit.Location = new System.Drawing.Point(139, 475);
             this.txtEmailFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEmailFuncEdit.Name = "txtEmailFuncEdit";
             this.txtEmailFuncEdit.Size = new System.Drawing.Size(496, 29);
@@ -700,7 +718,7 @@
             // lblRuaFuncEdit
             // 
             this.lblRuaFuncEdit.AutoSize = true;
-            this.lblRuaFuncEdit.Location = new System.Drawing.Point(30, 231);
+            this.lblRuaFuncEdit.Location = new System.Drawing.Point(59, 245);
             this.lblRuaFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRuaFuncEdit.Name = "lblRuaFuncEdit";
             this.lblRuaFuncEdit.Size = new System.Drawing.Size(40, 21);
@@ -710,7 +728,7 @@
             // lblBairroFuncEdit
             // 
             this.lblBairroFuncEdit.AutoSize = true;
-            this.lblBairroFuncEdit.Location = new System.Drawing.Point(30, 270);
+            this.lblBairroFuncEdit.Location = new System.Drawing.Point(59, 284);
             this.lblBairroFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBairroFuncEdit.Name = "lblBairroFuncEdit";
             this.lblBairroFuncEdit.Size = new System.Drawing.Size(55, 21);
@@ -720,7 +738,7 @@
             // lblNumCFuncEdit
             // 
             this.lblNumCFuncEdit.AutoSize = true;
-            this.lblNumCFuncEdit.Location = new System.Drawing.Point(566, 231);
+            this.lblNumCFuncEdit.Location = new System.Drawing.Point(595, 245);
             this.lblNumCFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumCFuncEdit.Name = "lblNumCFuncEdit";
             this.lblNumCFuncEdit.Size = new System.Drawing.Size(71, 21);
@@ -759,7 +777,7 @@
             "SP",
             "SE",
             "TO"});
-            this.cbEstadoFuncEdit.Location = new System.Drawing.Point(507, 306);
+            this.cbEstadoFuncEdit.Location = new System.Drawing.Point(536, 320);
             this.cbEstadoFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbEstadoFuncEdit.Name = "cbEstadoFuncEdit";
             this.cbEstadoFuncEdit.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -769,7 +787,7 @@
             // lblCepFuncEdit
             // 
             this.lblCepFuncEdit.AutoSize = true;
-            this.lblCepFuncEdit.Location = new System.Drawing.Point(440, 270);
+            this.lblCepFuncEdit.Location = new System.Drawing.Point(469, 284);
             this.lblCepFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCepFuncEdit.Name = "lblCepFuncEdit";
             this.lblCepFuncEdit.Size = new System.Drawing.Size(40, 21);
@@ -778,7 +796,7 @@
             // 
             // txtCidadeFuncEdit
             // 
-            this.txtCidadeFuncEdit.Location = new System.Drawing.Point(110, 306);
+            this.txtCidadeFuncEdit.Location = new System.Drawing.Point(139, 320);
             this.txtCidadeFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCidadeFuncEdit.Name = "txtCidadeFuncEdit";
             this.txtCidadeFuncEdit.Size = new System.Drawing.Size(312, 29);
@@ -787,7 +805,7 @@
             // lblTelFuncEdit
             // 
             this.lblTelFuncEdit.AutoSize = true;
-            this.lblTelFuncEdit.Location = new System.Drawing.Point(30, 386);
+            this.lblTelFuncEdit.Location = new System.Drawing.Point(59, 400);
             this.lblTelFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelFuncEdit.Name = "lblTelFuncEdit";
             this.lblTelFuncEdit.Size = new System.Drawing.Size(70, 21);
@@ -796,7 +814,7 @@
             // 
             // txtNumCFuncEdit
             // 
-            this.txtNumCFuncEdit.Location = new System.Drawing.Point(640, 228);
+            this.txtNumCFuncEdit.Location = new System.Drawing.Point(669, 242);
             this.txtNumCFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNumCFuncEdit.Name = "txtNumCFuncEdit";
             this.txtNumCFuncEdit.Size = new System.Drawing.Size(148, 29);
@@ -805,7 +823,7 @@
             // lblCelFuncEdit
             // 
             this.lblCelFuncEdit.AutoSize = true;
-            this.lblCelFuncEdit.Location = new System.Drawing.Point(30, 425);
+            this.lblCelFuncEdit.Location = new System.Drawing.Point(59, 439);
             this.lblCelFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCelFuncEdit.Name = "lblCelFuncEdit";
             this.lblCelFuncEdit.Size = new System.Drawing.Size(62, 21);
@@ -815,7 +833,7 @@
             // lblEmailFuncEdit
             // 
             this.lblEmailFuncEdit.AutoSize = true;
-            this.lblEmailFuncEdit.Location = new System.Drawing.Point(30, 464);
+            this.lblEmailFuncEdit.Location = new System.Drawing.Point(59, 478);
             this.lblEmailFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmailFuncEdit.Name = "lblEmailFuncEdit";
             this.lblEmailFuncEdit.Size = new System.Drawing.Size(57, 21);
@@ -824,7 +842,7 @@
             // 
             // txtBairroFuncEdit
             // 
-            this.txtBairroFuncEdit.Location = new System.Drawing.Point(110, 267);
+            this.txtBairroFuncEdit.Location = new System.Drawing.Point(139, 281);
             this.txtBairroFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtBairroFuncEdit.Name = "txtBairroFuncEdit";
             this.txtBairroFuncEdit.Size = new System.Drawing.Size(312, 29);
@@ -833,7 +851,7 @@
             // lblCidadFuncEdit
             // 
             this.lblCidadFuncEdit.AutoSize = true;
-            this.lblCidadFuncEdit.Location = new System.Drawing.Point(30, 309);
+            this.lblCidadFuncEdit.Location = new System.Drawing.Point(59, 323);
             this.lblCidadFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCidadFuncEdit.Name = "lblCidadFuncEdit";
             this.lblCidadFuncEdit.Size = new System.Drawing.Size(61, 21);
@@ -842,7 +860,7 @@
             // 
             // txtRuaFuncEdit
             // 
-            this.txtRuaFuncEdit.Location = new System.Drawing.Point(110, 228);
+            this.txtRuaFuncEdit.Location = new System.Drawing.Point(139, 242);
             this.txtRuaFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRuaFuncEdit.Name = "txtRuaFuncEdit";
             this.txtRuaFuncEdit.Size = new System.Drawing.Size(438, 29);
@@ -851,7 +869,7 @@
             // lblEstadoFuncEdit
             // 
             this.lblEstadoFuncEdit.AutoSize = true;
-            this.lblEstadoFuncEdit.Location = new System.Drawing.Point(440, 309);
+            this.lblEstadoFuncEdit.Location = new System.Drawing.Point(469, 323);
             this.lblEstadoFuncEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEstadoFuncEdit.Name = "lblEstadoFuncEdit";
             this.lblEstadoFuncEdit.Size = new System.Drawing.Size(59, 21);
@@ -860,7 +878,7 @@
             // 
             // txtDtNascFuncEdit
             // 
-            this.txtDtNascFuncEdit.Location = new System.Drawing.Point(415, 152);
+            this.txtDtNascFuncEdit.Location = new System.Drawing.Point(444, 166);
             this.txtDtNascFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDtNascFuncEdit.Mask = "##/##/####";
             this.txtDtNascFuncEdit.Name = "txtDtNascFuncEdit";
@@ -869,7 +887,7 @@
             // 
             // txtNomeFuncEdit
             // 
-            this.txtNomeFuncEdit.Location = new System.Drawing.Point(175, 113);
+            this.txtNomeFuncEdit.Location = new System.Drawing.Point(204, 127);
             this.txtNomeFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNomeFuncEdit.Name = "txtNomeFuncEdit";
             this.txtNomeFuncEdit.Size = new System.Drawing.Size(613, 29);
@@ -877,7 +895,7 @@
             // 
             // txtCPFuncEdit
             // 
-            this.txtCPFuncEdit.Location = new System.Drawing.Point(110, 152);
+            this.txtCPFuncEdit.Location = new System.Drawing.Point(139, 166);
             this.txtCPFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCPFuncEdit.Mask = "###,###,###-##";
             this.txtCPFuncEdit.Name = "txtCPFuncEdit";
@@ -891,31 +909,31 @@
             this.cbSexoFuncEdit.Items.AddRange(new object[] {
             "Masculino",
             "Feminino"});
-            this.cbSexoFuncEdit.Location = new System.Drawing.Point(646, 152);
+            this.cbSexoFuncEdit.Location = new System.Drawing.Point(675, 166);
             this.cbSexoFuncEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbSexoFuncEdit.Name = "cbSexoFuncEdit";
             this.cbSexoFuncEdit.Size = new System.Drawing.Size(142, 29);
             this.cbSexoFuncEdit.TabIndex = 79;
             this.cbSexoFuncEdit.TextChanged += new System.EventHandler(this.cbSexoFuncEdit_TextChanged);
             // 
-            // tabPage3
+            // tabDelete
             // 
-            this.tabPage3.Controls.Add(this.lblDeletar);
-            this.tabPage3.Controls.Add(this.lblDeletarTitulo);
-            this.tabPage3.Controls.Add(this.txtDelete);
-            this.tabPage3.Controls.Add(this.btnExcluirFunc);
-            this.tabPage3.Location = new System.Drawing.Point(4, 30);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1247, 699);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Deletar ";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabDelete.Controls.Add(this.lblDeletar);
+            this.tabDelete.Controls.Add(this.lblDeletarTitulo);
+            this.tabDelete.Controls.Add(this.txtDelete);
+            this.tabDelete.Controls.Add(this.btnExcluirFunc);
+            this.tabDelete.Location = new System.Drawing.Point(4, 30);
+            this.tabDelete.Name = "tabDelete";
+            this.tabDelete.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDelete.Size = new System.Drawing.Size(832, 584);
+            this.tabDelete.TabIndex = 2;
+            this.tabDelete.Text = "Deletar ";
+            this.tabDelete.UseVisualStyleBackColor = true;
             // 
             // lblDeletar
             // 
             this.lblDeletar.AutoSize = true;
-            this.lblDeletar.Location = new System.Drawing.Point(31, 80);
+            this.lblDeletar.Location = new System.Drawing.Point(59, 86);
             this.lblDeletar.Name = "lblDeletar";
             this.lblDeletar.Size = new System.Drawing.Size(285, 21);
             this.lblDeletar.TabIndex = 96;
@@ -924,8 +942,8 @@
             // lblDeletarTitulo
             // 
             this.lblDeletarTitulo.AutoSize = true;
-            this.lblDeletarTitulo.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lblDeletarTitulo.Location = new System.Drawing.Point(31, 32);
+            this.lblDeletarTitulo.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblDeletarTitulo.Location = new System.Drawing.Point(59, 38);
             this.lblDeletarTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDeletarTitulo.Name = "lblDeletarTitulo";
             this.lblDeletarTitulo.Size = new System.Drawing.Size(201, 24);
@@ -934,7 +952,7 @@
             // 
             // txtDelete
             // 
-            this.txtDelete.Location = new System.Drawing.Point(35, 113);
+            this.txtDelete.Location = new System.Drawing.Point(63, 119);
             this.txtDelete.Name = "txtDelete";
             this.txtDelete.Size = new System.Drawing.Size(308, 29);
             this.txtDelete.TabIndex = 64;
@@ -943,19 +961,21 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 733);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(840, 618);
             this.Controls.Add(this.tabControl1);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CadastroFunc";
             this.Text = "Cadastro de Funcionários";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.tabControl1.ResumeLayout(false);
             this.tbNewCad.ResumeLayout(false);
             this.tbNewCad.PerformLayout();
             this.tbEdit.ResumeLayout(false);
             this.tbEdit.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.tabDelete.ResumeLayout(false);
+            this.tabDelete.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -994,7 +1014,7 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tbNewCad;
         private System.Windows.Forms.TabPage tbEdit;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabDelete;
         private System.Windows.Forms.Label lblNomeFuncEdit;
         private System.Windows.Forms.Label lblCPFuncEdit;
         private System.Windows.Forms.Label lblSexoFuncEdit;
