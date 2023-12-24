@@ -32,12 +32,18 @@ namespace SistemaOrdemServico
                 Form1.MostrarMensagemErro(
                     "Crie um arquivo com o nome \"stringConexao.txt\" no diretório do executável, " +
                     "escreva a string de conexão ao banco de dados no arquivo e " +
-                    "rode o programa novamente."
+                    "rode o programa novamente.\n" +
+                    "Caso esteja em modo debug, o arquivo deve ser criado em {Pasta do projeto}\\SistemaOrdemServico\\bin\\Debug"
                     );
 
                 Environment.Exit(1);
                 return string.Empty;
             }
+        }
+
+        public SqlConnection GetConexao()
+        {
+            return conexao;
         }
 
         public void TryComando(Action<SqlCommand> acao, string comandoStr)
