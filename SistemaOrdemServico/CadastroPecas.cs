@@ -13,40 +13,36 @@ namespace SistemaOrdemServico
 {
     public partial class CadastroPecas : Form
     {
+        private readonly Invocador invocador;
+        private readonly BancoDadosOrcamento bancoDados;
+        private readonly SqlConnection conexao;
         string sql;
 
-        public CadastroPecas()
+        public CadastroPecas(Invocador invocador)
         {
             InitializeComponent();
             bloquearCamposEditar();
+
+            this.invocador = invocador;
+            bancoDados = new BancoDadosOrcamento();
+            conexao = bancoDados.GetConexao();
         }
 
 
-
-        /*
-            Conexao com banco de dados
-         */
-        public SqlConnection abreConexao()
+        private void CadastroPecas_Load(object sender, EventArgs e)
         {
-            string conexao = @"Server= GODOY\SQLEXPRESS;
-                            Database=OSFujita;
-                            User Id=sa;
-                            Password=1234;";
-            return new SqlConnection(conexao);
+            tabControlPecas.SelectedIndex = 1;
         }
 
 
 
         private void PreencherCboxGeneric(ComboBox cbox)
         {
-
-            SqlConnection conexao = abreConexao();
-
             try
             {
                 conexao.Open();
 
-                sql = "SELECT * FROM cadClientForn WHERE categoria = 'Empresa'";
+                sql = "SELECT * FROM cadClientForn WHERE categoria = 'Fornecedor'";
 
                 SqlCommand comando = new SqlCommand(sql, conexao);
 
@@ -137,17 +133,16 @@ namespace SistemaOrdemServico
             else
             {
 
-                SqlConnection conexao = abreConexao();
                 sql = "SELECT idCad FROM cadClientForn where nomeRazSoc = '" + cboxFornecedorCadastrarPeca.Text + "'";
 
                 SqlCommand cmd = new SqlCommand(sql, conexao);
                 conexao.Open();
                 int idFornecedorPeca = (int)cmd.ExecuteScalar();
+                conexao.Close();
 
 
                 try
                 {
-                    conexao = abreConexao();
 
                     sql = "INSERT INTO cadPeca VALUES ( '" + cadastroNomePeca + "'," +
                         "'" + idFornecedorPeca + "'," +
@@ -175,9 +170,9 @@ namespace SistemaOrdemServico
                     dgvPecas.Rows.Clear();
                 }
 
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    MessageBox.Show("Erro ao salvar dados");
+                    MessageBox.Show("Erro ao salvar dados\n" + exception.Message);
                 }
             }
         }
@@ -201,8 +196,6 @@ namespace SistemaOrdemServico
             }
             else
             {
-                SqlConnection conexao = abreConexao();
-
                 sql = "DELETE FROM cadPeca WHERE codPeca = " + Convert.ToInt32(idDelete) + "";
 
                 SqlCommand comandoDelete = new SqlCommand(sql, conexao);
@@ -247,7 +240,7 @@ namespace SistemaOrdemServico
         {
             //sql = "SELECT * FROM cadPeca";
             sql = @"SELECT cP.codPeca, cP.nomePeca, cCF.nomeRazSoc, cP.fabricante, cP.vlCompra, cP.vlVenda FROM cadPeca cP, cadClientForn cCF 
-            WHERE cCF.categoria = 'Empresa' AND cP.fkFornecedor = cCF.idCad";
+            WHERE cP.fkFornecedor = cCF.idCad";
 
 
             ListagemGeneric(sql);
@@ -314,7 +307,6 @@ namespace SistemaOrdemServico
                     txtIdEditarPeca.Enabled = false;
 
                     //Preenchendo os input text da area de editar Peça
-                    SqlConnection conexao = abreConexao();
 
                     sql = "SELECT * FROM cadPeca WHERE codPeca = " + idConsutarPeca + " ";
 
@@ -359,8 +351,6 @@ namespace SistemaOrdemServico
 
                     comandoEmpresaCBox.Dispose();
 
-                    conexao.Close();
-
 
                 }
                 catch (Exception)
@@ -370,6 +360,10 @@ namespace SistemaOrdemServico
                     MessageBox.Show("Id não encontrado");
                     txtIdEditarPeca.Text = "";
 
+                }
+                finally
+                {
+                    conexao.Close();
                 }
 
             }
@@ -388,7 +382,6 @@ namespace SistemaOrdemServico
         private void buttonEditarPeca_Click(object sender, EventArgs e)
         {
 
-            SqlConnection conexao = abreConexao();
 
             if (txtIdEditarPeca.Text == string.Empty ||
                 txtNomeEditarPeca.Text == string.Empty ||
@@ -402,12 +395,12 @@ namespace SistemaOrdemServico
             else
             {
                 //Metodo que atribui o id ao nome da empresa no combobox
-                conexao = abreConexao();
                 sql = "SELECT idCad FROM cadClientForn where nomeRazSoc = '" + cboxFornecedorEditarPeca.Text + "'";
 
                 SqlCommand cmd = new SqlCommand(sql, conexao);
                 conexao.Open();
                 int idFornecedorEditarPeca = (int)cmd.ExecuteScalar();
+                conexao.Close();
 
                 //Variaveis
                 string idEdiatarPeca = txtIdEditarPeca.Text;
@@ -418,7 +411,6 @@ namespace SistemaOrdemServico
 
                 try
                 {
-                    conexao = abreConexao();
 
                     sql = @"UPDATE cadPeca SET nomePeca = '" 
                             + nomeEditarPeca + "', fkFornecedor = " 
@@ -453,9 +445,9 @@ namespace SistemaOrdemServico
                     dgvPecas.Rows.Clear();
                 }
 
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    MessageBox.Show("Erro ao atualizar");
+                    MessageBox.Show("Erro ao atualizar\n" + exception.Message);
 
                     cboxFornecedorEditarPeca.Enabled = true;
                 }
@@ -522,7 +514,7 @@ namespace SistemaOrdemServico
 
 
             //sql = "SELECT * FROM cadPeca";
-            sql = "select cP.codPeca, cP.nomePeca, cCF.nomeRazSoc, cP.fabricante, cP.vlCompra, cP.vlVenda from cadPeca cP, cadClientForn cCF where cCF.categoria = 'Empresa' and cP.fkFornecedor = cCF.idCad AND nomePeca like '" + nomePeca + "%'";
+            sql = "select cP.codPeca, cP.nomePeca, cCF.nomeRazSoc, cP.fabricante, cP.vlCompra, cP.vlVenda from cadPeca cP, cadClientForn cCF where cP.fkFornecedor = cCF.idCad AND nomePeca like '" + nomePeca + "%'";
 
             ListagemGeneric(sql);
 
@@ -535,8 +527,6 @@ namespace SistemaOrdemServico
         private void ListagemGeneric(string sql)
         {
             string _sql = sql;
-
-            SqlConnection conexao = abreConexao();
 
             SqlCommand comandoConsulta = new SqlCommand(sql, conexao);
 
@@ -553,6 +543,14 @@ namespace SistemaOrdemServico
             conexao.Close();
 
 
+        }
+
+        private void tabControlPecas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlPecas.SelectedIndex == 0)
+            {
+                invocador.CarregarTelaInicial();
+            }
         }
     } 
 }

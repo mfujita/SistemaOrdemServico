@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,17 @@ namespace SistemaOrdemServico
 {
     public partial class cadPessoa : Form
     {
-        public cadPessoa()
+        private readonly Invocador invocador;
+        private readonly BancoDadosOrcamento bancoDados;
+        private readonly SqlConnection conexao;
+
+        public cadPessoa(Invocador invocador)
         {
             InitializeComponent();
+
+            this.invocador = invocador;
+            bancoDados = new BancoDadosOrcamento();
+            conexao = bancoDados.GetConexao();
         }
         private void btnSalvarPessoa_Click_1(object sender, EventArgs e)
         {
@@ -125,5 +134,9 @@ namespace SistemaOrdemServico
             }
         }
 
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            invocador.CarregarTelaInicial();
+        }
     }
 }

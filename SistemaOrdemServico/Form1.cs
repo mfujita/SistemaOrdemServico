@@ -202,6 +202,5 @@ namespace SistemaOrdemServico
             tb_Garantia.Clear();
             tb_ID.Focus();
         }
-
     }
 }

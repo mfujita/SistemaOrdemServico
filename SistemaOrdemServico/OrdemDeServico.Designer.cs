@@ -39,6 +39,7 @@
             this.dtp_Saida = new System.Windows.Forms.DateTimePicker();
             this.dtp_Garantia = new System.Windows.Forms.DateTimePicker();
             this.mtb_Id = new System.Windows.Forms.MaskedTextBox();
+            this.btnVoltar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Limpar
@@ -142,11 +143,22 @@
             this.mtb_Id.TabIndex = 24;
             this.mtb_Id.ValidatingType = typeof(int);
             // 
+            // btnVoltar
+            // 
+            this.btnVoltar.Location = new System.Drawing.Point(12, 9);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(20, 26);
+            this.btnVoltar.TabIndex = 83;
+            this.btnVoltar.Text = "↩";
+            this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
             // OrdemDeServico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.mtb_Id);
             this.Controls.Add(this.dtp_Garantia);
             this.Controls.Add(this.dtp_Saida);
@@ -178,5 +190,6 @@
         private System.Windows.Forms.DateTimePicker dtp_Saida;
         private System.Windows.Forms.DateTimePicker dtp_Garantia;
         private System.Windows.Forms.MaskedTextBox mtb_Id;
+        private System.Windows.Forms.Button btnVoltar;
     }
 }

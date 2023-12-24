@@ -101,6 +101,7 @@
             this.lblDeletar = new System.Windows.Forms.Label();
             this.lblDeletarTitulo = new System.Windows.Forms.Label();
             this.txtDelete = new System.Windows.Forms.TextBox();
+            this.tbVoltar = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tbNewCad.SuspendLayout();
             this.tbEdit.SuspendLayout();
@@ -138,7 +139,7 @@
             // btnSalvarFunc
             // 
             this.btnSalvarFunc.BackColor = System.Drawing.Color.Transparent;
-            this.btnSalvarFunc.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSalvarFunc.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnSalvarFunc.Location = new System.Drawing.Point(607, 539);
             this.btnSalvarFunc.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSalvarFunc.Name = "btnSalvarFunc";
@@ -153,7 +154,7 @@
             // lblContatoFunc
             // 
             this.lblContatoFunc.AutoSize = true;
-            this.lblContatoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblContatoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblContatoFunc.Location = new System.Drawing.Point(59, 326);
             this.lblContatoFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContatoFunc.Name = "lblContatoFunc";
@@ -373,7 +374,7 @@
             // lblEnderecoFunc
             // 
             this.lblEnderecoFunc.AutoSize = true;
-            this.lblEnderecoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblEnderecoFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblEnderecoFunc.Location = new System.Drawing.Point(59, 162);
             this.lblEnderecoFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEnderecoFunc.Name = "lblEnderecoFunc";
@@ -384,7 +385,7 @@
             // lblCadastroFunc
             // 
             this.lblCadastroFunc.AutoSize = true;
-            this.lblCadastroFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblCadastroFunc.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblCadastroFunc.Location = new System.Drawing.Point(59, 37);
             this.lblCadastroFunc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCadastroFunc.Name = "lblCadastroFunc";
@@ -434,15 +435,18 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tbVoltar);
             this.tabControl1.Controls.Add(this.tbNewCad);
             this.tabControl1.Controls.Add(this.tbEdit);
             this.tabControl1.Controls.Add(this.tabDelete);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(840, 618);
             this.tabControl1.TabIndex = 64;
+            this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tbNewCad
             // 
@@ -621,7 +625,7 @@
             // lblEditarCad
             // 
             this.lblEditarCad.AutoSize = true;
-            this.lblEditarCad.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblEditarCad.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblEditarCad.Location = new System.Drawing.Point(59, 37);
             this.lblEditarCad.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEditarCad.Name = "lblEditarCad";
@@ -688,7 +692,7 @@
             // lblContatoEdit
             // 
             this.lblContatoEdit.AutoSize = true;
-            this.lblContatoEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblContatoEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblContatoEdit.Location = new System.Drawing.Point(59, 364);
             this.lblContatoEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContatoEdit.Name = "lblContatoEdit";
@@ -699,7 +703,7 @@
             // lblEnderecoEdit
             // 
             this.lblEnderecoEdit.AutoSize = true;
-            this.lblEnderecoEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblEnderecoEdit.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblEnderecoEdit.Location = new System.Drawing.Point(59, 205);
             this.lblEnderecoEdit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEnderecoEdit.Name = "lblEnderecoEdit";
@@ -942,7 +946,7 @@
             // lblDeletarTitulo
             // 
             this.lblDeletarTitulo.AutoSize = true;
-            this.lblDeletarTitulo.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblDeletarTitulo.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold);
             this.lblDeletarTitulo.Location = new System.Drawing.Point(59, 38);
             this.lblDeletarTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDeletarTitulo.Name = "lblDeletarTitulo";
@@ -957,6 +961,15 @@
             this.txtDelete.Size = new System.Drawing.Size(308, 29);
             this.txtDelete.TabIndex = 64;
             // 
+            // tbVoltar
+            // 
+            this.tbVoltar.Location = new System.Drawing.Point(4, 30);
+            this.tbVoltar.Name = "tbVoltar";
+            this.tbVoltar.Size = new System.Drawing.Size(832, 584);
+            this.tbVoltar.TabIndex = 3;
+            this.tbVoltar.Text = "↩";
+            this.tbVoltar.UseVisualStyleBackColor = true;
+            // 
             // CadastroFunc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -964,11 +977,12 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(840, 618);
             this.Controls.Add(this.tabControl1);
-            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "CadastroFunc";
             this.Text = "Cadastro de Funcionários";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.CadastroFunc_Load);
             this.tabControl1.ResumeLayout(false);
             this.tbNewCad.ResumeLayout(false);
             this.tbNewCad.PerformLayout();
@@ -1055,5 +1069,6 @@
         private System.Windows.Forms.MaskedTextBox txtTelFunc;
         private System.Windows.Forms.MaskedTextBox txtCelFuncEdit;
         private System.Windows.Forms.MaskedTextBox txtTelFuncEdit;
+        private System.Windows.Forms.TabPage tbVoltar;
     }
 }

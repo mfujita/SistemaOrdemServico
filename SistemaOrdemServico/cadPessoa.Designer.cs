@@ -61,6 +61,7 @@
             this.btnEditarPessoa = new System.Windows.Forms.Button();
             this.btnSalvarPessoa = new System.Windows.Forms.Button();
             this.pbPessoa = new System.Windows.Forms.PictureBox();
+            this.btnVoltar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbPessoa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -383,11 +384,22 @@
             this.pbPessoa.TabIndex = 65;
             this.pbPessoa.TabStop = false;
             // 
+            // btnVoltar
+            // 
+            this.btnVoltar.Location = new System.Drawing.Point(12, 12);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(20, 26);
+            this.btnVoltar.TabIndex = 82;
+            this.btnVoltar.Text = "↩";
+            this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
             // cadPessoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1231, 660);
+            this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.txtCepPessoa);
             this.Controls.Add(this.txtCpfCnpj);
             this.Controls.Add(this.txtCidadePessoa);
@@ -464,5 +476,6 @@
         private System.Windows.Forms.Button btnEditarPessoa;
         private System.Windows.Forms.Button btnSalvarPessoa;
         private System.Windows.Forms.PictureBox pbPessoa;
+        private System.Windows.Forms.Button btnVoltar;
     }
 }

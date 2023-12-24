@@ -8,6 +8,7 @@ namespace SistemaOrdemServico
 {
     public partial class Orcamento : Form
     {
+        private readonly Invocador invocador;
         private readonly BancoDadosOrcamento bancoDados;
         private readonly Dictionary<string, Func<bool>> modos;
         private readonly List<Control> campos;
@@ -17,9 +18,10 @@ namespace SistemaOrdemServico
         private IEnumerable<string> valoresSelecionados;
 
 
-        public Orcamento()
+        public Orcamento(Invocador invocador)
         {
             InitializeComponent();
+            this.invocador = invocador;
 
             bancoDados = new BancoDadosOrcamento();
             modos = new Dictionary<string, Func<bool>>
@@ -293,6 +295,11 @@ namespace SistemaOrdemServico
 
             btnEnviar.Tag = string.Empty;
             valoresSelecionados = null;
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            invocador.CarregarTelaInicial();
         }
     }
 }

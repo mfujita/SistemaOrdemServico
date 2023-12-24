@@ -14,24 +14,27 @@ namespace SistemaOrdemServico
 
     public partial class CadastroFunc : Form
     {
+        private readonly Invocador invocador;
+        private readonly BancoDadosOrcamento bancoDados;
+        private readonly SqlConnection conexao;
         char sexo;           // Pega o sexo na tela de cadastro
         char sexoSend;       // Pega o sexo na tela de edicao
         int idFunc;          // Salva o idFunc para uso posterior
         bool ConfirmaDelete; // Retorna a confirmação que o nome digitado pra deletar existe
         bool dataInvalida;   // Retorna se a data é valida ou não
+        
 
-        public CadastroFunc()
+        public CadastroFunc(Invocador invocador)
         {
             InitializeComponent();
-        }
-        
-        //Método para conectar ao banco.
-         public SqlConnection AbreConexao()
-        {
-            //string conexao = @"Server=LAB8-31\SQLEXPRESS;Database=OsFujita;User Id=sa;Password=1234;";
-            string conexao = @"Data source=DESKTOP-IFSKL0I;Initial Catalog=OsFujita;Integrated Security=True;";
-                return new SqlConnection(conexao);
 
+            this.invocador = invocador;
+            bancoDados = new BancoDadosOrcamento();
+            conexao = bancoDados.GetConexao();
+        }
+        private void CadastroFunc_Load(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 1;
         }
 
         //Verifica os campos vazios e informa quais são eles
@@ -129,8 +132,6 @@ namespace SistemaOrdemServico
 
                 if (yesno == DialogResult.Yes)
                 {
-                    SqlConnection conexao = AbreConexao();
-
                     string sql = "INSERT INTO cadFunc VALUES ('" + txtCPFFunc.Text.Replace("-", "").Replace(".", "") + "','" +
                         txtNomeFunc.Text + "', '" +
                         sexo + "', '" +
@@ -220,9 +221,6 @@ namespace SistemaOrdemServico
             {
                 try
                 {
-                    SqlConnection conexao = AbreConexao();
-
-
                     string sql = "SELECT * FROM cadFunc WHERE nome = '" + nomePesquisa + "' ";
 
                     SqlCommand comandoConsultaEdita = new SqlCommand(sql, conexao);
@@ -268,6 +266,10 @@ namespace SistemaOrdemServico
                     tabControl1.SelectTab(tbEdit);
                     return;
                 }
+                finally
+                {
+                    conexao.Close();
+                }
 
             }
         }
@@ -288,8 +290,6 @@ namespace SistemaOrdemServico
         {
             if (ValidadorEdit() == true && dataInvalida == true)
             {
-                SqlConnection conexao = AbreConexao();
-
                 string sql = "UPDATE cadFunc set cpf = '" + txtCPFuncEdit.Text.Replace("-", "").Replace(".", "") + "', nome = '" +
                     txtNomeFuncEdit.Text + "', sexo = '" +
                     sexoSend + "', dtNasc = '" +
@@ -415,8 +415,6 @@ namespace SistemaOrdemServico
 
             if (nomeDelete != string.Empty)
             {  
-                SqlConnection conexao = AbreConexao();
-
                 string sql = "SELECT * FROM cadFunc WHERE nome = '" + nomeDelete + "' ";
 
                 SqlCommand comandoConsultaEdita = new SqlCommand(sql, conexao);
@@ -436,8 +434,8 @@ namespace SistemaOrdemServico
                     MessageBox.Show("Nome errado ou inexistente", "Erro de digitação no nome", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     ClearControl(this);
                     tabControl1.SelectTab(tabDelete);
-                    return;
                 }
+                conexao.Close();
             }
             else
             {
@@ -452,8 +450,6 @@ namespace SistemaOrdemServico
                     
                     if (yesno == DialogResult.Yes)
                     {
-
-                        SqlConnection conexao = AbreConexao();
                         string sql = "DELETE from cadFunc WHERE nome = '" + nomeDelete + "' ";
                         
                         SqlCommand comandoDeleteFunc = new SqlCommand(sql, conexao);
@@ -462,7 +458,6 @@ namespace SistemaOrdemServico
                         comandoDeleteFunc.ExecuteNonQuery();
 
                         comandoDeleteFunc.Dispose();
-                        conexao.Close();
 
                         MessageBox.Show("Deletado com sucesso!");
                         ClearControl(this);
@@ -470,10 +465,13 @@ namespace SistemaOrdemServico
                             
                     }
                 }
-                catch (Exception)
+                catch (Exception exception)
                 {
-                    MessageBox.Show("Erro inesperado");
-                    return;
+                    MessageBox.Show("Erro inesperado\n" + exception.Message);
+                }
+                finally
+                {
+                    conexao.Close();
                 }
             }
         }
@@ -542,7 +540,7 @@ namespace SistemaOrdemServico
                 else if (c.HasChildren)
                 {
                     if (c is TabControl)
-                        ((TabControl)c).SelectedIndex = 0;
+                        ((TabControl)c).SelectedIndex = 1;
 
                     ClearControl(c);
                 }
@@ -564,6 +562,14 @@ namespace SistemaOrdemServico
             txtTelFunc.Text = "1934075566";
             txtCelFunc.Text = "19994197566";
             txtEmailFunc.Text = "gustavo_allm@outlook.com";
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0)
+            {
+                invocador.CarregarTelaInicial();
+            }
         }
     }
 }

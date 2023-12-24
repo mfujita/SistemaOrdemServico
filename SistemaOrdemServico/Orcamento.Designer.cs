@@ -50,6 +50,7 @@
             this.btnLimpar = new System.Windows.Forms.Button();
             this.gpbModos = new System.Windows.Forms.GroupBox();
             this.lblModo = new System.Windows.Forms.Label();
+            this.btnVoltar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudValorOrcamento)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbOrcamento)).BeginInit();
             this.gpbModos.SuspendLayout();
@@ -276,12 +277,23 @@
             this.lblModo.TabIndex = 48;
             this.lblModo.Text = "Modo de inserção";
             // 
+            // btnVoltar
+            // 
+            this.btnVoltar.Location = new System.Drawing.Point(1, -1);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(20, 26);
+            this.btnVoltar.TabIndex = 49;
+            this.btnVoltar.Text = "↩";
+            this.btnVoltar.UseVisualStyleBackColor = true;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
             // Orcamento
             // 
             this.AcceptButton = this.btnEnviar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(445, 572);
+            this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.lblModo);
             this.Controls.Add(this.gpbModos);
             this.Controls.Add(this.btnLimpar);
@@ -340,5 +352,6 @@
         private System.Windows.Forms.Button btnLimpar;
         private System.Windows.Forms.GroupBox gpbModos;
         private System.Windows.Forms.Label lblModo;
+        private System.Windows.Forms.Button btnVoltar;
     }
 }

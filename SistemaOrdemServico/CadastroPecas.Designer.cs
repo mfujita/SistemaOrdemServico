@@ -29,8 +29,8 @@ namespace SistemaOrdemServico
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControlPecas = new System.Windows.Forms.TabControl();
             this.tabCadastrarPecas = new System.Windows.Forms.TabPage();
             this.numericValorVendaCadastrarPeca = new System.Windows.Forms.TextBox();
@@ -81,6 +81,7 @@ namespace SistemaOrdemServico
             this.fabricanteConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorCompraConsultaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valorVendaPeca = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabVoltar = new System.Windows.Forms.TabPage();
             this.tabControlPecas.SuspendLayout();
             this.tabCadastrarPecas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPeca)).BeginInit();
@@ -94,6 +95,7 @@ namespace SistemaOrdemServico
             // 
             // tabControlPecas
             // 
+            this.tabControlPecas.Controls.Add(this.tabVoltar);
             this.tabControlPecas.Controls.Add(this.tabCadastrarPecas);
             this.tabControlPecas.Controls.Add(this.tabEditarPeca);
             this.tabControlPecas.Controls.Add(this.tabDeletarPeca);
@@ -104,6 +106,7 @@ namespace SistemaOrdemServico
             this.tabControlPecas.SelectedIndex = 0;
             this.tabControlPecas.Size = new System.Drawing.Size(1086, 636);
             this.tabControlPecas.TabIndex = 0;
+            this.tabControlPecas.SelectedIndexChanged += new System.EventHandler(this.tabControlPecas_SelectedIndexChanged);
             // 
             // tabCadastrarPecas
             // 
@@ -564,14 +567,14 @@ namespace SistemaOrdemServico
             this.dgvPecas.BackgroundColor = System.Drawing.Color.White;
             this.dgvPecas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgvPecas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPecas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPecas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvPecas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvPecas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idConsultaPeca,
@@ -584,14 +587,14 @@ namespace SistemaOrdemServico
             this.dgvPecas.Location = new System.Drawing.Point(19, 74);
             this.dgvPecas.Name = "dgvPecas";
             this.dgvPecas.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPecas.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPecas.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvPecas.RowHeadersVisible = false;
             this.dgvPecas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvPecas.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.Gainsboro;
@@ -630,6 +633,15 @@ namespace SistemaOrdemServico
             this.valorVendaPeca.HeaderText = "Valor Venda";
             this.valorVendaPeca.Name = "valorVendaPeca";
             // 
+            // tabVoltar
+            // 
+            this.tabVoltar.Location = new System.Drawing.Point(4, 22);
+            this.tabVoltar.Name = "tabVoltar";
+            this.tabVoltar.Size = new System.Drawing.Size(1078, 610);
+            this.tabVoltar.TabIndex = 4;
+            this.tabVoltar.Text = "↩";
+            this.tabVoltar.UseVisualStyleBackColor = true;
+            // 
             // CadastroPecas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -641,6 +653,7 @@ namespace SistemaOrdemServico
             this.Name = "CadastroPecas";
             this.ShowIcon = false;
             this.Text = "Pecas";
+            this.Load += new System.EventHandler(this.CadastroPecas_Load);
             this.Shown += new System.EventHandler(this.CadastroPecas_Shown);
             this.tabControlPecas.ResumeLayout(false);
             this.tabCadastrarPecas.ResumeLayout(false);
@@ -711,5 +724,6 @@ namespace SistemaOrdemServico
         private System.Windows.Forms.Button btnCancelarEdicao;
         private System.Windows.Forms.TextBox peaquisaConsulta;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TabPage tabVoltar;
     }
 }

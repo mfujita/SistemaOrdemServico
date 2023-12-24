@@ -66,6 +66,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Invocador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Invocador.Designer.cs">
+      <DependentUpon>Invocador.cs</DependentUpon>
+    </Compile>
     <Compile Include="Orcamento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,12 @@
     <Compile Include="SelecionarOrcamento.Designer.cs">
       <DependentUpon>SelecionarOrcamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="TelaInicial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TelaInicial.Designer.cs">
+      <DependentUpon>TelaInicial.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CadastroFunc.resx">
       <DependentUpon>CadastroFunc.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Invocador.resx">
+      <DependentUpon>Invocador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Orcamento.resx">
       <DependentUpon>Orcamento.cs</DependentUpon>
@@ -117,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SelecionarOrcamento.resx">
       <DependentUpon>SelecionarOrcamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TelaInicial.resx">
+      <DependentUpon>TelaInicial.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
