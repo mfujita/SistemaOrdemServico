@@ -73,7 +73,7 @@
             this.btnEnviar.TabIndex = 38;
             this.btnEnviar.Text = "Inserir";
             this.btnEnviar.UseVisualStyleBackColor = true;
-            this.btnEnviar.Click += new System.EventHandler(this.btnInserirOrcamento_Click);
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
             // cbRecebidoOrcamento
             // 

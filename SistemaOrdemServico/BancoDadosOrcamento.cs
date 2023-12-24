@@ -35,7 +35,7 @@ namespace SistemaOrdemServico
                     "rode o programa novamente."
                     );
 
-                Environment.Exit(0);
+                Environment.Exit(1);
                 return string.Empty;
             }
         }

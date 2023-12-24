@@ -12,7 +12,7 @@ namespace SistemaOrdemServico
         private readonly Dictionary<string, Func<bool>> modos;
         private readonly List<Control> campos;
 
-        private static string orcamentoTabela = "cadOrcamento";
+        private const string orcamentoTabela = "cadOrcamento";
         private Dictionary<string, string> camposValores;
         private IEnumerable<string> valoresSelecionados;
 
@@ -84,7 +84,7 @@ namespace SistemaOrdemServico
             }
         }
 
-        private void btnInserirOrcamento_Click(object sender, EventArgs e)
+        private void btnEnviar_Click(object sender, EventArgs e)
         {
             if (modos[btnEnviar.Text]())
             {
